@@ -22,6 +22,11 @@
   "bugs": {
     "url": "https://github.com/docpad/html5-boilerplate.docpad/issues"
   },
+  "scripts": {
+    "start": "docpad server",
+    "build": "docpad build",
+    "test": "docpad test"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/docpad/html5-boilerplate.docpad.git"
