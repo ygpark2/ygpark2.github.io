@@ -1,0 +1,21 @@
+<div id="header">
+	    <div id="logo">
+	    	<a href="#" id="hamburger"><i class="icon-reorder"></i></a>
+	    	<a href="/">takitapart.</a>
+	    	<a href="#" id="top"><i class="icon-arrow-up"></i></a>
+	    	<a href="#footer" id="bottom"><i class="icon-arrow-down"></i></a>
+	    </div>
+	    <ul id="menu">
+	    	<li><a href="/posts">Posts</a></li>
+	    	<li><a href="/projects">Projects</a></li>
+	    	<li><a href="/pictures">Pictures</a></li>
+	    	<li><a href="/about">About</a></li>
+	    	<li>
+	    		<ul>
+	    			<li class="icon"><a title="GitHub" href="https://github.com/takitapart"><i class="icon-github"></i></a></li>
+	    			<li class="icon"><a title="Twitter" href="http://twitter.com/takitapart"><i class="icon-twitter"></i></a></li>
+	    			<li class="icon"><a title="Feed" href="/feed.xml"><i class="icon-rss"></i></a></li>
+	    		</ul>
+	    	</li>
+	    </ul>
+</div>

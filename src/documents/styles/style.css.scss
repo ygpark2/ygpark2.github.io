@@ -1,0 +1,59 @@
+/* Your styles go here */
+
+@import "font-awesome/font-awesome";
+
+ul {
+    list-style: none outside none;
+}
+
+#header {
+    display: block;
+    width: 88.8889%;
+    margin: 0 5.55555%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #2d4d5d;
+    color: rgba(77,174,174,0.75);
+    text-shadow: rgba(77,174,174,0) 0 0 0px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    #menu {
+        display: block;
+        float: left;
+        width: 75%;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: right;
+        margin-top: .25em;
+        margin-bottom: 0;
+
+        ol, ul {
+            padding: 0 0 0 40px;
+        }
+    }
+
+}
+
+
+#footer, footer {
+    display: block;
+    width: 88.8889%;
+    margin: 0 5.55555%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1em 0;
+    color: rgba(77,174,174,0.75);
+    text-shadow: rgba(77,174,174,0) 0 0 0px;
+    font-family: "livory";
+    text-align: center;
+    font-size: 0.8em;
+}
