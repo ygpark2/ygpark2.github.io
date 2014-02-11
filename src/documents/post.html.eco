@@ -1,0 +1,104 @@
+---
+layout: 'default'
+title: 'What now?'
+---
+
+<!-- ## Not sure what to do now? Here's some useful links: -->
+
+<div id="page" class="post">
+
+    <div class="banner ">
+
+        <div class="caption">
+            <h1 class="title "><a href="/posts/profoundly-insignificant">Profoundly Insignificant</a></h1>
+            <div class="subtitle"></div>
+        </div>
+
+    </div>
+
+    <div class="sidebar menu">
+        &nbsp;
+    </div>
+
+    <div class="body">
+        <p class="summary"></p>
+
+        <p>A couple of months ago, I decided to use one email address.</p>
+<p>Currently, I have eight active mail accounts. Work, personal, spam honeypots, etc. I moved all my archived mail to one inbox and forwarded all incoming mail from other accounts to that address. I'm not using "send as".  One email address. Incoming and outgoing.</p>
+<p>Now, to be fair, I'm lucky enough to be in the right position to make this kind of move.</p>
+<ul>
+<li>I don't work for a company with IT policies that would prevent this. I manage my own email already - personal, professional, and other.</li>
+<li>An uncommon last name allowed a domain purchase so my email address could be <strong>firstname@lastname.com</strong>. That address works just as well for personal and professional use. It's not going to change. It's me. It's my domain, and I can change email providers as necessary.</li>
+</ul>
+<p>Sometimes, I make a change to my workflow that I think is going <em>change everything</em>. It might be for the better. It might be a disaster. But it's going to fundamentally affect everything I do. </p>
+<p><em>Except when it doesn't.</em></p>
+<p>I haven't noticed anything at all. In fact, I would have posted about this a lot sooner, except I had completely forgotten about it. </p>
+<p>Just like I've forgotten:</p>
+<ul>
+<li>Setting up five to ten different mail accounts every time I set up a new phone, tablet, or computer. </li>
+<li>Worrying about setting up which accounts will notify me immediately, and which accounts I read less infrequently. I don't need notifications on any of them. Email feels less urgent nowadays; there's better ways of getting critical messages to me.</li>
+<li>Worrying about accidentally sending email to clients from my personal address. This always happens anyways, why bother fighting the inevitable? It's never caused anything but a minor irritation.</li>
+<li>Remembering to send the "I've changed my email..." email.</li>
+<li>Figuring out which account has the old email I'm looking for.</li>
+<li>Being dependent on a mail client that gracefully handles multiple accounts.</li>
+</ul>
+<p>I wish all my workflow modifications could be so profoundly insignificant.</p>
+
+
+        <p class="signature">
+	<a class="permalink" ref="bookmark" title="Permalink for Profoundly Insignificant" href="/posts/profoundly-insignificant">?</a> <strong>April 17 2013</strong>.
+</p>
+    </div>
+
+    <div id="" class="sidebar info">
+
+    <h3>Tags</h3>
+    <ul class="tags">
+            <li><a href="/tags/email">email</a></li>
+            <li><a href="/tags/productivity">productivity</a></li>
+    </ul>
+
+    <h3>Related</h3>
+    <ul class="list">
+            <li>
+                <a href="/posts/workflowy">Workflowy</a><br>
+                <span class="caption">It's not you OmniFocus, it's me.</span>
+            </li>
+    </ul>
+
+
+
+    <h3>Recently</h3>
+    <ul class="list">
+
+            <li>
+                <a href="/posts/workflowy">Workflowy</a><br>
+                <span class="caption">It's not you OmniFocus, it's me.</span>
+            </li>
+
+            <li>
+                <a href="/posts/profoundly-insignificant">Profoundly Insignificant</a><br>
+                <span class="caption"></span>
+            </li>
+
+            <li>
+                <a href="/posts/crashplan-crashing-here-is-the-fix">Crashplan crashing? Here is the fix</a><br>
+                <span class="caption"></span>
+            </li>
+
+            <li>
+                <a href="/posts/nest-on-the-panic-status-board">Nest on the Panic Status Board</a><br>
+                <span class="caption"></span>
+            </li>
+
+            <li>
+                <a href="/posts/take-more-screenshots">Take More Screenshots</a><br>
+                <span class="caption">Nostalgia overload.</span>
+            </li>
+
+    </ul>
+
+
+    </div>
+
+</div>

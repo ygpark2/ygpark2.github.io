@@ -77,6 +77,14 @@ docpadConfig = {
 
 
 	# =================================
+ 	# DocPad Plugins
+  #
+  #plugins:
+  #  ghpages:
+  #      deployRemote: 'origin'
+  #      deployBranch: 'master'
+
+	# =================================
 	# DocPad Events
 
 	# Here we can define handlers for events that DocPad fires

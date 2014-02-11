@@ -2,8 +2,39 @@
 
 @import "font-awesome/font-awesome";
 
+body {
+    line-height: 1.5em;
+    color: rgba(238,190,109,0.75);
+    text-shadow: rgba(238,190,109,0) 0 0 0px;
+    font-family: "livory";
+}
+
+h1 {
+    font-family: "brandon-grotesque";
+    display: block;
+    font-size: 2em;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
 ul {
     list-style: none outside none;
+}
+
+a {
+    color: rgba(77,174,174,0.75);
+    text-shadow: rgba(77,174,174,0) 0 0 0px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+::selection {
+    background: #f58d2e;
+    color: white;
+    text-shadow: none;
 }
 
 #header {
@@ -19,6 +50,19 @@ ul {
     text-shadow: rgba(77,174,174,0) 0 0 0px;
     margin-top: 1em;
     margin-bottom: 1em;
+
+    #logo {
+        display: block;
+        float: left;
+        width: 25%;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: left;
+    }
 
     #menu {
         display: block;
@@ -39,6 +83,63 @@ ul {
         }
     }
 
+    #menu>li {
+        display: inline-block;
+        padding: 0 0.2em;
+        font-size: 1.25em;
+        color: rgba(77,174,174,0.75);
+        text-shadow: rgba(77,174,174,0) 0 0 0px;
+        // display: block;
+        // padding: 0.3em 0;
+        font-family: "brandon-grotesque";
+        // font-size: 2em;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+}
+
+#page.post, #page.project, #page.picture, #page.page {
+    display: block;
+    width: 88.8889%;
+    margin: 0 5.55555%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #284453;
+    color: rgba(80,69,79,0.75);
+    text-shadow: rgba(80,69,79,0) 0 0 0px;
+
+    .banner {
+        margin-left: 33.33333%;
+        display: block;
+        float: left;
+        width: 33.33333%;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing1: border-box;
+        box-sizing: border-box;
+        margin-right: 33.33333%;
+
+        .caption {
+            background-color: #4daeae;
+            padding: 0.5em 1em;
+            z-index: 5000;
+            margin-left: -0.75em;
+            margin-right: -0.75em;
+
+            .title a {
+                color: rgba(255,255,255,0.75);
+                text-shadow: rgba(255,255,255,0) 0 0 0px;
+                text-align: left;
+                margin-top: 0em;
+                margin-bottom: 0em;
+            }
+        }
+    }
 }
 
 

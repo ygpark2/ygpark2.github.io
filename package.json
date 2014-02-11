@@ -45,7 +45,8 @@
     "docpad-plugin-related": "~2.2.2"
   },
   "devDependencies": {
-    "docpad-plugin-livereload": "~2.5.3"
+    "docpad-plugin-livereload": "~2.5.3",
+    "docpad-plugin-ghpages": "~2.4.3"
   },
   "main": "node_modules/docpad/bin/docpad-server"
 }

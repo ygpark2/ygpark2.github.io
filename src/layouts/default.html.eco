@@ -22,16 +22,18 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 </head>
-<body>
+<body name="top" class="scroll-top">
+
+ 	<div class="filter-holder" id="filter-holder-b"></div>
+  <div class="filter-holder" id="filter-holder-a"></div>
+
 	<!--[if lt IE 7]>
 	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 
   <%- @partial('header') %>
 
-  <div id="page" class="post">
-		<%- @content %>
-  </div>
+	<%- @content %>
 
   <%- @partial('footer') %>
 
