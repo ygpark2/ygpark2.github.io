@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+<div id="page" class="post">
+
+    <div class="banner ">
+
+        <div class="caption">
+            <h1 class="title "><a href="/posts/profoundly-insignificant">Profoundly Insignificant</a></h1>
+            <div class="subtitle"></div>
+        </div>
+
+    </div>
+
+    <div class="sidebar menu">
+        &nbsp;
+    </div>
+
+    <div class="body">
+      <%- @content %>
+    </div>
+
+    <div id="" class="sidebar info">
+
+    <h3>Tags</h3>
+    <ul class="tags">
+      <%- @partial('section/tags', false, {document:@document}) %>
+    </ul>
+
+    <h3>Related</h3>
+    <ul class="list">
+      <% for document in @getRelatedDocuments(): %>
+  			<li><span><%= document.date.toDateString() %></span>
+          <a href="<%= document.url %>"><%= document.title %></a>
+        </li>
+      <% end %>
+		 </ul>
+
+    <h3>Recently</h3>
+    <ul class="list">
+
+            <li>
+                <a href="/posts/workflowy">Workflowy</a><br>
+                <span class="caption">It's not you OmniFocus, it's me.</span>
+            </li>
+
+    </ul>
+
+
+    </div>
+
+</div>
