@@ -2,6 +2,36 @@
 # It is simply a CoffeeScript Object which is parsed by CSON
 docpadConfig = {
 
+  # =================================
+  # Collections
+  # These are special collections that our website makes available to us
+
+  collections:
+    frontpage: ->
+      @getCollection("html").findAllLive({relativeOutDirPath: $in: ['posts','projects','pictures']},[{date: -1}])
+    posts: ->
+      @getCollection("html").findAllLive({relativeOutDirPath: 'posts', isPagedAuto: $ne: true}, [{date: -1}]).on "add", (model) ->
+        model.setMetaDefaults({layout: "post"})
+    projects: ->
+      @getCollection("html").findAllLive({relativeOutDirPath: 'projects'}, [{title: 1}]).on "add", (model) ->
+        model.setMetaDefaults({layout: "project"})
+    pages: ->
+      @getCollection("html").findAllLive({relativeOutDirPath: 'pages'}).on "add", (model) ->
+        model.setMetaDefaults({layout: "page"})
+    pictures: ->
+      @getCollection("html").findAllLive({relativeOutDirPath: 'pictures'}, [{date: -1}]).on "add", (model) ->
+        model.setMetaDefaults({layout: "picture"})
+
+
+  # Regenerate Every
+  # Performs a regenerate every x milliseconds, useful for always having the latest data
+  regenerateEvery: false  # default
+
+
+  # =================================
+  # Template Configuration
+  #
+
 	# =================================
 	# Template Data
 	# These are variables that will be accessible via our templates
@@ -76,13 +106,25 @@ docpadConfig = {
 			@site.keywords.concat(@document.keywords or []).join(', ')
 
 
+
 	# =================================
  	# DocPad Plugins
   #
   #plugins:
+    # Tags
+    #tags:
+    #  extension: '.html.eco'
+    #  injectDocumentHelper: (document) ->
+    #    document.setMeta(
+    #      layout: 'page'
+    #      data: """
+    #        <%- @partial('content/tag', @) %>
+    #        """
+    #    )
   #  ghpages:
   #      deployRemote: 'origin'
   #      deployBranch: 'master'
+
 
 	# =================================
 	# DocPad Events
