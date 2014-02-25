@@ -1,0 +1,6 @@
+<!-- Link the the comments on the post's page -->
+<% if @document.disqus_enabled: %>
+	<section id="disqus_thread" class="disqus-thread">
+		<a href="<%= @document.url%>#disqus_thread" class="comments"></a>
+	</section>
+<% end %>

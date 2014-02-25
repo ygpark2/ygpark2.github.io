@@ -1,0 +1,21 @@
+---
+title: "Tag Listing"
+layout: default
+---
+
+
+<div class="row posts">
+  <div class="col-md-12">
+    <h2>Tags:</h2>
+    <!-- Page Content -->
+    <div class="row">
+      <% for document in @getFilesAtPath('tags/', [title:1]).toJSON(): %>
+      <div class="col-xs-6 col-md-3">
+        <a href="<%=document.url%>" class="thumbnail">
+          <h1><%= document.title %></h1>
+        </a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

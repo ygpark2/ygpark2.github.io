@@ -1,0 +1,10 @@
+<hgroup>
+	<h2><a href="<%= @url %>">
+		Link: <%= @title %>
+	</a></h2>
+	<h3><a href="<%= @url %>">
+		<%= @date %>
+	</a></h3>
+</hgroup>
+
+<%- @description %>

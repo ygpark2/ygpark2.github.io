@@ -1,0 +1,12 @@
+<hgroup>
+	<h2><a href="<%= @url %>">
+		Quote
+	</a></h2>
+	<h3><a href="<%= @url %>">
+		<%= @date %>
+	</a></h3>
+</hgroup>
+
+<blockquote><%- @text %></blockquote>
+
+<%- @source %>

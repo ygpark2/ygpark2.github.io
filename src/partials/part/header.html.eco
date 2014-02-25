@@ -1,21 +1,18 @@
-<div id="header">
-	    <div id="logo">
-	    	<a href="#" id="hamburger"><i class="icon-reorder"></i></a>
-	    	<a href="/">takitapart.</a>
-	    	<a href="#" id="top"><i class="icon-arrow-up"></i></a>
-	    	<a href="#footer" id="bottom"><i class="icon-arrow-down"></i></a>
-	    </div>
-	    <ul id="menu">
-	    	<li><a href="/posts">Posts</a></li>
-	    	<li><a href="/projects">Projects</a></li>
-	    	<li><a href="/pictures">Pictures</a></li>
-	    	<li><a href="/about">About</a></li>
-	    	<li>
-	    		<ul>
-	    			<li class="icon"><a title="GitHub" href="https://github.com/takitapart"><i class="icon-github"></i></a></li>
-	    			<li class="icon"><a title="Twitter" href="http://twitter.com/takitapart"><i class="icon-twitter"></i></a></li>
-	    			<li class="icon"><a title="Feed" href="/feed.xml"><i class="icon-rss"></i></a></li>
-	    		</ul>
-	    	</li>
-	    </ul>
+<div class="row" id="header">
+
+  <div class="col-md-4">
+    <h3 class="text-muted">Project name</h3>
+  </div>
+  <div class="col-md-8">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/pictures/">Pictures</a></li>
+      <li><a href="/about.html">About</a></li>
+	    <li><a title="GitHub" href="https://github.com/ygpark2"><i class="fa fa-github fa-lg"></i></a></li>
+	    <li><a title="Twitter" href="http://twitter.com/ygpark2"><i class="fa fa-twitter fa-lg"></i></a></li>
+      <li><a title="Feed" href="/feed.xml"><i class="fa fa-rss fa-lg"></i></a></li>
+    </ul>
+  </div>
+
 </div>

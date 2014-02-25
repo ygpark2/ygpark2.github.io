@@ -31,11 +31,13 @@
 	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 
-  <%- @partial('part/header') %>
+  <div class="container">
+    <%- @partial('part/header') %>
 
-	<%- @content %>
+	  <%- @content %>
 
-  <%- @partial('part/footer') %>
+    <%- @partial('part/footer') %>
+  </div>
 
 	<!-- jQuery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

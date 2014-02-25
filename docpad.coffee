@@ -8,19 +8,16 @@ docpadConfig = {
 
   collections:
     frontpage: ->
-      @getCollection("html").findAllLive({relativeOutDirPath: $in: ['posts','projects','pictures']},[{date: -1}])
+        @getCollection("html").findAllLive({relativeOutDirPath: $in: ['posts','projects','pictures']}, [{date: -1}])
     posts: ->
-      @getCollection("html").findAllLive({relativeOutDirPath: 'posts', isPagedAuto: $ne: true}, [{date: -1}]).on "add", (model) ->
-        model.setMetaDefaults({layout: "post"})
+        @getFilesAtPath('posts', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
+          model.setMetaDefaults({layout: "post"})
     projects: ->
-      @getCollection("html").findAllLive({relativeOutDirPath: 'projects'}, [{title: 1}]).on "add", (model) ->
-        model.setMetaDefaults({layout: "project"})
-    pages: ->
-      @getCollection("html").findAllLive({relativeOutDirPath: 'pages'}).on "add", (model) ->
-        model.setMetaDefaults({layout: "page"})
+        @getFilesAtPath('projects').findAllLive({layout: $ne: 'default'}, [{date: -1}]).on "add", (model) ->
+          model.setMetaDefaults({layout: "post"})
     pictures: ->
-      @getCollection("html").findAllLive({relativeOutDirPath: 'pictures'}, [{date: -1}]).on "add", (model) ->
-        model.setMetaDefaults({layout: "picture"})
+        @getFilesAtPath('pictures').findAllLive({layout: $ne: 'default'}, [{date: -1}]).on "add", (model) ->
+          model.setMetaDefaults({layout: "post"})
 
 
   # Regenerate Every
@@ -67,9 +64,8 @@ docpadConfig = {
 			styles: [
 				'/vendor/normalize.css'
 				'/vendor/h5bp.css'
-				'/styles/ie.css'
-        '/styles/print.css'
-        '/styles/screen.css'
+        'http://yandex.st/highlightjs/8.0/styles/zenburn.min.css'
+				'/styles/bootstrap/bootstrap.css'
         '/styles/style.css'
 			]
 
@@ -77,6 +73,8 @@ docpadConfig = {
 			scripts: [
 				'/vendor/log.js'
 				'/vendor/modernizr.js'
+        'http://yandex.st/highlightjs/8.0/highlight.min.js'
+        '/scripts/bootstrap.js'
 				'/scripts/script.js'
 			]
 
@@ -110,21 +108,22 @@ docpadConfig = {
 	# =================================
  	# DocPad Plugins
   #
-  #plugins:
+  plugins:
     # Tags
-    #tags:
-    #  extension: '.html.eco'
-    #  injectDocumentHelper: (document) ->
-    #    document.setMeta(
-    #      layout: 'page'
-    #      data: """
-    #        <%- @partial('content/tag', @) %>
-    #        """
-    #    )
-  #  ghpages:
-  #      deployRemote: 'origin'
-  #      deployBranch: 'master'
-
+    extension: '.html.eco'
+    injectDocumentHelper: (document) ->
+       document.setMeta(
+         layout: 'page'
+         data: """
+           <%- @partial('content/tag', @) %>
+           """
+       )
+    ghpages:
+      deployRemote: 'origin'
+      deployBranch: 'master'
+    rss:
+      collection: 'posts'
+      url: '/feed.xml' # optional, this is the default
 
 	# =================================
 	# DocPad Events

@@ -1,0 +1,6 @@
+<!-- List the related documents -->
+<ul class="related">
+  <% for document in @getRelatedDocuments: %>
+		<li><a href="<%= document.url %>"><%= document.title %></a></li>
+	<% end %>
+</ul>
