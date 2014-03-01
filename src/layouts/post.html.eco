@@ -16,6 +16,7 @@ layout: default
           <h1 class="title "><a href="<%= @document.url %>"><%= @document.title %></a></h1>
           <div class="subtitle"></div>
         </div>
+        <p></p>
         <div class="content">
           <%- @content %>
           <%- @title %>
@@ -29,26 +30,29 @@ layout: default
 
     <h3>Tags</h3>
     <% if @document.tags?.length: %>
-      <h3>
+      <ul class="nav nav-pills">
       <% for tag in @document.tags: %>
-        <a href="/tags/<%= tag %>">
-          <span class="label label-default"><%= tag %></span>
-        </a>
+        <li>
+          <a href="/tags/<%= tag %>" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;"><%= tag %></span>
+          </a>
+        </li>
 	    <% end %>
-      </h3>
+      </ul>
     <% end %>
 
     <h3>Related</h3>
-    <ul class="list">
+    <ul class="related_list">
       <% for document in @getRelatedDocuments(): %>
-  			<li><span><%= document.date.toDateString() %></span>
-          <a href="<%= document.url %>"><%= document.title %></a>
+  			<li>
+          <a href="<%= document.url %>"><%= document.title %></a> <br/>
+          <span><%= document.date.toDateString() %></span>
         </li>
       <% end %>
 		 </ul>
 
     <h3>Recently</h3>
-    <ul class="list">
+    <ul class="recent_list">
       <% for recent in @getCollection("frontpage").toJSON()[0..4]: %>
       <li>
         <a href="<%= recent.url %>"><%= recent.title %></a><br>

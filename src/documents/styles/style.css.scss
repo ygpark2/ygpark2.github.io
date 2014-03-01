@@ -16,10 +16,11 @@ a {
 }
 
 /* hover nav-pill color */
-.nav-pills > li > a:hover {
+.nav-pills > li > a:hover, .related_list > li > a:hover, .recent_list > li > a:hover, a:hover {
     color: rgba(238,190,109,0.75);
     border-color: #000000;
     background-color: transparent;
+    text-decoration:none;
 }
 
 .thumbnail {
@@ -91,7 +92,8 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     .content {
         color: rgba(80,69,79,0.75);
         text-shadow: rgba(80,69,79,0) 0 0 0px;
-        font-size: 20px
+        font-size: 20px;
+        font-weight: bold;
     }
 
     .caption {

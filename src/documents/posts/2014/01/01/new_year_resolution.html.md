@@ -1,13 +1,11 @@
 ﻿---
 title: "새해 소망"
 date: 2014-01-01 1:00
+type: post
 tags:
-    - resolution
-    - year
+    - 소망
+    - 새해
     - new
-    - abc
-    - def
-    - jid2
 ---
 
 1. 무엇이든 방긋 웃으며 ‘예’하는 사람이 된다.

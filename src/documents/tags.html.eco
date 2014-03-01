@@ -1,21 +1,30 @@
 ---
-title: "Tag Listing"
-layout: default
+layout: 'default'
+title: 'Post List With Tag'
 ---
 
+<!-- ## Not sure what to do now? Here's some useful links: -->
 
-<div class="row posts">
+<div id="page" class="row post">
+
   <div class="col-md-12">
-    <h2>Tags:</h2>
-    <!-- Page Content -->
+
+    <h3>TAGS. <small> </small></h3>
+
     <div class="row">
-      <% for document in @getFilesAtPath('tags/', [title:1]).toJSON(): %>
-      <div class="col-xs-6 col-md-3">
-        <a href="<%=document.url%>" class="thumbnail">
-          <h1><%= document.title %></h1>
-        </a>
+      <div class="col-md-12">
+
+        <ul>
+	        <% for file in @getFilesAtPath('tags/').toJSON(): %>
+		      <li>
+			      <a href="<%= file.url %>"><%= file.title %></a>
+		      </li>
+	        <% end %>
+        </ul>
+
       </div>
-      <% end %>
     </div>
+
   </div>
+
 </div>
