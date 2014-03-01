@@ -1,8 +1,19 @@
-<h2>Pages with tag <%= @document.tag %>:</h2>
-<ul>
-	<% for file in @getFiles(tags: $has: @document.tag).toJSON(): %>
-		<li>
-			<a href="<%= file.url %>"><%= file.title %></a>
-		</li>
-	<% end %>
-</ul>
+<div id="page" class="row posts">
+
+  <div class="col-md-12">
+
+    <h3>Pages with tag <%= @document.tag %>:</h3>
+	  <% for file in @getFiles(tags: $has: @document.tag).toJSON(): %>
+    <div class="col-xs-6 col-md-3">
+      <a href="<%= file.url%>" class="thumbnail">
+        <div class="caption">
+          <h3> <%= file.title %> </h3>
+          <p><%= file.date.toDateString() %></p>
+        </div>
+      </a>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>
