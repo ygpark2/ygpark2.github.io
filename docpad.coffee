@@ -1,3 +1,13 @@
+# =================================
+# Prepare
+
+# Import
+# extendr = require('extendr')
+# moment = require('moment')
+
+# Environment
+envConfig = process.env
+
 # The DocPad Configuration File
 # It is simply a CoffeeScript Object which is parsed by CSON
 docpadConfig = {
@@ -121,6 +131,112 @@ docpadConfig = {
         href: "/atom.xml"
         name: 'Blog Posts'
       ]
+
+      # Do you have social accounts?
+      # Mention them here and our layout will include them in the sidebar
+      # If you specify a feed for the Feedr plugin (specified later on)
+      # then we will pull in their feed data too for recognised services
+      social:
+        # Twitter
+        twitter:
+          name: 'Twitter'
+          url: "//twitter.com/#{envConfig.TWITTER_USERNAME}"
+          #profile:
+          # feeds:
+          #   tweets: 'twitter'
+
+        # GitHub
+        github:
+          name: 'GitHub'
+          url: "//github.com/#{envConfig.GITHUB_USERNAME}"
+          profile:
+            feeds:
+              user: 'githubUser'
+              repos: 'githubRepos'
+
+        # Vimeo
+        vimeo:
+          name: 'Vimeo'
+          url: "//vimeo.com/#{envConfig.VIMEO_USERNAME}"
+
+        # Flickr
+        flickr:
+          name: 'Flickr'
+          url: "//www.flickr.com/people/#{envConfig.FLICKR_USER_ID}"
+          profile:
+            feeds:
+              user: 'flickrUser'
+              photos: 'flickrPhotos'
+
+        # Soundcloud
+        soundcloud:
+          name: 'Soundcloud'
+          url: "//soundcloud.com/#{envConfig.SOUNDCLOUD_USERNAME}"
+          profile:
+            feeds:
+              user: 'soundcloudUser'
+              tracks: 'soundcloudTracks'
+
+        # Instagram
+        instagram:
+          name: 'Instagram'
+          url: "//instagram.com/#{envConfig.INSTAGRAM_USER_ID}"
+          profile:
+            feeds:
+              user: 'instagramUser'
+              media: 'instagramMedia'
+
+        # Codepen
+        Codepen:
+          name: 'Codepen'
+          url: "//codepen.io/#{envConfig.CODEPEN_USERNAME}"
+          feeds:
+            user: 'codepenUser'
+
+        # Geeklist
+        Geeklist:
+          name: 'Geeklist'
+          url: "//geekli.st/#{envConfig.GEEKLIST_USERNAME}"
+          profile:
+            feeds:
+              user: 'geeklistUser'
+              activity: 'geeklistActivity'
+              links: 'geeklistLinks'
+              hack4good: 'geeklistHack4Good'
+              me: 'geeklistMe'
+
+    # -----------------------------
+    # Common links used throughout the website
+
+    links:
+      docpad: '<a href="//github.com/bevry/docpad" title="Visit on GitHub">DocPad</a>'
+      historyjs: '<a href="//github.com/balupton/history.js" title="Visit on GitHub">History.js</a>'
+      bevry: '<a href="//bevry.me" title="Visit Website">Bevry</a>'
+      opensource: '<a href="//en.wikipedia.org/wiki/Open-source_software" title="Visit on Wikipedia">Open-Source</a>'
+      html5: '<a href="//en.wikipedia.org/wiki/HTML5" title="Visit on Wikipedia">HTML5</a>'
+      javascript: '<a href="//en.wikipedia.org/wiki/JavaScript" title="Visit on Wikipedia">JavaScript</a>'
+      nodejs: '<a href="//nodejs.org/" title="Visit Website">Node.js</a>'
+      author: '<a href="//balupton.com" title="Visit Website">Benjamin Lupton</a>'
+      cclicense: '<a href="//creativecommons.org/licenses/by/3.0/" title="Visit Website">Creative Commons Attribution License</a>'
+      mitlicense: '<a href="//creativecommons.org/licenses/MIT/" title="Visit Website">MIT License</a>'
+      contact: '<a href="mailto:b@bevry.me" title="Email me">Email</a>'
+
+    # -----------------------------
+    # Helper Functions
+
+    # Get Gravatar URL
+    getGravatarUrl: (email,size) ->
+      hash = require('crypto').createHash('md5').update(email).digest('hex')
+      url = "//www.gravatar.com/avatar/#{hash}.jpg"
+      if size then url += "?s=#{size}"
+      return url
+
+    # Get Profile Feeds
+    getSocialFeeds: (socialID) ->
+      feeds = {}
+      for feedID,feedKey of @site.social[socialID].profile.feeds
+        feeds[feedID] = @feedr.feeds[feedKey]
+      return feeds
 
     # -----------------------------
     # Helper Functions
