@@ -19,6 +19,8 @@ docpadConfig = {
   collections:
     frontpage: ->
       @getFilesAtPath(['posts', 'pages', 'projects', 'pictures'], [{date: -1}]).findAllLive({layout: $ne: 'default'})
+    featured: ->
+      @getFilesAtPath(['posts', 'pages', 'projects', 'pictures'], [{title: 1}]).findAllLive({featured: true})
     posts: ->
       @getFilesAtPath('posts', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
         model.setMetaDefaults({layout: "post"})

@@ -2,6 +2,7 @@
 title: "새해 소망"
 date: 2014-01-01 1:00
 type: post
+featured: true
 tags:
     - 소망
     - 새해
