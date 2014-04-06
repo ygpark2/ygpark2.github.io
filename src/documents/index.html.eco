@@ -5,13 +5,16 @@ title: 'main page'
 
 <!-- ## Not sure what to do now? Here's some useful links: -->
 
-<div id="page" class="row posts">
+<div id="page" class="row main">
   <div class="col-md-12">
 
     <h3>RECENTLY.</h3>
-    <div class="row">
+    <div class="row" id="recently">
       <div class="col-md-7">
         <% headline = @getCollection("frontpage").toJSON()[0] %>
+        <h3><a href="<%= headline.url%>"><%= headline.title %></a></h3>
+        <p><%= headline.content %></p>
+        <p><%= headline.date.toDateString() %></p>
       </div>
       <div class="col-md-5">
         <% for recent in @getCollection("frontpage").toJSON()[1..4]: %>
@@ -21,23 +24,35 @@ title: 'main page'
       </div>
     </div>
 
-    <h3>FEATURE.</h3>
-    <div class="row">
-      <% for feature in @getCollection("featured").toJSON()[0..3]: %>
-      <div class="col-xs-6 col-md-3">
-        <a href="<%= feature.url%>" class="thumbnail">
-          <div class="caption">
-            <h3><%= feature.title %></h3>
+    <h3>FEATURED.</h3>
+    <div class="row" id="featured">
+      <% for feature in @getCollection("featured").toJSON()[0..2]: %>
+      <div class="col-xs-12 col-md-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <a href="<%= feature.url%>">
+              <h3 class="panel-title"><b><%= feature.title %></b></h3>
+            </a>
+          </div>
+          <div class="panel-body">
+            Panel content</br>
+            lksdjfaslkdfjaksdf</br>
+            sdklfjsdlkfjalskdfjkasd</br>
+            sdlkfjsdklfjskldfjlksdf</br>
+            sldkfjwewioefjiwoejfi</br>
+            sldkfjwewioefjiwoejfi</br>
+            sldkfjwewioefjiwoejfi</br>
+            sldkfjwewioefjiwoejfi</br>
             <p><%= feature.date.toDateString() %></p>
           </div>
-        </a>
+        </div>
       </div>
       <% end %>
     </div>
 
     <h3>MORE. <small></small></h3>
-    <div class="row">
-      <% for article in @getCollection("frontpage").toJSON()[5..16]: %>
+    <div class="row" id="more">
+      <% for article in @getCollection("frontpage").toJSON()[5..12]: %>
       <div class="col-xs-6 col-md-3">
         <a href="<%= article.url%>" class="thumbnail">
           <div class="caption">

@@ -21,18 +21,21 @@ docpadConfig = {
       @getFilesAtPath(['posts', 'pages', 'projects', 'pictures'], [{date: -1}]).findAllLive({layout: $ne: 'default'})
     featured: ->
       @getFilesAtPath(['posts', 'pages', 'projects', 'pictures'], [{title: 1}]).findAllLive({featured: true})
+    10000: ->
+      @getFilesAtPath('10000', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
+        model.setMetaDefaults({layout: "post"})
     posts: ->
       @getFilesAtPath('posts', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
         model.setMetaDefaults({layout: "post"})
     pages: ->
       @getFilesAtPath('pages', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
-        model.setMetaDefaults({layout: "post"})
+        model.setMetaDefaults({layout: "page"})
     projects: ->
       @getFilesAtPath('projects', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
-        model.setMetaDefaults({layout: "post"})
+        model.setMetaDefaults({layout: "project"})
     pictures: ->
       @getFilesAtPath('pictures', [{date: -1}]).findAllLive({layout: $ne: 'default'}).on "add", (model) ->
-        model.setMetaDefaults({layout: "post"})
+        model.setMetaDefaults({layout: "picture"})
 
 
   # Regenerate Every
@@ -66,13 +69,13 @@ docpadConfig = {
       title: "YGP Blog"
 
       # The website author's name
-      author: "Your Name"
+      author: "Young Gyu Park"
 
       # The website author's email
-      email: "b@lupton.cc"
+      email: "ygpark2@gmail.com"
 
       # The website heading to be displayed on the page
-      heading: "Your Website"
+      heading: "Young Gyu Park's blog"
 
       # The website subheading to be displayed on the page
       subheading: """
@@ -89,12 +92,6 @@ docpadConfig = {
         Not sure what a license is? Refer to the
         <code>README.md</code> file included in this website.
         """
-
-      # The website author's name
-      # author: "Young Gyu Park"
-
-      # The website author's email
-      # email: "ygpark2@gmail.com"
 
    		# cache-busting timestamp
    		# timestamp: new Date().getTime()

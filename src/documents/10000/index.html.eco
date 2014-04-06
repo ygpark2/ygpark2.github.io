@@ -1,18 +1,18 @@
 ---
-title: 'post list'
+title: '10000 determination list'
 layout: default
 isPaged: true
-pagedCollection: 'posts'
+pagedCollection: '10000'
 pageSize: 12
 ---
 
 <div class="row posts">
   <div class="col-md-12">
 
-    <h3>POSTS</h3>
+    <h3>10000일 결사</h3>
     <!-- Page Content -->
     <div class="row">
-      <% for document in @getPageCollection('posts').toJSON(): %>
+      <% for document in @getPageCollection('10000').toJSON(): %>
       <div class="col-xs-6 col-md-3">
         <a href="<%= document.url%>" class="thumbnail">
           <div class="caption">

@@ -12,8 +12,10 @@ tags:
 
 결코 부분적 해결책들에 만족하지 마라 -
 Never content with partial solutions, one reader -- Richard Davies -- raised the issue of whether we might move bindings all the way into individual expressions. Let's take a quick look at why we might want to do that, and also show a remarkably elegant means of expression provided by a comp.lang.python contributor.
+
 먼저 functional module의 Bindings 클래스를 다시 생각해 보겠습니다. 그 클래스의 속성들을 사용하여,
 Let's first recall the Bindings class of the functional module. Using the attributes of that class, we were able to assure that a particular name means only one thing within a given block scope:
+
 Listing 1: Python FP session with guarded rebinding
 
 ``` python

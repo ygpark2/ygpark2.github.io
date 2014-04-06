@@ -4,8 +4,8 @@ date: 2014-01-01 1:00
 type: post
 featured: true
 tags:
-    - 소망
-    - 새해
+    - resolution
+    - year
     - new
 ---
 

@@ -34,7 +34,7 @@ Listing 1. Python FP session with rebinding causing mischief
 
 Unfortunately, the very same expression sum2(range(10)) evaluates to two different things at two points in our program, even though this expression itself does not use any mutable variables in its arguments.
 
-다행이도 함수형 모듈은 바인딩이라고 불리는 클래스를 제공합니다. 적어도 실수로 파이썬은
+다행이도 함수형 모듈은 실수로 리바인딩 방지하기 위한 바인딩이라고 불리는 클래스를 제공합니다. (파이썬은 어떠한 것도
 The module functional, fortunately, provides a class called Bindings (proposed to Keller by yours truly) that prevents such rebindings (at least accidentally, Python does not try to prevent a determined programmer who wants to break things). While use of Bindings requires a little extra syntax, it makes it difficult for accidents to happen. In his examples within the functional module, Keller names a Bindings instance let (I presume after the let keyword in ML-family languages). For example, we might do:
 
 Listing 2. Python FP session with guarded rebinding

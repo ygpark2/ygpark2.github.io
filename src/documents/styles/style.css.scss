@@ -25,7 +25,8 @@ a {
 
 .thumbnail {
     border: 8px solid #ddd;
-    background-color: transparent;
+    background-color: #2d4d5d;
+    // background-color: transparent;
     min-height: 220px;
 }
 
@@ -65,20 +66,34 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     padding-top: 30px;
 }
 
-.posts, .projects, .pictures {
+.box_shape {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.main {
+    @extend .box_shape;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+
+    #featured {
+        background-color: #c3c7bf;
+        color: rgba(80,69,79,0.75);
+        text-shadow: rgba(80,69,79,0) 0 0 0px;
+        padding-top: 20px;
+    }
+}
+
+.posts, .projects, .pictures {
+    @extend .box_shape;
     background-color: rgba(0,0,0,0.1);
     border-radius: 10px;
 }
 
 #page.post, #page.project, #page.picture, #page.page {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
+    @extend .box_shape;
     background-color: #284453;
     color: rgba(77,174,174,0.75);
     text-shadow: rgba(77,174,174,0) 0 0 0px;
@@ -111,12 +126,9 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 
 
 #footer, footer {
+    @extend .box_shape;
     display: block;
     margin: 0 5.55555%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
     padding: 1em 0;
     color: rgba(77,174,174,0.75);
     text-shadow: rgba(77,174,174,0) 0 0 0px;
