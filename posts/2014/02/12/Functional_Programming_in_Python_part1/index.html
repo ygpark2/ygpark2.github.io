@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Site Properities -->
+	<title>파이썬 함수형 언어 파트 1 | YGP Blog</title>
+	<meta name="description" content="When your website appears in search results in say Google, the text here will be shown underneath your website's title." />
+	<meta name="keywords" content="place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website" />
+
+	<!-- DocPad Meta -->
+	<meta name="generator" content="DocPad v6.63.7" />
+
+	<!-- DocPad Styles + Our Own -->
+	<link  rel="stylesheet" href="/vendor/normalize.css" /><link  rel="stylesheet" href="/vendor/h5bp.css" /><link  rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/zenburn.min.css" /><link  rel="stylesheet" href="/styles/bootstrap/bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+</head>
+<body name="top" class="scroll-top">
+
+ 	<div class="filter-holder" id="filter-holder-b"></div>
+  <div class="filter-holder" id="filter-holder-a"></div>
+
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+  <div class="container">
+    <div class="row" id="header">
+
+  <div class="col-md-4">
+    <h2 style="margin-top: 5px;"><a href="/" class="text-muted">YGP Blog</a></h2>
+  </div>
+  <div class="col-md-8">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/10000/">10000</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/pictures/">Pictures</a></li>
+      <li><a href="/about.html">About</a></li>
+	    <li><a title="GitHub" href="https://github.com/ygpark2"><i class="fa fa-github fa-lg"></i></a></li>
+	    <li><a title="Twitter" href="http://twitter.com/ygpark2"><i class="fa fa-twitter fa-lg"></i></a></li>
+      <li><a title="Feed" href="/rss.xml"><i class="fa fa-rss fa-lg"></i></a></li>
+    </ul>
+  </div>
+
+</div>
+
+
+	  <div id="page" class="row post">
+
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-6 main">
+
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <div class="caption text-center">
+          <h1 class="title "><a href="/posts/2014/02/12/Functional_Programming_in_Python_part1">파이썬 함수형 언어 파트 1</a></h1>
+          <div class="subtitle"></div>
+        </div>
+        <p></p>
+        <div class="content">
+          <p>가장 어려운 질문인 함수형 언어가 무엇인지로 시작하는게 좋을것 같습니다. 한가지 답변은 함수형 언어는 Lisp, Scheme, Haskell, ML, OCAML, Clean, Mercury 또는 Erlang 같은 언어로 프로그램을 짜는 것을 말합니다. 이것은 가장 확실한 답변이지만은 아주 분명하게 설명을 하지는 않은 것입니다. 불행히도, 함수형 언어가 무엇인지에 관한 일관된 의견을 가지는 것은 참 어려운 일입니다. 심지어 함수형 프로그래머들도 정확한 정의를 하지 못하고 있습니다. 장님과 코끼리 이야기가 여기에서 참 적절한 예인것 같습니다. &quot;imperative languages&quot;
+We&#39;d better start with the hardest question: &quot;What is functional programming (FP), anyway?&quot; One answer would be to say that FP is what you do when you program in languages like Lisp, Scheme, Haskell, ML, OCAML, Clean, Mercury, or Erlang (or a few others). That is a safe answer, but not one that clarifies very much. Unfortunately, it is hard to get a consistent opinion on just what FP is, even from functional programmers themselves. A story about elephants and blind men seems apropos here. It is also safe to contrast FP with &quot;imperative programming&quot; (what you do in languages like C, Pascal, C++, Java, Perl, Awk, TCL, and most others, at least for the most part).</p>
+<p>개인적으로 저는 적어도 다음과 같은 특징들을 가진 언어를 함수형 언어로 간주합니다. 함수형 언어라 불리는 언어는 다음과 같은 것들을 쉽게 하거나 다른 것들을 어렵거나 불가능하게 합니다.
+Personally, I would roughly characterize functional programming as having at least several of the following characteristics. Languages that get called functional make these things easy, and make other things either hard or impossible:</p>
+<p>함수는 첫번째 클래스 또는 객체입니다. 즉 데이터를 가지고 할 수 있는 모든 것들을 함수로서도 할 수 있습니다. (예를 들면, 함수를 다른 함수의 인자로 넘기는 것과 같은 것들을 할 수 있어야 합니다.)
+Functions are first class (objects). That is, everything you can do with &quot;data&quot; can be done with functions themselves (such as passing a function to another function).</p>
+<p>재귀는 주요 제어 구조 방식으로 사용됩니다. 어떤 언어에서는 &quot;loop&quot; 반복문이 없습니다. 단지 LISt Process(LISP라는 이름은 이곳에서 왔습니다)에 초점을 맞추고 있습니다. 리스트는 종종 &quot;loop&quot;반복문을 대체하기 위한 방법으로서 하위 리스트에 관한 재귀 반복문을 사용합니다.
+Recursion is used as a primary control structure. In some languages, no other &quot;loop&quot; construct exists.
+There is a focus on LISt Processing (for example, the name Lisp). Lists are often used with recursion on sub-lists as a substitute for loops.</p>
+<p>순수 함수형 언어는 부작용들을 회피합니다. 이것은 선언적 언어들 어디에서나 볼수 있는 한 변수에 값을 할당하고 또다른 값을 할당해서 프로그램의 상태를 추적하는 패턴을 배제합니다.
+&quot;Pure&quot; functional languages eschew side-effects. This excludes the almost ubiquitous pattern in imperative languages of assigning first one, then another value to the same variable to track the program state.</p>
+<p>함수형 언어는
+FP either discourages or outright disallows statements, and instead works with the evaluation of expressions (in other words, functions plus arguments). In the pure case, one program is one expression (plus supporting definitions).</p>
+<p>함수형 언어는 어떻게 계산 되어야 하는가보다는 무엇이 계산되어야 하는가에 초점을 맞춘다. 대부분의 함수형 언어는 &quot;고차원 순서&quot;함수 ( 다시 말해서 함수들에 기능하는 함수들에 또 다시 기능하는 함수들을 말한다. )를 이용한다.
+FP worries about what is to be computed rather than how it is to be computed.
+Much FP utilizes &quot;higher order&quot; functions (in other words, functions that operate on functions that operate on functions).
+Advocates of functional programming argue that all these characteristic make for more rapidly developed, shorter, and less bug-prone code. Moreover, high theorists of computer science, logic, and math find it a lot easier to prove formal properties of functional languages and programs than of imperative languages and programs.
+Inherent Python functional capabilities
+Python has had most of the characteristics of FP listed above since Python 1.0. But as with most Python features, they have been present in a very mixed language. Much as with Python&#39;s OOP features, you can use what you want and ignore the rest (until you need it later). With Python 2.0, a very nice bit of &quot;syntactic sugar&quot; was added with list comprehensions. While list comprehensions add no new capability, they make a lot of the old capabilities look a lot nicer.
+The basic elements of FP in Python are the functions map(), reduce(), and filter(), and the operator lambda. In Python 1.x, the apply() function also comes in handy for direct application of one function&#39;s list return value to another function. Python 2.0 provides an improved syntax for this purpose. Perhaps surprisingly, these very few functions (and the basic operators) are almost sufficient to write any Python program; specifically, the flow control statements (if, elif, else, assert, try, except, finally, for, break, continue, while, def) can all be handled in a functional style using exclusively the FP functions and operators. While actually eliminating all flow control commands in a program is probably only useful for entering an &quot;obfuscated Python&quot; contest (with code that will look a lot like Lisp), it is worth understanding how FP expresses flow control with functions and recursion.
+Back to top
+Eliminating flow control statements
+The first thing to think about in our elimination exercise is the fact that Python &quot;short circuits&quot; evaluation of Boolean expressions. This provides an expression version of if/ elif/ else blocks (assuming each block calls one function, which is always possible to arrange). Here&#39;s how:
+Listing 1. &quot;Short-circuit&quot; conditional calls in Python</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-comment"># Normal statement-based flow control</span>
+<span class="hljs-keyword">if</span> &lt;cond1&gt;:   func1()
+<span class="hljs-keyword">elif</span> &lt;cond2&gt;: func2()
+<span class="hljs-keyword">else</span>:         func3()
+
+<span class="hljs-comment"># Equivalent "short circuit" expression</span>
+(&lt;cond1&gt; <span class="hljs-keyword">and</span> func1()) <span class="hljs-keyword">or</span> (&lt;cond2&gt; <span class="hljs-keyword">and</span> func2()) <span class="hljs-keyword">or</span> (func3())
+
+<span class="hljs-comment"># Example "short circuit" expression</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>x = <span class="hljs-number">3</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pr</span><span class="hljs-params">(s)</span>:</span> <span class="hljs-keyword">return</span> s
+<span class="hljs-prompt">&gt;&gt;&gt; </span>(x==<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">'one'</span>)) <span class="hljs-keyword">or</span> (x==<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">'two'</span>)) <span class="hljs-keyword">or</span> (pr(<span class="hljs-string">'other'</span>))
+<span class="hljs-string">'other'</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>x = <span class="hljs-number">2</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>(x==<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">'one'</span>)) <span class="hljs-keyword">or</span> (x==<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">'two'</span>)) <span class="hljs-keyword">or</span> (pr(<span class="hljs-string">'other'</span>))
+<span class="hljs-string">'two'</span></code></pre>
+<p>Our expression version of conditional calls might seem to be nothing but a parlor trick; however, it is more interesting when we notice that the lambda operator must return an expression. Since -- as we have shown -- expressions can contain conditional blocks via short-circuiting, a lambda expression is fully general in expressing conditional return values. Building on our example:
+Listing 2. Lambda with short-circuiting in Python</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span>pr = <span class="hljs-keyword">lambda</span> s:s
+<span class="hljs-prompt">&gt;&gt;&gt; </span>namenum = <span class="hljs-keyword">lambda</span> x: (x==<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">"one"</span>)) \
+....                  <span class="hljs-keyword">or</span> (x==<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> pr(<span class="hljs-string">"two"</span>)) \
+....                  <span class="hljs-keyword">or</span> (pr(<span class="hljs-string">"other"</span>))
+<span class="hljs-prompt">&gt;&gt;&gt; </span>namenum(<span class="hljs-number">1</span>)
+<span class="hljs-string">'one'</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>namenum(<span class="hljs-number">2</span>)
+<span class="hljs-string">'two'</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>namenum(<span class="hljs-number">3</span>)
+<span class="hljs-string">'other'</span></code></pre>
+<h1 id="functions-as-first-class-objects">Functions as first class objects</h1>
+<p>The above examples have already shown the first class status of functions in Python, but in a subtle way. When we create a function object with the lambda operation, we have something entirely general. As such, we were able to bind our objects to the names &quot;pr&quot; and &quot;namenum&quot;, in exactly the same way we might have bound the number 23 or the string &quot;spam&quot; to those names. But just as we can use the number 23 without binding it to any name (in other words, as a function argument), we can use the function object we created with lambda without binding it to any name. A function is simply another value we might do something with in Python.
+The main thing we do with our first class objects, is pass them to our FP built-in functions map(), reduce(), and filter(). Each of these functions accepts a function object as its first argument.
+map() performs the passed function on each corresponding item in the specified list(s), and returns a list of results.
+reduce() performs the passed function on each subsequent item and an internal accumulator of a final result; for example, reduce(lambda n,m:n*m, range(1,10)) means &quot;factorial of 10&quot; (in other words, multiply each item by the product of previous multiplications).
+filter() uses the passed function to &quot;evaluate&quot; each item in a list, and return a winnowed list of the items that pass the function test.
+We also often pass function objects to our own custom functions, but usually those amount to combinations of the mentioned built-ins.
+By combining these three FP built-in functions, a surprising range of &quot;flow&quot; operations can be performed (all without statements, only expressions).
+Back to top</p>
+<h1 id="functional-looping-in-python">Functional looping in Python</h1>
+<p>Replacing loops is as simple as was replacing conditional blocks. for can be directly translated to map(). As with our conditional execution, we will need to simplify statement blocks to single function calls (we are getting close to being able to do this generally):
+Listing 3. Replacing loops</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> lst:  func(e)      <span class="hljs-comment"># statement-based loop</span>
+map(func,lst)           <span class="hljs-comment"># map()-based loop</span></code></pre>
+<p>By the way, a similar technique is available for a functional approach to sequential program flow. That is, imperative programming mostly consists of statements that amount to &quot;do this, then do that, then do the other thing.&quot; map() lets us do just this:
+Listing 4. Map-based action sequence</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-comment"># let's create an execution utility function</span>
+do_it = <span class="hljs-keyword">lambda</span> f: f()
+
+<span class="hljs-comment"># let f1, f2, f3 (etc) be functions that perform actions</span>
+
+map(do_it, [f1,f2,f3])   <span class="hljs-comment"># map()-based action sequence</span></code></pre>
+<p>In general, the whole of our main program can be a map() expression with a list of functions to execute to complete the program. Another handy feature of first class functions is that you can put them in a list.
+Translating while is slightly more complicated, but is still possible to do directly:
+Listing 5. Functional &#39;while&#39; looping in Python</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-comment"># statement-based while loop</span>
+<span class="hljs-keyword">while</span> &lt;cond&gt;:
+    &lt;pre-suite&gt;
+    <span class="hljs-keyword">if</span> &lt;break_condition&gt;:
+        breakelse:
+        &lt;suite&gt;
+
+<span class="hljs-comment"># FP-style recursive while loop</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">while_block</span><span class="hljs-params">()</span>:</span>
+    &lt;pre-suite&gt;
+    <span class="hljs-keyword">if</span> &lt;break_condition&gt;:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>:
+        &lt;suite&gt;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+while_FP = <span class="hljs-keyword">lambda</span>: (&lt;cond&gt; <span class="hljs-keyword">and</span> while_block()) <span class="hljs-keyword">or</span> while_FP()
+while_FP()</code></pre>
+<p>Our translation of while still requires a while_block() function that may itself contain statements rather than just expressions. But we might be able to apply further eliminations to that function (such as short circuiting the if/else in the template). Also, it is hard for <cond> to be useful with the usual tests, such as while myvar==7, since the loop body (by design) cannot change any variable values (well, globals could be modified in while_block()). One way to add a more useful condition is to let while_block() return a more interesting value, and compare that return for a termination condition. It is worth looking at a concrete example of eliminating statements:
+Listing 6. Functional &#39;echo&#39; loop in Python</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-comment"># imperative version of "echo()"</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">echo_IMP</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:
+        x = raw_input(<span class="hljs-string">"IMP -- "</span>)
+        <span class="hljs-keyword">if</span> x == <span class="hljs-string">'quit'</span>:
+            breakelseprint x
+echo_IMP()
+
+<span class="hljs-comment"># utility function for "identity with side-effect"</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">monadic_print</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">print</span> x
+    <span class="hljs-keyword">return</span> x
+
+<span class="hljs-comment"># FP version of "echo()"</span>
+echo_FP = <span class="hljs-keyword">lambda</span>: monadic_print(raw_input(<span class="hljs-string">"FP -- "</span>))==<span class="hljs-string">'quit'</span> <span class="hljs-keyword">or</span> echo_FP()
+echo_FP()</code></pre>
+<p>What we have accomplished is that we have managed to express a little program that involves I/O, looping, and conditional statements as a pure expression with recursion (in fact, as a function object that can be passed elsewhere if desired). We do still utilize the utility function monadic_print(), but this function is completely general, and can be reused in every functional program expression we might create later (it&#39;s a one-time cost). Notice that any expression containing monadic_print(x)evaluates to the same thing as if it had simply contained x. FP (particularly Haskell) has the notion of a &quot;monad&quot; for a function that &quot;does nothing, and has a side-effect in the process.&quot;</p>
+<p>Eliminating side-effects
+After all this work in getting rid of perfectly sensible statements and substituting obscure nested expressions for them, a natural question is &quot;Why?!&quot; All of my descriptions of FP are achieved in Python. But the most important characteristic?and the one likely to be concretely useful?is the elimination of side-effects (or at least their containment to special areas like monads). A very large percentage of program errors?and the problem that drives programmers to debuggers?occur because variables obtain unexpected values during the course of program execution. Functional programs bypass this particular issue by simply not assigning values to variables at all.
+Let&#39;s look at a fairly ordinary bit of imperative code. The goal here is to print out a list of pairs of numbers whose product is more than 25. The numbers that make up the pairs are themselves taken from two other lists. This sort of thing is moderately similar to things that programmers actually do in segments of their programs. An imperative approach to the goal might look like:
+Listing 7. Imperative Python code for &quot;print big products&quot;</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-comment"># Nested loop procedural style for finding big products</span>
+xs = (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)
+ys = (<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">3</span>,<span class="hljs-number">22</span>)
+bigmuls = []
+<span class="hljs-comment"># ...more stuff...</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> xs:
+    <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> ys:
+        <span class="hljs-comment"># ...more stuff...</span>
+        <span class="hljs-keyword">if</span> x*y &gt; <span class="hljs-number">25</span>:
+            bigmuls.append((x,y))
+            <span class="hljs-comment"># ...more stuff...</span>
+<span class="hljs-comment"># ...more stuff...</span>
+<span class="hljs-keyword">print</span> bigmuls</code></pre>
+<p>This project is small enough that nothing is likely to go wrong. But perhaps our goal is embedded in code that accomplishes a number of other goals at the same time. The sections commented with &quot;more stuff&quot; are the places where side-effects are likely to lead to bugs. At any of these points, the variables xs, ys, bigmuls, x, y might acquire unexpected values in the hypothetical abbreviated code. Furthermore, after this bit of code is done, all the variables have values that may or may not be expected and wanted by later code. Obviously, encapsulation in functions/instances and care regarding scope can be used to guard against this type of error. And you can always del your variables when you are done with them. But in practice, the types of errors indicated are common.
+A functional approach to our goal eliminates these side-effect errors altogether. A possible bit of code is:
+Listing 8. Functional approach to our goal
+bigmuls = lambda xs,ys: filter(lambda (x,y):x<em>y &gt; 25, combine(xs,ys))
+combine = lambda xs,ys: map(None, xs</em>len(ys), dupelms(ys,len(xs)))
+dupelms = lambda lst,n: reduce(lambda s,t:s+t, map(lambda l,n=n: [l]*n, lst))
+print bigmuls((1,2,3,4),(10,15,3,22))
+We bind our anonymous (lambda) function objects to names in the example, but that is not strictly necessary. We could instead simply nest the definitions. For readability we do it this way; but also because combine() is a nice utility function to have anyway (produces a list of all pairs of elements from two input lists). dupelms() in turn is mostly just a way of helping out combine(). Even though this functional example is more verbose than the imperative example, once you consider the utility functions for reuse, the new code in bigmuls() itself is probably slightly less than in the imperative version.
+The real advantage of this functional example is that absolutely no variables change any values within it. There are no possible unanticipated side-effects on later code (or from earlier code). Obviously, the lack of side-effects, in itself, does not guarantee that the code is correct, but it is nonetheless an advantage. Notice, however, that Python (unlike many functional languages) does not prevent rebinding of the names bigmuls, combine and dupelms. If combine() starts meaning something different later in the program, all bets are off. You could work up a Singleton class to contain this type of immutable bindings (as, say, s.bigmuls and so on); but this column does not have room for that.
+One thing distinctly worth noticing is that our particular goal is tailor-made for a new feature of Python 2. Rather than either the imperative or functional examples given, the best (and functional) technique is:</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">print</span> [(x,y) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>) <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> (<span class="hljs-number">10</span>,<span class="hljs-number">15</span>,<span class="hljs-number">3</span>,<span class="hljs-number">22</span>) <span class="hljs-keyword">if</span> x*y &gt; <span class="hljs-number">25</span>]</code></pre>
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <h3>Tags</h3>
+    
+      <ul class="nav nav-pills">
+      
+        <li>
+          <a href="/tags/python" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">python</span>
+          </a>
+        </li>
+	    
+        <li>
+          <a href="/tags/functional" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">functional</span>
+          </a>
+        </li>
+	    
+        <li>
+          <a href="/tags/programming" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">programming</span>
+          </a>
+        </li>
+	    
+      </ul>
+    
+
+    <h3>Related</h3>
+    <ul class="related_list">
+      
+  			<li>
+          <a href="/posts/2014/02/10/Functional_Programming_in_Python_part3">파이썬 함수형 언어 파트 3</a> <br/>
+          <span>Mon Feb 10 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/13/Functional_Programming_in_Python_part2">파이썬 함수형 언어 파트 2</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/18/numpy_data_type">Numpy Data Type</a> <br/>
+          <span>Tue Feb 18 2014</span>
+        </li>
+      
+		 </ul>
+
+    <h3>Recently</h3>
+    <ul class="recent_list">
+      
+      <li>
+        <a href="/posts/2014/04/06/nodejs_fs_module">nodejs fs module 소개</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/03/16/diary">haskell 번역 시작</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/03/09/diary">불교의 가르침과 깨달음</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/03/08/diary">아인이 교육 일지 그리고 명상</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/02/18/numpy_data_type">Numpy Data Type</a><br>
+        <span class="caption"></span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+</div>
+
+    <footer id="footer">
+		<span class="logo">ygpark.</span>
+		Created &amp; Maintained by Young Gyu Park using <a href="http://docpad.org">DocPad</a>
+</footer>
+
+  </div>
+
+	<!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/vendor/jquery.js"><\/script>')</script>
+
+	<!-- DocPad Scripts + Our Own -->
+	<script defer="defer"  src="/vendor/log.js"></script><script defer="defer"  src="/vendor/modernizr.js"></script><script defer="defer"  src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script><script defer="defer"  src="/scripts/bootstrap.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>

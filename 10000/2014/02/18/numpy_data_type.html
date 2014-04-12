@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Site Properities -->
+	<title>Numpy Data Type | YGP Blog</title>
+	<meta name="description" content="When your website appears in search results in say Google, the text here will be shown underneath your website's title." />
+	<meta name="keywords" content="place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website" />
+
+	<!-- DocPad Meta -->
+	<meta name="generator" content="DocPad v6.63.7" />
+
+	<!-- DocPad Styles + Our Own -->
+	<style >html.wait {
+	cursor: wait !important;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}</style><link  rel="stylesheet" href="/vendor/normalize.css" /><link  rel="stylesheet" href="/vendor/h5bp.css" /><link  rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/zenburn.min.css" /><link  rel="stylesheet" href="/styles/bootstrap/bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+</head>
+<body name="top" class="scroll-top">
+
+ 	<div class="filter-holder" id="filter-holder-b"></div>
+  <div class="filter-holder" id="filter-holder-a"></div>
+
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+  <div class="container">
+    <div class="row" id="header">
+
+  <div class="col-md-4">
+    <h2 style="margin-top: 5px;"><a href="/" class="text-muted">YGP Blog</a></h2>
+  </div>
+  <div class="col-md-8">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/10000/">10000</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/pictures/">Pictures</a></li>
+      <li><a href="/about.html">About</a></li>
+	    <li><a title="GitHub" href="https://github.com/ygpark2"><i class="fa fa-github fa-lg"></i></a></li>
+	    <li><a title="Twitter" href="http://twitter.com/ygpark2"><i class="fa fa-twitter fa-lg"></i></a></li>
+      <li><a title="Feed" href="/rss.xml"><i class="fa fa-rss fa-lg"></i></a></li>
+    </ul>
+  </div>
+
+</div>
+
+
+	  <div id="page" class="row post">
+
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-6 main">
+
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <div class="caption text-center">
+          <h1 class="title "><a href="/10000/2014/02/18/numpy_data_type">Numpy Data Type</a></h1>
+          <div class="subtitle"></div>
+        </div>
+        <p></p>
+        <div class="content">
+          <h1 id="-">배열 생성</h1>
+<h2 id="introduction">Introduction</h2>
+<p>5가지의 배열을 생성하기 위한 메커니즘</p>
+<ul>
+<li>다른 파이썬 데이터 구조( 리스트, 튜플)에서 변환</li>
+<li>numpy 고유의 배열 생성 오브젝트( arrange, ones, zeros, etc )</li>
+<li>표준 또는 맞춤형 포멧 또는 디스크에서 배열 읽기</li>
+<li>스트링이나 버퍼를 통한 로우 바이트로 배열 생성</li>
+<li>특별한 라이브러리 함수의 사용</li>
+<li>This section will not cover means of replicating, joining, or otherwise expanding or mutating existing arrays.
+Nor will it cover creating object arrays or record arrays.
+Both of those are covered in their own sections.
+*</li>
+</ul>
+<h2 id="converting-python-array_like-objects-to-numpy-arrays">Converting Python array_like Objects to Numpy Arrays</h2>
+<p>In general, numerical data arranged in an array-like structure in Python can be converted to arrays through the use of the array() function. The most obvious examples are lists and tuples. See the documentation for array() for details for its use. Some objects may support the array-protocol and allow conversion to arrays this way. A simple way to find out if the object can be converted to a numpy array using array() is simply to try it interactively and see if it works! (The Python Way).</p>
+<p>일반적으로, 파이썬에서 배열같은 구조의 숫자 데이터 배열은 array() 함수를</p>
+<pre class="highlight"><code class="hljs python">x = np.array([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>])
+x = np.array([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>])
+x = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2.0</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],(<span class="hljs-number">1</span>+<span class="hljs-number">1j</span>,<span class="hljs-number">3.</span>)]) <span class="hljs-comment"># note mix of tuple and lists, and types</span>
+x = np.array([[ <span class="hljs-number">1.</span>+<span class="hljs-number">0.j</span>, <span class="hljs-number">2.</span>+<span class="hljs-number">0.j</span>], [ <span class="hljs-number">0.</span>+<span class="hljs-number">0.j</span>, <span class="hljs-number">0.</span>+<span class="hljs-number">0.j</span>], [ <span class="hljs-number">1.</span>+<span class="hljs-number">1.j</span>, <span class="hljs-number">3.</span>+<span class="hljs-number">0.j</span>]])</code></pre>
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <h3>Tags</h3>
+    
+      <ul class="nav nav-pills">
+      
+        <li>
+          <a href="/tags/numpy" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">numpy</span>
+          </a>
+        </li>
+	    
+        <li>
+          <a href="/tags/python" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">python</span>
+          </a>
+        </li>
+	    
+      </ul>
+    
+
+    <h3>Related</h3>
+    <ul class="related_list">
+      
+  			<li>
+          <a href="/10000/2014/02/10/Functional_Programming_in_Python_part3">파이썬 함수형 언어 파트 3</a> <br/>
+          <span>Mon Feb 10 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/10000/2014/02/13/Functional_Programming_in_Python_part2">파이썬 함수형 언어 파트 2</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/10000/2014/02/12/Functional_Programming_in_Python_part1">파이썬 함수형 언어 파트 1</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/10/Functional_Programming_in_Python_part3">파이썬 함수형 언어 파트 3</a> <br/>
+          <span>Mon Feb 10 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/12/Functional_Programming_in_Python_part1">파이썬 함수형 언어 파트 1</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/13/Functional_Programming_in_Python_part2">파이썬 함수형 언어 파트 2</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/18/numpy_data_type">Numpy Data Type</a> <br/>
+          <span>Tue Feb 18 2014</span>
+        </li>
+      
+		 </ul>
+
+    <h3>Recently</h3>
+    <ul class="recent_list">
+      
+      <li>
+        <a href="/posts/2014/04/06/nodejs_fs_module">nodejs fs module 소개</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/06/8_1_14">8차 천일 결사 1차 백일 기도 정진 14일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/05/8_1_13">8차 천일 결사 1차 백일 기도 정진 13일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/04/8_1_12">8차 천일 결사 1차 백일 기도 정진 12일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/03/8_1_11">8차 천일 결사 1차 백일 기도 정진 11일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+</div>
+
+    <footer id="footer">
+		<span class="logo">ygpark.</span>
+		Created &amp; Maintained by Young Gyu Park using <a href="http://docpad.org">DocPad</a>
+</footer>
+
+  </div>
+
+	<!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/vendor/jquery.js"><\/script>')</script>
+
+	<!-- DocPad Scripts + Our Own -->
+	<script >(function(){
+	/* Did we just livereload? */
+var log = !!(localStorage && console && console.log && true);
+if ( log && localStorage.getItem('/docpad-livereload/reloaded') === 'yes' ) {
+	localStorage.removeItem('/docpad-livereload/reloaded');
+	console.log('LiveReload completed at', new Date())
+}
+
+/* Listen for the regenerated event and perform a reload of the page when the event occurs */
+var listen = function(){
+	var primus = new Primus('/docpad-livereload');
+	primus.on('data', function(data){
+		if ( data && data.message ) {
+			if ( data.message === 'generateBefore' ) {
+				if ( log ) {
+					console.log('LiveReload started at', new Date());
+				}
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+	document.getElementsByTagName('html')[0].className += ' wait';
+}
+			}
+			else if ( data.message === 'generateAfter' ) {
+				if ( log ) {
+					localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+				}
+				document.location.reload();
+			}
+		}
+	});
+};
+	/* Inject socket into our page */
+var inject = function(){
+	var t = document.createElement('script');
+	t.type = 'text/javascript';
+	t.async = 'async';
+	t.src = '/primus/primus.js';
+	t.onload = listen;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(t, s);
+};
+	if ( typeof Primus !== 'undefined' ) {
+		listen();
+	} else {
+		inject();
+	}
+})();</script><script defer="defer"  src="/vendor/log.js"></script><script defer="defer"  src="/vendor/modernizr.js"></script><script defer="defer"  src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script><script defer="defer"  src="/scripts/bootstrap.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>
