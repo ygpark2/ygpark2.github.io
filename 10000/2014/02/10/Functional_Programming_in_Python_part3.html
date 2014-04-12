@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Site Properities -->
+	<title>파이썬 함수형 언어 파트 3 | YGP Blog</title>
+	<meta name="description" content="When your website appears in search results in say Google, the text here will be shown underneath your website's title." />
+	<meta name="keywords" content="place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website" />
+
+	<!-- DocPad Meta -->
+	<meta name="generator" content="DocPad v6.63.7" />
+
+	<!-- DocPad Styles + Our Own -->
+	<style >html.wait {
+	cursor: wait !important;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}</style><link  rel="stylesheet" href="/vendor/normalize.css" /><link  rel="stylesheet" href="/vendor/h5bp.css" /><link  rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/zenburn.min.css" /><link  rel="stylesheet" href="/styles/bootstrap/bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+</head>
+<body name="top" class="scroll-top">
+
+ 	<div class="filter-holder" id="filter-holder-b"></div>
+  <div class="filter-holder" id="filter-holder-a"></div>
+
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+  <div class="container">
+    <div class="row" id="header">
+
+  <div class="col-md-4">
+    <h2 style="margin-top: 5px;"><a href="/" class="text-muted">YGP Blog</a></h2>
+  </div>
+  <div class="col-md-8">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/10000/">10000</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/pictures/">Pictures</a></li>
+      <li><a href="/about.html">About</a></li>
+	    <li><a title="GitHub" href="https://github.com/ygpark2"><i class="fa fa-github fa-lg"></i></a></li>
+	    <li><a title="Twitter" href="http://twitter.com/ygpark2"><i class="fa fa-twitter fa-lg"></i></a></li>
+      <li><a title="Feed" href="/rss.xml"><i class="fa fa-rss fa-lg"></i></a></li>
+    </ul>
+  </div>
+
+</div>
+
+
+	  <div id="page" class="row post">
+
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-6 main">
+
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <div class="caption text-center">
+          <h1 class="title "><a href="/10000/2014/02/10/Functional_Programming_in_Python_part3">파이썬 함수형 언어 파트 3</a></h1>
+          <div class="subtitle"></div>
+        </div>
+        <p></p>
+        <div class="content">
+          <h1 id="expression-bindings">Expression bindings</h1>
+<p>결코 부분적 해결책들에 만족하지 마라 -
+Never content with partial solutions, one reader -- Richard Davies -- raised the issue of whether we might move bindings all the way into individual expressions. Let&#39;s take a quick look at why we might want to do that, and also show a remarkably elegant means of expression provided by a comp.lang.python contributor.</p>
+<p>먼저 functional module의 Bindings 클래스를 다시 생각해 보겠습니다. 그 클래스의 속성들을 사용하여,
+Let&#39;s first recall the Bindings class of the functional module. Using the attributes of that class, we were able to assure that a particular name means only one thing within a given block scope:</p>
+<p>Listing 1: Python FP session with guarded rebinding</p>
+<pre class="highlight"><code class="hljs undefined">&gt;&gt;&gt; from functional import *
+&gt;&gt;&gt; let = Bindings()
+&gt;&gt;&gt; let.car = lambda lst: lst[0]
+&gt;&gt;&gt; let.car = lambda lst: lst[2]
+Traceback (innermost last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "d:\tools\functional.py", line 976, in __setattr__
+
+raise BindingError, "Binding '%s' cannot be modified." % name
+functional.BindingError:  Binding 'car' cannot be modified.
+&gt;&gt;&gt; let.car(range(10))
+0</code></pre>
+<p>The Bindings class does what we want within a module or function def scope, but there is no way to make it work within a single expression. In ML-family languages, however, it is natural to create bindings within a single expression:
+Listing 2: Haskell expression-level name bindings</p>
+<pre class="highlight"><code class="hljs haskell"><span class="hljs-comment">-- car (x:xs) = x  -- *could* create module-level binding</span>
+<span class="hljs-title">list_of_list</span> = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]]
+
+<span class="hljs-comment">-- 'where' clause for expression-level binding</span>
+<span class="hljs-title">firsts1</span> = [car x | x &lt;- list_of_list] <span class="hljs-keyword">where</span> car (x:xs) = x
+
+<span class="hljs-comment">-- 'let' clause for expression-level binding</span>
+<span class="hljs-title">firsts2</span> = <span class="hljs-keyword">let</span> car (x:xs) = x <span class="hljs-keyword">in</span> [car x | x &lt;- list_of_list]
+
+<span class="hljs-comment">-- more idiomatic higher-order 'map' technique</span>
+<span class="hljs-title">firsts3</span> = map car list_of_list <span class="hljs-keyword">where</span> car (x:xs) = x
+
+<span class="hljs-comment">-- Result: firsts1 == firsts2 == firsts3 == [1,4,7]</span></code></pre>
+<p>Greg Ewing observed that it is possible to accomplish the same effect using Python&#39;s list comprehensions; we can even do it in a way that is nearly as clean as Haskell&#39;s syntax:
+Listing 3: Python 2.0+ expression-level name bindings</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span>list_of_list = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]]
+<span class="hljs-prompt">&gt;&gt;&gt; </span>[car_x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> list_of_list <span class="hljs-keyword">for</span> car_x <span class="hljs-keyword">in</span>
+ (x[<span class="hljs-number">0</span>],)]
+[<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>]
+This trick of putting an expression inside a single-item tuple <span class="hljs-keyword">in</span> a list comprehension does <span class="hljs-keyword">not</span> provide any way of using expression-level bindings <span class="hljs-keyword">with</span> higher-order functions. To use the higher-order functions, we still need to use block-level bindings, <span class="hljs-keyword">as</span> <span class="hljs-keyword">with</span>:
+Listing <span class="hljs-number">4</span>: Python block-level bindings <span class="hljs-keyword">with</span> <span class="hljs-string">'map()'</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>list_of_list = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]]
+<span class="hljs-prompt">&gt;&gt;&gt; </span>let = Bindings()
+<span class="hljs-prompt">&gt;&gt;&gt; </span>let.car = <span class="hljs-keyword">lambda</span> l: l[<span class="hljs-number">0</span>]
+<span class="hljs-prompt">&gt;&gt;&gt; </span>map(let.car,list_of_list)
+[<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>]</code></pre>
+<p>Not bad, but if we want to use map(), the scope of the binding remains a little broader than we might want. Nonetheless, it is possible to coax list comprehensions into doing our name bindings for us, even in cases where a list is not what we finally want:
+Listing 5: &quot;Stepping down&quot; from Python list comprehension</p>
+<pre class="highlight"><code class="hljs haskell"><span class="hljs-type">Compare</span> <span class="hljs-type">Haskell</span> expression:
+<span class="hljs-title">result</span> = func car_car
+         <span class="hljs-keyword">where</span>
+             car (x:xs) = x
+             car_car = car (car list_of_list)
+             func x = x + x^<span class="hljs-number">2</span></code></pre>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span>[func <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> list_of_list
+...
+<span class="hljs-keyword">for</span> car <span class="hljs-keyword">in</span> (x[<span class="hljs-number">0</span>],)
+...
+<span class="hljs-keyword">for</span> func <span class="hljs-keyword">in</span> (car+car**<span class="hljs-number">2</span>,)][<span class="hljs-number">0</span>]
+<span class="hljs-number">2</span></code></pre>
+<p>We have performed an arithmetic calculation on the first element of the first element of list_of_list while also naming the arithmetic calculation (but only in expression scope). As an &quot;optimization&quot; we might not bother to create a list longer than one element to start with, since we choose only the first element with the ending index 0:
+Listing 6: Efficient stepping down from list comprehension</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span>[func <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> list_of_list[:<span class="hljs-number">1</span>]
+<span class="hljs-prompt">... </span>      <span class="hljs-keyword">for</span> car <span class="hljs-keyword">in</span> (x[<span class="hljs-number">0</span>],)
+<span class="hljs-prompt">... </span>      <span class="hljs-keyword">for</span> func <span class="hljs-keyword">in</span> (car+car**<span class="hljs-number">2</span>,)][<span class="hljs-number">0</span>]
+<span class="hljs-number">2</span></code></pre>
+<h1 id="higher-order-functions-currying">Higher-order functions: currying</h1>
+<p>Three of the most general higher-order functions are built into Python: map(), reduce(), and filter(). What these functions do -- and the reason we call them &quot;higher-order&quot; -- is take other functions as (some of) their arguments. Other higher-order functions, but not these built-ins, return function objects.
+Python has always given users the ability to construct their own higher-order functions by virtue of the first-class status of function objects. A trivial case might look like this:
+Listing 7: Trivial Python function factory</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo_factory</span><span class="hljs-params">()</span>:</span>
+...
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>:</span>
+...
+<span class="hljs-keyword">print</span>
+<span class="hljs-string">"Foo function from factory"</span>
+...
+<span class="hljs-keyword">return</span> foo
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span>f = foo_factory()
+<span class="hljs-prompt">&gt;&gt;&gt; </span>f()</code></pre>
+<h1 id="foo-function-from-factory">Foo function from factory</h1>
+<p>The Xoltar Toolkit, which I discussed in Part 2 of this series, comes with a nice collection of higher-order functions. Most of the functions that Xoltar&#39;s functional module provides are ones developed in various traditionally functional languages, and whose usefulness have been proven over many years.
+Possibly the most famous and most important higher-order function is curry(). curry() is named after the logician Haskell Curry, whose first name is also used to name the above-mentioned programming language. The underlying insight of &quot;currying&quot; is that it is possible to treat (almost) every function as a partial function of just one argument. All that is necessary for currying to work is to allow the return value of functions to themselves be functions, but with the returned functions &quot;narrowed&quot; or &quot;closer to completion.&quot; This works quite similarly to the closures I wrote about in Part 2 -- each successive call to a curried return function &quot;fills in&quot; more of the data involved in a final computation (data attached to a procedure).
+Let&#39;s illustrate currying first with a very simple example in Haskell, then with the same example repeated in Python using the functional module:
+Listing 8: Currying a Haskell computation
+computation a b c d = (a + b^2+ c^3 + d^4)
+check = 1 + 2^2 + 3^3 + 5^4</p>
+<p>fillOne   = computation 1
+-- specify &quot;a&quot;
+fillTwo   = fillOne 2
+-- specify &quot;b&quot;
+fillThree = fillTwo 3
+-- specify &quot;c&quot;
+answer    = fillThree 5
+-- specify &quot;d&quot;
+-- Result: check == answer == 657</p>
+<p>Now in Python:
+Listing 9: Currying a Python computation</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from functional import curry
+computation = lambda a,b,c,d: (a + b<strong>2 + c</strong>3 + d**4)
+computation(1,2,3,5)
+657
+fillZero  = curry(computation)
+fillOne   = fillZero(1)</p>
+<h1 id="specify-a-">specify &quot;a&quot;</h1>
+<p>fillTwo   = fillOne(2)</p>
+<h1 id="specify-b-">specify &quot;b&quot;</h1>
+<p>fillThree = fillTwo(3)</p>
+<h1 id="specify-c-">specify &quot;c&quot;</h1>
+<p>answer    = fillThree(5)</p>
+<h1 id="specify-d-">specify &quot;d&quot;</h1>
+<p>answer
+657</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>It is possible to further illustrate the parallel with closures by presenting the same simple tax-calculation program used in Part 2 (this time using curry()):
+Listing 10: Python curried tax calculations</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">from</span> functional <span class="hljs-keyword">import</span> *
+taxcalc = <span class="hljs-keyword">lambda</span> income,rate,deduct: (income-(deduct))*rate
+
+taxCurry = curry(taxcalc)
+taxCurry = taxCurry(<span class="hljs-number">50000</span>)
+taxCurry = taxCurry(<span class="hljs-number">0.30</span>)
+taxCurry = taxCurry(<span class="hljs-number">10000</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-string">"Curried taxes due ="</span>,taxCurry
+
+<span class="hljs-keyword">print</span> <span class="hljs-string">"Curried expression taxes due ="</span>, \
+      curry(taxcalc)(<span class="hljs-number">50000</span>)(<span class="hljs-number">0.30</span>)(<span class="hljs-number">10000</span>)</code></pre>
+<p>Unlike with closures, we need to curry the arguments in a specific order (left to right). But note that functional also contains an rcurry() class that will start at the other end (right to left).
+The second print statement in the example at one level is a trivial spelling change from simply calling the normal taxcalc(50000,0.30,10000). In a different level, however, it makes rather clear the concept that every function can be a function of just one argument -- a rather surprising idea to those new to it.</p>
+<h1 id="miscellaneous-higher-order-functions">Miscellaneous higher-order functions</h1>
+<p>Beyond the &quot;fundamental&quot; operation of currying, functional provides a grab-bag of interesting higher-order functions. Moreover, it is really not hard to write your own higher-order functions -- either with or without functional. The ones in functional provide some interesting ideas, at the least.
+For the most part, higher-order functions feel like &quot;enhanced&quot; versions of the standard map(), filter(), and reduce(). Often, the pattern in these functions is roughly &quot;take a function or functions and some lists as arguments, then apply the function(s) to list arguments.&quot; There are a surprising number of interesting and useful ways to play on this theme. Another pattern is &quot;take a collection of functions and create a function that combines their functionality.&quot; Again, numerous variations are possible. Let&#39;s look at some of what functional provides.
+The functions sequential() and also() both create a function based on a sequence of component functions. The component functions can then be called with the same argument(s). The main difference between the two is simply that sequential() expects a single list as an argument, while also() takes a list of arguments. In most cases, these are useful for function side effects, but sequential() optionally lets you choose which function provides the combined return value:
+Listing 11: Sequential calls to functions (with same args)</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">a</span><span class="hljs-params">(x)</span>:</span>
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">print</span> x,
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">return</span> <span class="hljs-string">"a"</span>
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">b</span><span class="hljs-params">(x)</span>:</span>
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">print</span> x*<span class="hljs-number">2</span>,
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">return</span> <span class="hljs-string">"b"</span>
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">c</span><span class="hljs-params">(x)</span>:</span>
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">print</span> x*<span class="hljs-number">3</span>,
+<span class="hljs-prompt">... </span>    <span class="hljs-keyword">return</span> <span class="hljs-string">"c"</span>
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span>r = also(a,b,c)
+<span class="hljs-prompt">&gt;&gt;&gt; </span>r
+&lt;functional.sequential instance at <span class="hljs-number">0xb86ac</span>&gt;
+<span class="hljs-prompt">&gt;&gt;&gt; </span>r(<span class="hljs-number">5</span>)
+<span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">15</span>
+<span class="hljs-string">'a'</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>sequential([a,b,c],main=c)(<span class="hljs-string">'x'</span>)
+x xx xxx
+<span class="hljs-string">'c'</span></code></pre>
+<p>The functions disjoin() and conjoin() are similar to sequential() and also() in terms of creating new functions that apply argument(s) to several component functions. But disjoin() asks whether any component functions return true (given the argument(s)), and conjoin() asks whether all components return true. Logical shortcutting is applied, where possible, so some side effects might not occur with disjoin(). joinfuncs() is similar to also(), but returns a tuple of the components&#39; return values rather than selecting a main one.
+Where the previous functions let you call multiple functions with the same argument(s), any(), all(), and none_of() let you call the same function against a list of arguments. In general structure, these are a bit like the built-in map(), reduce(), filter() functions. But these particular higher-order functions from functional ask Boolean questions about collections of return values. For example:
+Listing 12: Ask about collections of return values</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functional <span class="hljs-keyword">import</span> *
+<span class="hljs-prompt">&gt;&gt;&gt; </span>isEven = <span class="hljs-keyword">lambda</span> n: (n%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+<span class="hljs-prompt">&gt;&gt;&gt; </span>any([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>], isEven)
+<span class="hljs-number">1</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>any([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], isEven)
+<span class="hljs-number">0</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>none_of([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>], isEven)
+<span class="hljs-number">1</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>all([<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>], isEven)
+<span class="hljs-number">1</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>all([<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>], isEven)
+<span class="hljs-number">0</span></code></pre>
+<p>A particularly interesting higher-order function for those with a little bit of mathematics background is compose(). The composition of several functions is a &quot;chaining together&quot; of the return value of one function to the input of the next function. The programmer who composes several functions is responsible for making sure the outputs and inputs match up -- but then, that is true any time a programmer uses a return value. A simple example makes it clear:
+Listing 13: Creating compositional functions</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minus7</span><span class="hljs-params">(n)</span>:</span> <span class="hljs-keyword">return</span> n-<span class="hljs-number">7</span>
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">times3</span><span class="hljs-params">(n)</span>:</span> <span class="hljs-keyword">return</span> n*<span class="hljs-number">3</span>
+...
+<span class="hljs-prompt">&gt;&gt;&gt; </span>minus7(<span class="hljs-number">10</span>)
+<span class="hljs-number">3</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>minustimes = compose(times3,minus7)
+<span class="hljs-prompt">&gt;&gt;&gt; </span>minustimes(<span class="hljs-number">10</span>)
+<span class="hljs-number">9</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>times3(minus7(<span class="hljs-number">10</span>))
+<span class="hljs-number">9</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>timesminus = compose(minus7,times3)
+<span class="hljs-prompt">&gt;&gt;&gt; </span>timesminus(<span class="hljs-number">10</span>)
+<span class="hljs-number">23</span>
+<span class="hljs-prompt">&gt;&gt;&gt; </span>minus7(times3(<span class="hljs-number">10</span>))
+<span class="hljs-number">23</span></code></pre>
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <h3>Tags</h3>
+    
+      <ul class="nav nav-pills">
+      
+        <li>
+          <a href="/tags/python" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">python</span>
+          </a>
+        </li>
+	    
+        <li>
+          <a href="/tags/functional" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">functional</span>
+          </a>
+        </li>
+	    
+        <li>
+          <a href="/tags/programming" style="padding: 7px 0px;">
+            <span class="label label-default" style="font-size: 1.17em;">programming</span>
+          </a>
+        </li>
+	    
+      </ul>
+    
+
+    <h3>Related</h3>
+    <ul class="related_list">
+      
+  			<li>
+          <a href="/10000/2014/02/13/Functional_Programming_in_Python_part2">파이썬 함수형 언어 파트 2</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/10000/2014/02/12/Functional_Programming_in_Python_part1">파이썬 함수형 언어 파트 1</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/10000/2014/02/18/numpy_data_type">Numpy Data Type</a> <br/>
+          <span>Tue Feb 18 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/10/Functional_Programming_in_Python_part3">파이썬 함수형 언어 파트 3</a> <br/>
+          <span>Mon Feb 10 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/12/Functional_Programming_in_Python_part1">파이썬 함수형 언어 파트 1</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/13/Functional_Programming_in_Python_part2">파이썬 함수형 언어 파트 2</a> <br/>
+          <span>Wed Feb 12 2014</span>
+        </li>
+      
+  			<li>
+          <a href="/posts/2014/02/18/numpy_data_type">Numpy Data Type</a> <br/>
+          <span>Tue Feb 18 2014</span>
+        </li>
+      
+		 </ul>
+
+    <h3>Recently</h3>
+    <ul class="recent_list">
+      
+      <li>
+        <a href="/posts/2014/04/06/nodejs_fs_module">nodejs fs module 소개</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/06/8_1_14">8차 천일 결사 1차 백일 기도 정진 14일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/05/8_1_13">8차 천일 결사 1차 백일 기도 정진 13일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/04/8_1_12">8차 천일 결사 1차 백일 기도 정진 12일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+      <li>
+        <a href="/posts/2014/04/03/8_1_11">8차 천일 결사 1차 백일 기도 정진 11일째</a><br>
+        <span class="caption"></span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+</div>
+
+    <footer id="footer">
+		<span class="logo">ygpark.</span>
+		Created &amp; Maintained by Young Gyu Park using <a href="http://docpad.org">DocPad</a>
+</footer>
+
+  </div>
+
+	<!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/vendor/jquery.js"><\/script>')</script>
+
+	<!-- DocPad Scripts + Our Own -->
+	<script >(function(){
+	/* Did we just livereload? */
+var log = !!(localStorage && console && console.log && true);
+if ( log && localStorage.getItem('/docpad-livereload/reloaded') === 'yes' ) {
+	localStorage.removeItem('/docpad-livereload/reloaded');
+	console.log('LiveReload completed at', new Date())
+}
+
+/* Listen for the regenerated event and perform a reload of the page when the event occurs */
+var listen = function(){
+	var primus = new Primus('/docpad-livereload');
+	primus.on('data', function(data){
+		if ( data && data.message ) {
+			if ( data.message === 'generateBefore' ) {
+				if ( log ) {
+					console.log('LiveReload started at', new Date());
+				}
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+	document.getElementsByTagName('html')[0].className += ' wait';
+}
+			}
+			else if ( data.message === 'generateAfter' ) {
+				if ( log ) {
+					localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+				}
+				document.location.reload();
+			}
+		}
+	});
+};
+	/* Inject socket into our page */
+var inject = function(){
+	var t = document.createElement('script');
+	t.type = 'text/javascript';
+	t.async = 'async';
+	t.src = '/primus/primus.js';
+	t.onload = listen;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(t, s);
+};
+	if ( typeof Primus !== 'undefined' ) {
+		listen();
+	} else {
+		inject();
+	}
+})();</script><script defer="defer"  src="/vendor/log.js"></script><script defer="defer"  src="/vendor/modernizr.js"></script><script defer="defer"  src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script><script defer="defer"  src="/scripts/bootstrap.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+</body>
+</html>
