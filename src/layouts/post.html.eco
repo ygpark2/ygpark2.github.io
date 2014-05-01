@@ -43,7 +43,7 @@ layout: default
 
     <h3>Related</h3>
     <ul class="related_list">
-      <% for document in @getRelatedDocuments(): %>
+      <% for document in @getRelatedDocuments()[0..4]: %>
   			<li>
           <a href="<%= document.url %>"><%= document.title %></a> <br/>
           <span><%= document.date.toDateString() %></span>
