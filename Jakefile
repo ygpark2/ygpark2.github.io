@@ -68,11 +68,15 @@ namespace('post', function () {
   });
 
   desc('This is for a new post');
-  task('new', function (title, filename) {
+  task('new', function (filename, title) {
+    console.log(filename)
+    console.log(title, filename)
     var today = getDateTime();
     var date = today.split(" ").shift();
     var dir_path = "./src/documents/posts/" + date.replace(/-/gi, "/");
+
     var file_name = dir_path + "/" + filename + ".html.md"
+
     jake.mkdirP(dir_path);
 
     fs.exists(file_name, function (exists) {
@@ -104,4 +108,8 @@ namespace('post', function () {
     console.log('doing foo:baz task');
   });
 
+  desc('This is an awesome task.');
+  task('awesome', function (a, b, c) {
+    console.log(a, b, c);
+  });
 });
