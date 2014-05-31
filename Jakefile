@@ -57,7 +57,7 @@ namespace('post', function () {
                          ''
                          ].join('\n');
 
-        fs.writeFile(file_name, template, function (err) {
+        fs.writeFile(file_name, template, 'utf8', function (err) {
           if (err) return console.log(err);
           util.log('file created => ' + file_name);
         });
@@ -93,7 +93,7 @@ namespace('post', function () {
                          ''
                          ].join('\n');
 
-        fs.writeFile(file_name, template, function (err) {
+        fs.writeFile(file_name, template, 'utf8', function (err) {
           if (err) return console.log(err);
           util.log('file created => ' + file_name);
         });
