@@ -69,8 +69,6 @@ namespace('post', function () {
 
   desc('This is for a new post');
   task('new', function (filename, title) {
-    console.log(filename)
-    console.log(title, filename)
     var today = getDateTime();
     var date = today.split(" ").shift();
     var dir_path = "./src/documents/posts/" + date.replace(/-/gi, "/");
