@@ -3,13 +3,36 @@ layout: 'default'
 title: 'What now?'
 ---
 
-<!-- ## Not sure what to do now? Here's some useful links: -->
+<div id="page" class="row post">
+  <div class="col-md-12">
 
-    <div id="page" class="main">
+    <h3>ABOUTS</h3>
+    <!-- Page Content -->
+    <div class="row">
+      <div class="col-md-3">
 
+      </div>
+      <div class="col-md-6 main">
+
+        <div class="row">
+          <div class="col-md-12">
+            <p></p>
+            <div class="caption text-center">
+              <h1 class="title">  이것은 저에 대한 소개 페이지 입니다. </h1>
+              <div class="subtitle"></div>
+            </div>
+            <p></p>
+            <div class="content">
+              이 부분은 소개에 대한 페이지 입니다.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
     </div>
 
-    <div id="" class="posts">
-        <h3>More.</h3>
-
-    </div>
+  </div>
+</div>

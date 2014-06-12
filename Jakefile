@@ -31,7 +31,7 @@ task('default', function () {
   console.log('This is the default task.');
 });
 
-namespace('post', function () {
+namespace('doc', function () {
   desc('This the 1000 task');
   task('1000', function (day) {
     var today = getDateTime();
@@ -68,10 +68,44 @@ namespace('post', function () {
   });
 
   desc('This is for a new post');
-  task('new', function (filename, title) {
+  task('post', function (filename, title) {
     var today = getDateTime();
     var date = today.split(" ").shift();
     var dir_path = "./src/documents/posts/" + date.replace(/-/gi, "/");
+
+    var file_name = dir_path + "/" + filename + ".html.md"
+
+    jake.mkdirP(dir_path);
+
+    fs.exists(file_name, function (exists) {
+      if (exists) {
+        util.error(file_name + " already exist!!");
+      } else {
+        var template = [ '---',
+                         'title: "' + title + '"',
+                         'date: ' + today,
+                         'tags:',
+                         '    - ',
+                         '---',
+                         '',
+                         ''
+                         ].join('\n');
+
+        fs.writeFile(file_name, template, 'utf8', function (err) {
+          if (err) return console.log(err);
+          util.log('file created => ' + file_name);
+        });
+
+      }
+    });
+
+  });
+
+  desc('This is for a new page');
+  task('page', function (filename, title) {
+    var today = getDateTime();
+    var date = today.split(" ").shift();
+    var dir_path = "./src/documents/pages/" + date.replace(/-/gi, "/");
 
     var file_name = dir_path + "/" + filename + ".html.md"
 
