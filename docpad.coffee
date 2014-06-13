@@ -280,9 +280,10 @@ docpadConfig = {
     ghpages:
       deployRemote: 'origin'
       deployBranch: 'master'
-    rss:
-      collection: 'posts'
-      url: '/feed.xml' # optional, this is the default
+  #  rss:
+  #    default:
+  #      collection: 'posts'
+  #      url: '/feed.xml' # optional, this is the default
 
   # =================================
   # DocPad Events
