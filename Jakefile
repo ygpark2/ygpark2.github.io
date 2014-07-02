@@ -37,7 +37,7 @@ namespace('doc', function () {
     var today = getDateTime();
     var date = today.split(" ").shift();
     var dir_path = "./src/documents/10000/" + date.replace(/-/gi, "/");
-    var file_name = dir_path + "/8_1_" + day + ".html.md"
+    var file_name = dir_path + "/8_2_" + day + ".html.md"
     jake.mkdirP(dir_path);
 
     fs.exists(file_name, function (exists) {
@@ -45,11 +45,10 @@ namespace('doc', function () {
         util.error(file_name + " already exist!!");
       } else {
         var template = [ '---',
-                         'title: "8차 천일 결사 1차 백일 기도 정진 ' + day + '일째"',
+                         'title: "8차 천일 결사 2차 백일 기도 정진 ' + day + '일째"',
                          'date: ' + today,
                          'tags:',
-                         '    - 8000th',
-                         '    - 8-100th',
+                         '    - 8-200th',
                          '    - ' + day + 'th',
                          '---',
                          '',
