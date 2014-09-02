@@ -286,7 +286,7 @@ docpadConfig = {
         twitter:
           url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=balupton&count=20&include_entities=true&include_rts=true"
         flickr:
-          url: "http://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=#{FLICKR_API_KEY}&user_id=#&format=json&nojsoncallback=1"
+          url: "http://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=#{envConfig.FLICKR_API_KEY}&user_id=#{envConfig.FLICKR_USER_ID}&format=json&nojsoncallback=1"
     clean: true
 
   # =================================

@@ -15,6 +15,12 @@ Usage
 
 1. Zsh
 
-jake 'post:1000[day]'
-jake 'post:new[filenam,title]'
+jake 'doc:1000[day]'
+jake 'doc:post:new[filenam,title]'
+
+Deployment
+==========
+
+./node_modules/docpad/bin/docpad deploy-ghpages --env static
+
 
