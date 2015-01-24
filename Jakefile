@@ -33,11 +33,11 @@ task('default', function () {
 
 namespace('doc', function () {
   desc('This the 1000 task');
-  task('1000', function (day) {
+  task('1000', function (thounsand, hundred, day) {
     var today = getDateTime();
     var date = today.split(" ").shift();
     var dir_path = "./src/documents/10000/" + date.replace(/-/gi, "/");
-    var file_name = dir_path + "/8_3_" + day + ".html.md"
+    var file_name = dir_path + "/" + thounsand + "_" + hundred + "_" + day + ".html.md"
     jake.mkdirP(dir_path);
 
     fs.exists(file_name, function (exists) {
@@ -45,10 +45,10 @@ namespace('doc', function () {
         util.error(file_name + " already exist!!");
       } else {
         var template = [ '---',
-                         'title: "8차 천일 결사 3차 백일 기도 정진 ' + day + '일째"',
+                         'title: ' + thounsand + '차 천일 결사 ' + hundred + '차 백일 기도 정진 ' + day + '일째',
                          'date: ' + today,
                          'tags:',
-                         '    - 8-300th',
+                         '    - ' + thounsand + '-' + hundred + '00th',
                          '    - ' + day + 'th',
                          '---',
                          '',
