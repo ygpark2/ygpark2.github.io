@@ -1,62 +1,26 @@
 {
-  "name": "html5-boilerplate.docpad",
+  "name": "ygpark2.github.io",
   "version": "0.1.0",
-  "private": true,
-  "description": "HTML5 Boilerplate skeleton for DocPad. Bare essentials for building a modern website with best practices.",
-  "homepage": "https://github.com/docpad/html5-boilerplate.docpad",
-  "keywords": [
-    "docpad-skeleton",
-    "docpad",
-    "website",
-    "skeleton",
-    "html5 boilerplate",
-    "h5bp"
-  ],
-  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
-  "maintainers": [
-    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
-  ],
-  "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)"
-  ],
-  "bugs": {
-    "url": "https://github.com/docpad/html5-boilerplate.docpad/issues"
-  },
-  "scripts": {
-    "start": "docpad server",
-    "build": "docpad build",
-    "test": "docpad test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/docpad/html5-boilerplate.docpad.git"
-  },
-  "engines": {
-    "node": "0.10",
-    "npm": "1.3"
-  },
+  "description": "This is for lessc",
+  "author": "Young Gyu Park <ygpark2@gmail.com>",
+  "contributors": [{
+    "name": "Unknown",
+    "email": "unknown@example.com"
+  }],
   "dependencies": {
-    "jake": "latest",
-    "docpad": "*",
-    "docpad-plugin-livescript": "~2.0.0",
-    "docpad-plugin-eco": "~2.0.3",
-    "docpad-plugin-highlightjs": "2.2.2",
-    "docpad-plugin-cleanurls": "2.7.0",
-    "docpad-plugin-marked": "~2.2.1",
-    "docpad-plugin-partials": "~2.9.1",
-    "docpad-plugin-stylus": "~2.7.0",
-    "docpad-plugin-text": "~2.3.2",
-    "docpad-plugin-textile": "~2.0.1",
-    "docpad-plugin-paged": "~2.2.5",
-    "docpad-plugin-tags": "~2.0.7",
-    "docpad-plugin-text": "~2.3.2",
-    "docpad-plugin-related": "~2.2.2",
-    "docpad-plugin-feedr": "~2.8.0",
-    "docpad-plugin-nodesass": "~2.4.1"
+   "less": "*",
+   "less-plugin-clean-css": "*",
+   "commander": "*",
+   "del": "latest",
+   "gear": "latest",
+   "gear-lib": "latest",
+   "lodash": "latest",
+   "jake": "latest"
   },
   "devDependencies": {
-    "docpad-plugin-livereload": "~2.5.3",
-    "docpad-plugin-ghpages": "~2.4.3"
-  },
-  "main": "node_modules/docpad/bin/docpad-server"
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0"
+  }
 }

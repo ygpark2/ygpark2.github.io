@@ -1,0 +1,34 @@
+prose:
+  siteurl: "http://dikmax.name"
+  metadata:
+    posts:
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: "New post"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          value: CURRENT_DATETIME
+      - name: "type"
+        field:
+          element: "text"
+          label: "Type"
+          value: "Post type"
+      - name: "featured"
+        field:
+          element: "button"
+          on: "True"
+          off: "False"
+      - name: "tags"
+        field:
+          element: "text"
+          label: "Tags"
+          value: ""
+      - name: "published"
+        field:
+          element: "button"
+          on: "Published"
+          off: "Unpublished"

@@ -1,0 +1,18 @@
+<div class="panel panel-default post-container">
+    <div class="panel-body post-body">
+        <h1><a href="/$url$">$title$</a></h1>
+
+        $if(teaser)$
+            $teaser$
+
+            $if(readmore)$
+                <p><a href="/$url$">$readmore$</a></p>
+            $else$
+                <p><a href="/$url$">Read more ...</a></p>
+            $endif$
+        $else$
+            $body$
+        $endif$
+    </div>
+    $partial("templates/_post-footer.html")$
+</div>

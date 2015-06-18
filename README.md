@@ -1,26 +1,5 @@
-Blog
-====
+This is source files of my blog [http://dikmax.name/](http://dikmax.name/). You can use it freely on your own risk.
 
-Young Gyu Park Blog
+# deploy command description
 
-Dependency
-==========
-
-1.jake
-2.docpad
-
-
-Usage
-=====
-
-1. Zsh
-
-jake 'doc:1000[day]'
-jake 'doc:post:new[filenam,title]'
-
-Deployment
-==========
-
-./node_modules/docpad/bin/docpad deploy-ghpages --env static
-
-
+https://gist.github.com/cobyism/4730490

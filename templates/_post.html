@@ -1,0 +1,20 @@
+<div class="panel panel-default post-container">
+    <div class="panel-body post-body">
+        <h1>$title$</h1>
+
+        $body$
+    </div>
+
+    $partial("templates/_post-footer.html")$
+
+    $if(collection)$
+        $collection$
+    $endif$
+
+
+    <div id="disqus_thread" class="panel-body">
+        $comments$
+    </div>
+
+    $partial("templates/_disqus-post.html")$
+</div>
