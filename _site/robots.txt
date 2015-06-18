@@ -1,0 +1,5 @@
+User-agent: *
+Sitemap: http://ygpark2.github.io/sitemap.xml
+
+User-agent: Yandex
+Host: dikmax.name
