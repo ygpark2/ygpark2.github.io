@@ -1,5 +1,5 @@
 ---
-title: "Maxim Dikun"
+title: "Young Gyu Park"
 date: "2012-11-16T16:13:20+03:00"
 published: false
 tags: "работа"
@@ -20,7 +20,7 @@ Pimcore CMS
 
 # Work experience
 
-### ScienceSoft, 
+### ScienceSoft,
 
 *September 2011 — present*
 

@@ -41,7 +41,7 @@ namespace('doc', function () {
         var template = [ '---',
                          'title: ' + thounsand + '차 천일 결사 ' + hundred + '차 백일 기도 정진 ' + day + '일째',
                          'date: ' + today,
-                         'tags: 10000 결사, ' + thounsand + 'th, ' + hundred + 'th, ' + day + 'th',
+                         'tags: 10000 결사, ' + thounsand + '000th, ' + thounsand + '-' + hundred + '00th, ' + day + 'th',
                          '---',
                          '',
                          '#수행일지',
