@@ -130,10 +130,10 @@ archiveRules = do
                         mm = groupBy ((==) `on` fst) months'
 
                         postsList i = do
-                            tpl <- loadBody "templates/_post-archive.html"
+                            tpl <- loadBody "templates/parts/_post-archive.html"
                             str <- applyTemplateList tpl ctx items
                             item <- makeItem str
-                                >>= loadAndApplyTemplate "templates/_post-list-archive.html" postCtx
+                                >>= loadAndApplyTemplate "templates/parts/_post-list-archive.html" postCtx
                             return $ itemBody item
                             where
                                 items = map snd $ filter (\m -> fst m == itemBody i) months'
@@ -354,7 +354,7 @@ postsRules = do
             let images = map (fromMaybe "") $ filter isJust $ map imagesMap $ TS.parseTags $ itemBody item
 
             time <- getItemUTC defaultTimeLocale identifier
-            loadAndApplyTemplate "templates/_post.html"
+            loadAndApplyTemplate "templates/parts/_post.html"
                     (collectionField collection `mappend`
                     commentsField comments `mappend`
                     postCtx
@@ -404,10 +404,10 @@ commentsField items =
         ctx = bodyField "body" `mappend` metadataField
 
         commentsList _ = do
-            tpl <- loadBody "templates/_comment.html"
+            tpl <- loadBody "templates/parts/_comment.html"
             str <- applyTemplateList tpl ctx items
             item <- makeItem str
-                >>= loadAndApplyTemplate "templates/_comments-list.html" postCtx
+                >>= loadAndApplyTemplate "templates/parts/_comments-list.html" postCtx
             return $ itemBody item
 
 
@@ -444,10 +444,10 @@ collectionField (Just collection) =
         (title, items) = parseCollectionFile collection
 
         collectionString _ = do
-            tpl <- loadBody "templates/_collection-item.html"
+            tpl <- loadBody "templates/parts/_collection-item.html"
             str <- applyTemplateList tpl ctx items
             item <- makeItem str
-                >>= loadAndApplyTemplate "templates/_collection.html" (bodyField "body" `mappend` constField "title" title)
+                >>= loadAndApplyTemplate "templates/parts/_collection.html" (bodyField "body" `mappend` constField "title" title)
             return $ itemBody item
 
 --------------------------------------------------------------------------------
@@ -529,7 +529,7 @@ tagsPagesRules = do
                     | otherwise = "/archive/" ++ year ++ "/"
 
             makeItem t
-                >>= loadAndApplyTemplate "templates/_tags-wrapper.html" ctx
+                >>= loadAndApplyTemplate "templates/parts/_tags-wrapper.html" ctx
                 >>= loadAndApplyTemplate tagsTemplateName ctx
 
     rulesExtraDependencies [d] $ tagsRules tags $ \tag identifiers -> do
@@ -582,7 +582,7 @@ staticPagesRules = do
         route idRoute
         compile $
             getResourceBody
-                >>= loadAndApplyTemplate "templates/_post-without-footer.html" postCtx
+                >>= loadAndApplyTemplate "templates/parts/_post-without-footer.html" postCtx
                 >>= loadAndApplyTemplate routePlannerTemplateName (pageCtx (defaultMetadata
                     { metaTitle = Just "Route Planner"
                     , metaDescription = "The calculation of the optimal route of travel by city"
@@ -607,7 +607,7 @@ staticPagesRules = do
             title <- getMetadataField identifier "title"
             description <- getMetadataField identifier "description"
             pandocCompiler False
-                >>= loadAndApplyTemplate "templates/_post-without-footer.html" postCtx
+                >>= loadAndApplyTemplate "templates/parts/_post-without-footer.html" postCtx
                 >>= loadAndApplyTemplate defaultTemplateName (pageCtx (defaultMetadata
                     { metaTitle = fmap unwrap title
                     , metaDescription = unwrap $ fromMaybe "" description

@@ -4,9 +4,9 @@ $partial("templates/_head.html")$
 <body>
 $partial("templates/_topbar.html")$
 
-<div class="container">
-    <div class="text-center">
-        <ul class="pagination pagination-lg">
+<div class="container text-center">
+    <div class="pagination pagination-inverse">
+        <ul>
             $for(years)$
             <li><a href="$href$">$year$</a></li>
             $endfor$

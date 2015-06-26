@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>[dikmax's blog]</title>
-        <description>Мой персональный блог</description>
-        <link>http://dikmax.name/</link>
-        <language>ru</language>
+        <title>[Young Gyu's blog]</title>
+        <description>Young Gyu Park Story, Tech and Life</description>
+        <link>http://ygpark2.github.io/</link>
+        <language>ko</language>
         <lastBuildDate>$build-date$</lastBuildDate>
         <pubDate>$pub-date$</pubDate>
         <ttl>180</ttl>
@@ -14,9 +14,9 @@
         <item>
             <title>$title$</title>
             <description>$description$</description>
-            <link>http://dikmax.name/$url$</link>
-            <comments>http://dikmax.name/$url$#disqus_thread</comments>
-            <guid>http://dikmax.name/$url$</guid>
+            <link>http://ygpark2.github.io/$url$</link>
+            <comments>http://ygpark2.github.io/$url$#disqus_thread</comments>
+            <guid>http://ygpark2.github.io/$url$</guid>
             <pubDate>$pub-date$</pubDate>
         </item>
         $endfor$

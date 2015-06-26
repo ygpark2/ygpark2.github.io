@@ -20,7 +20,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 7px 6px;
   }
 
-
   .navbar-toggle-button {
     margin-top: 13px;
     margin-bottom: 13px;
@@ -240,149 +239,7 @@ code.sourceCode.highlighted {
   }
 }
 
-// Responsive
-
-.responsive-font (@scale: 1) {
-  .post-body {
-    font-size: @font-size-base * @scale;
-
-    pre {
-      font-size: (@font-size-base * @scale - 1);
-    }
-  }
-  .panel-footer {
-    font-size: @font-size-base * @scale;
-    line-height: 1.6;
-  }
-
-  h1, .h1 { font-size: @font-size-h1 * @scale; }
-  h2, .h2 { font-size: @font-size-h2 * @scale; }
-  h3, .h3 { font-size: @font-size-h3 * @scale; }
-  h4, .h4 { font-size: @font-size-h4 * @scale; }
-  h5, .h5 { font-size: @font-size-h5 * @scale; }
-  h6, .h6 { font-size: @font-size-h6 * @scale; }
-
-  .jumbotron {
-    font-size: @jumbotron-font-size * @scale;
-  }
-}
-
-@media (max-width: @screen-xs-max) {
-  .responsive-font(0.7);
-  body > .container {
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-}
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-  .responsive-font(0.8);
-}
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-  .responsive-font(0.9);
-}
-
-// Route planner
-
-.badge.distance {
-  position: relative;
-  top: 2px;
-}
-
-.route-widget .refresh-button .in-progress {
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
-}
-
-.route-widget .calc-progress .progress {
-  margin-bottom: 0;
-}
-
-.map > .loading {
-  text-align: center;
-  line-height: 100px;
-}
-
-.map-widget {
-  width: 100%;
-  height: 400px;
-
-  &.full-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    z-index: 10001;
-  }
-}
-
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.route-header .checkbox {
-  margin-bottom: 0;
-}
-
-// Visited countries
-
-.map {
-  .background {
-    fill: #ddeeff;
-  }
-
-  .country {
-    fill: #ffffdd;
-    stroke: #226688;
-  }
-
-  .graticule {
-    fill: none;
-    stroke: #000;
-    stroke-opacity: .3;
-    stroke-dasharray: 3,1;
-
-    &.outline {
-      stroke: #333;
-      stroke-opacity: 1;
-      stroke-width: 1.5px;
-      stroke-dasharray: initial;
-    }
-  }
-
-  .city {
-    fill: #dd3d30;
-  }
-}
-
-.country-tooltip {
-  color: #222;
-  background: #fff;
-  padding: .5em;
-  text-shadow: #f5f5f5 0 1px 0;
-  border-radius: 2px;
-  box-shadow: 0px 0px 2px 0px #a6a6a6;
-  opacity: 0.9;
-  position: absolute;
-}
-
 // Social buttons
-
 
 .btn-facebook {
   .button-variant(#fff; #324b8a; #4466a8);
@@ -431,4 +288,3 @@ code.sourceCode.highlighted {
 .btn-youtube {
   .button-variant(#fff; #932420; #CB322C);
 }
-
