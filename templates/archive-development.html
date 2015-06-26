@@ -8,13 +8,13 @@ $partial("templates/parts/_topbar.html")$
     <div class="text-center">
         <ul class="pagination pagination-lg">
             $for(years)$
-            $if(active)$
-            <li class="active"><a href="$href$">$year$</a></li>
-            $else$
-            <li><a href="$href$">$year$</a></li>
-            $endif$
+                $if(active)$
+                    <li class="active"><a href="$href$">$year$</a></li>
+                $else$
+                    <li><a href="$href$">$year$</a></li>
+                $endif$
             $endfor$
-            <li><a href="/tags/">Теги</a></li>
+            <li><a href="/tags/">태그</a></li>
         </ul>
     </div>
 

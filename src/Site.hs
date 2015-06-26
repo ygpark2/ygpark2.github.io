@@ -47,7 +47,7 @@ main = hakyll $ do
     feedRules
     sitemapRules
 
-    match "templates/*" $ compile templateCompiler
+    match "templates/**" $ compile templateCompiler
 
 
 --------------------------------------------------------------------------------

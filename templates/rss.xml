@@ -8,7 +8,7 @@
         <lastBuildDate>$build-date$</lastBuildDate>
         <pubDate>$pub-date$</pubDate>
         <ttl>180</ttl>
-        <atom:link href="http://dikmax.name/feed.rss" rel="self" type="application/rss+xml" />
+        <atom:link href="http://ygpark2.github.io/feed.rss" rel="self" type="application/rss+xml" />
 
         $for(posts)$
         <item>
