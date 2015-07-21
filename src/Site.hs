@@ -31,6 +31,11 @@ import           Text.XmlHtml
 import           XmlHtmlWriter
 
 
+config :: Configuration
+config = defaultConfiguration
+        {   deployCommand = "ls -al" }
+
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -324,6 +329,11 @@ scriptsCompilerRules = do
                 _ <- waitForProcess h
                 readFile "js/highlight.js/build/highlight.pack.js"
             makeItem js
+
+    -- Building additional js
+    concatResources "dart/s.js" ["js/highlight.pack.js"]
+    -- TODO sroute-planner
+    concatResources "dart/smap.js" ["js/d3/d3.min.js", "js/polyhedron.js", "js/topojson/topojson.min.js"]
 
 --------------------------------------------------------------------------------
 -- Posts

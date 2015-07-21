@@ -5,6 +5,32 @@ type: post
 tags: numpy, python
 ---
 
+~~~~~javascript
+if (value == 0) {
+    return result0;
+} else if (value == 1) {
+    return result1;
+} else if (value == 2) {
+    return result2;
+} else if (value == 3) {
+    return result3;
+} else if (value == 4) {
+    return result4;
+} else if (value == 5) {
+    return result5;
+} else if (value == 6) {
+    return result6;
+} else if (value == 7) {
+    return result7;
+} else if (value == 8) {
+    return result8;
+} else if (value == 9) {
+    return result9;
+} else {
+    return result10;
+}
+~~~~~
+
 가장 어려운 질문인 함수형 언어가 무엇인지로 시작하는게 좋을것 같습니다. 한가지 답변은 함수형 언어는 Lisp, Scheme, Haskell, ML, OCAML, Clean, Mercury 또는 Erlang 같은 언어로 프로그램을 짜는 것을 말합니다. 이것은 가장 확실한 답변이지만은 아주 분명하게 설명을 하지는 않은 것입니다. 불행히도, 함수형 언어가 무엇인지에 관한 일관된 의견을 가지는 것은 참 어려운 일입니다. 심지어 함수형 프로그래머들도 정확한 정의를 하지 못하고 있습니다. 장님과 코끼리 이야기가 여기에서 참 적절한 예인것 같습니다. "imperative languages"
 We'd better start with the hardest question: "What is functional programming (FP), anyway?" One answer would be to say that FP is what you do when you program in languages like Lisp, Scheme, Haskell, ML, OCAML, Clean, Mercury, or Erlang (or a few others). That is a safe answer, but not one that clarifies very much. Unfortunately, it is hard to get a consistent opinion on just what FP is, even from functional programmers themselves. A story about elephants and blind men seems apropos here. It is also safe to contrast FP with "imperative programming" (what you do in languages like C, Pascal, C++, Java, Perl, Awk, TCL, and most others, at least for the most part).
 
