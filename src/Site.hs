@@ -1,5 +1,6 @@
 {-# LANGUAGE CPP               #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE TupleSections     #-}
 import           Blaze.ByteString.Builder (toByteString)
 import           Control.Applicative ((<$>))
@@ -15,13 +16,12 @@ import           Data.Ord (comparing)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import           Data.Time.Clock (UTCTime, getCurrentTime)
-import           Data.Time.Format (formatTime, parseTime)
+import           Data.Time.Format
 import           Hakyll hiding (chronological, dateFieldWith, getItemUTC, getTags, paginateContext,
                     pandocCompiler, recentFirst, teaserField)
 import           System.Directory
 import           System.FilePath (takeFileName)
 import           System.IO.Error
-import           System.Locale
 import           System.Process
 import           Text.HTML.TagSoup (Tag(..))
 import qualified Text.HTML.TagSoup as TS
@@ -31,16 +31,12 @@ import           Text.XmlHtml
 import           XmlHtmlWriter
 
 
-config :: Configuration
-config = defaultConfiguration
-        {   deployCommand = "ls -al" }
-
-
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
     staticFilesRules
     lessCompilerRules
+    -- mapCompilerRules
     scriptsCompilerRules
     commentsRules
     collectionRules
@@ -108,9 +104,9 @@ mainSiteDomain = "http://ygpark2.github.io"
 
 archiveRules :: Rules ()
 archiveRules = do
-    d <- makePatternDependency "posts/**/*.md"
+    d <- makePatternDependency "posts/**"
     rulesExtraDependencies [d] $ do
-        ids <- getMatches "posts/**/*.md"
+        ids <- getMatches "posts/**"
         filteredIds <- filterM isPublished ids
         years <- mapM yearsMap filteredIds
         let ym = sortBy (\a b -> compare (fst b) (fst a)) $ yearsMap1 years
@@ -153,8 +149,8 @@ archiveRules = do
                             listField "years" yearCtx (mapM (makeItem . fst) ym) `mappend`
                             listField "months" monthsCtx (mapM (makeItem . fst . head) mm) `mappend`
                             pageCtx (defaultMetadata
-                                { metaTitle = Just "Archive"
-                                , metaDescription = "List of all stations for \"Quick Search\""
+                                { metaTitle = Just "Архив"
+                                , metaDescription = "Список всех постов для \"быстрого поиска\""
                                 , metaUrl = "/archive/"
                                 })
                     makeItem ""
@@ -214,7 +210,7 @@ feedRules =
     create ["feed.rss"] $ do
         route idRoute
         compile $ do
-            ids <- getMatches "posts/**/*.md"
+            ids <- getMatches "posts/**"
             filteredIds <- filterM isPublished ids
             posts <- fmap (take 10) . recentFirst =<<
                 loadAllSnapshots (fromList filteredIds) "rss"
@@ -267,7 +263,7 @@ staticFilesRules = do
 --------------------------------------------------------------------------------
 
 {-
-env lessc --clean-css -O2 --include-path=less less/style.less css/style.css
+lessc --clean-css -O2 --include-path=less less/style.less css/style.css
 -}
 
 lessCompilerRules :: Rules ()
@@ -281,22 +277,108 @@ lessCompilerRules = do
         compile $ loadBody "less/style.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "./node_modules/less/bin/lessc" ["--clean-css=advanced", "--include-path=less","-"])
+              (unixFilter "lessc" ["--clean-css=advanced", "--include-path=less","-"])
 
     rulesExtraDependencies [d] $ create ["css/print.css"] $ do
         route idRoute
         compile $ loadBody "less/print.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "./node_modules/less/bin/lessc" ["--clean-css=advanced", "--include-path=less","-"])
-              -- "lessc" ["-","--yui-compress","-O2"])
+              (unixFilter "lessc" ["--clean-css=advanced", "--include-path=less","-"])
+
+
+--------------------------------------------------------------------------------
+-- Map
+--------------------------------------------------------------------------------
+
+{-
+rm map/subunits.json
+rm map/countries.json
+rm map/regions.json
+ogr2ogr -f GeoJSON map/subunits.json -where "ADM0_A3 = 'FRA'" map/ne_10m_admin_0_map_subunits/ne_10m_admin_0_map_subunits.shp
+ogr2ogr -f GeoJSON map/countries.json -where "ADM0_A3 != 'FRA' and ADM0_A3 != 'RUS' and ADM0_A3 != 'USA'" map/ne_10m_admin_0_countries_lakes/ne_10m_admin_0_countries_lakes.shp
+ogr2ogr -f GeoJSON map/regions.json -where "ADM0_A3 = 'RUS' or ADM0_A3 = 'USA'" map/ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+topojson -o map/world.json --id-property ADM_A3,SU_A3,adm1_code --simplify 1e-6 -- map/countries.json map/subunits.json map/regions.json
+-}
+
+mapCompilerRules :: Rules ()
+mapCompilerRules = do
+    match "map/ne_10m_admin_0_countries_lakes/*" $
+        compile copyFileCompiler
+    match "map/ne_10m_admin_0_map_subunits/*" $
+        compile copyFileCompiler
+    match "map/ne_10m_admin_1_states_provinces_lakes/*" $
+        compile copyFileCompiler
+
+    countries <- makePatternDependency "map/ne_10m_admin_0_countries_lakes/*"
+    subunits <- makePatternDependency "map/ne_10m_admin_0_map_subunits/*"
+    regions <- makePatternDependency "map/ne_10m_admin_1_states_provinces_lakes/*"
+    rulesExtraDependencies [countries, subunits, regions] $ create ["map/world.json"] $ do
+        route idRoute
+        compile $ do
+            -- TODO logging
+            mapData <- unsafeCompiler $ do
+                removeIfExists "map/subunits.json"
+                removeIfExists "map/countries.json"
+                removeIfExists "map/regions.json"
+
+                _ <- rawSystem "ogr2ogr" ["-f", "GeoJSON", "map/subunits.json",
+                        "-where", "ADM0_A3 = 'FRA'",
+                        "map/ne_10m_admin_0_map_subunits/ne_10m_admin_0_map_subunits.shp"]
+                _ <- rawSystem "ogr2ogr" ["-f", "GeoJSON", "map/countries.json",
+                        "-where", "ADM0_A3 != 'FRA' and ADM0_A3 != 'RUS' and ADM0_A3 != 'USA'",
+                        "map/ne_10m_admin_0_countries_lakes/ne_10m_admin_0_countries_lakes.shp"]
+                _ <- rawSystem "ogr2ogr" ["-f", "GeoJSON", "map/regions.json",
+                        "-where", "ADM0_A3 = 'RUS' or ADM0_A3 = 'USA'",
+                        "map/ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp"]
+                readProcess "topojson" ["--id-property", "ADM_A3,SU_A3,adm1_code",
+                        "--simplify", "1e-6",
+                        "--", "map/countries.json", "map/subunits.json", "map/regions.json"] ""
+            makeItem mapData
+
 
 --------------------------------------------------------------------------------
 -- Scripts
 --------------------------------------------------------------------------------
 
+{-
+echo "Building highlight.js..."
+python3.4 js/highlight.js/tools/build.py bash css haskell javascript markdown sql xml dart
+cp dart/packages/browser/dart.js dart/s.js
+cat js/highlight.js/build/highlight.pack.js >> dart/s.js
+echo "Building main dart..."
+dart2js --out=dart/script.dart --minify --output-type=dart dart/web/main.dart
+echo "Building main js..."
+dart2js --out=dart/script.dart.js --minify dart/web/main.dart
+echo "Building route-planner dart..."
+dart2js --out=dart/script-route-planner.dart --minify --output-type=dart dart/web/route-planner.dart
+echo "Building route-planner js..."
+dart2js --out=dart/script-route-planner.dart.js --minify dart/web/route-planner.dart
+cp dart/packages/browser/dart.js dart/smap.js
+cat js/d3/d3.min.js >> dart/smap.js
+cat js/topojson/topojson.min.js >> dart/smap.js
+cat js/waterman.js >> dart/smap.js
+echo "Building map dart..."
+dart2js --out=dart/script-map.dart --minify --output-type=dart dart/web/map.dart
+echo "Building map js..."
+dart2js --out=dart/script-map.dart.js --minify dart/web/map.dart
+-}
+
 highlightLanguages :: [String]
 highlightLanguages = ["bash", "css", "haskell", "javascript", "markdown", "sql", "xml", "dart"]
+
+buildDart :: String -> String -> Rules ()
+buildDart input output = do
+    create [fromFilePath $ "dart/" ++ output ++ ".dart.js"] $ do
+        route idRoute
+        compile $ do
+            dart <- unsafeCompiler $ do
+                -- TODO replace rawSystem with createProcess
+                _ <- rawSystem "dart2js" ["--out=_temp/" ++ output ++ ".dart.js", "--minify",
+                    "dart/web/" ++ input ++ ".dart"]
+                readFile $ "_temp/" ++ output ++ ".dart.js"
+            makeItem dart
+
 
 concatResources :: Identifier -> [Identifier] -> Rules ()
 concatResources out inputs = do
@@ -331,9 +413,26 @@ scriptsCompilerRules = do
             makeItem js
 
     -- Building additional js
-    concatResources "dart/s.js" ["js/highlight.pack.js"]
+    -- concatResources "dart/s.js" ["js/highlight.pack.js"]
     -- TODO sroute-planner
-    concatResources "dart/smap.js" ["js/d3/d3.min.js", "js/polyhedron.js", "js/topojson/topojson.min.js"]
+    -- concatResources "dart/smap.js" ["js/d3/d3.min.js", "js/polyhedron.js", "js/topojson/topojson.min.js"]
+
+    -- Building different dart resources
+    -- match "dart/lib/**" $
+    --     compile copyFileCompiler
+    -- match "dart/web/*.dart" $
+    --     compile copyFileCompiler
+    -- match "dart/pubspec.lock" $
+    --     compile copyFileCompiler
+
+    -- dartLibDeps <- makePatternDependency "dart/lib/**"
+    -- dartWebDeps <- makePatternDependency "dart/web/*.dart"
+    -- dartPubSpecDeps <- makePatternDependency "dart/pubspec.lock"
+    -- rulesExtraDependencies [dartLibDeps, dartWebDeps, dartPubSpecDeps] $ do
+    --     buildDart "main" "script"
+    --     buildDart "route-planner" "script-route-planner"
+    --     buildDart "map" "script-map"
+
 
 --------------------------------------------------------------------------------
 -- Posts
@@ -342,7 +441,7 @@ scriptsCompilerRules = do
 postsRules :: Rules ()
 postsRules = do
     d <- makePatternDependency "collections/*.txt"
-    rulesExtraDependencies [d] $ match "posts/**/*.md" $ do
+    rulesExtraDependencies [d] $ match "posts/**" $ do
         route removeExtension
 
         compile $ do
@@ -469,8 +568,8 @@ indexPagesRules = do
     match "index.md" $
         compile $ pandocCompiler False
 
-    paginate <- buildPaginateWith (\ids -> return $ paginateEvery 5 $ reverse ids) "posts/**/*.md" getPageIdentifier
-    d <- makePatternDependency "posts/**/*.md"
+    paginate <- buildPaginateWith (\ids -> return $ paginateEvery 5 $ reverse ids) "posts/**" getPageIdentifier
+    d <- makePatternDependency "posts/**"
     rulesExtraDependencies [d] $ paginateRules paginate $ \page ids -> do
         route addIndexRoute
         compile $ if page == 1
@@ -482,8 +581,8 @@ indexPagesRules = do
                         listField "posts" postWithCommentsCountCtx (return posts) `mappend`
                         paginateContext paginate page `mappend`
                         pageCtx (defaultMetadata
-                            { metaDescription = "My personal blog. "
-                                ++ "I am talking about programming and sometimes about their lives."
+                            { metaDescription = "Мой персональный блог. "
+                                ++ "Я рассказываю о программировании и иногда о своей жизни."
                             })
                 makeItem ""
                     >>= loadAndApplyTemplate indexTemplateName postsCtx
@@ -493,8 +592,8 @@ indexPagesRules = do
                         listField "posts" postWithCommentsCountCtx (return posts) `mappend`
                         paginateContext paginate page `mappend`
                         pageCtx (defaultMetadata
-                            { metaTitle = Just $ show page ++ "th page"
-                            , metaDescription = "My personal blog, recording " ++ show ((page - 1) * 5 + 1)
+                            { metaTitle = Just $ show page ++ "-я страница"
+                            , metaDescription = "Мой персональный блог, записи с " ++ show ((page - 1) * 5 + 1)
                                 ++ " по " ++ show (page * 5) ++ "."
                             , metaUrl = "/page/" ++ show page ++ "/"
                             })
@@ -507,26 +606,26 @@ indexPagesRules = do
 
 tagsPagesRules :: Rules ()
 tagsPagesRules = do
-    metadata <- getAllMetadata "posts/**/*.md"
+    metadata <- getAllMetadata "posts/**"
     let idents = fst $ unzip $ filter filterFn metadata
     tags <- buildTagsWith getTags (fromList idents) (\tag -> fromFilePath $ "tag/" ++ tag ++ "/index.html")
-    d <- makePatternDependency "posts/**/*.md"
+    d <- makePatternDependency "posts/**"
     rulesExtraDependencies [d] $ create ["tags/index.html"] $ do
-        ids <- getMatches "posts/**/*.md"
+        ids <- getMatches "posts/**"
         filteredIds <- filterM isPublished ids
         years <- mapM yearsMap filteredIds
         route idRoute
         compile $ do
             t <- renderTags
                 (\tag _ count minCount maxCount ->
-                    "<a href=\"/tag/" ++ tag ++ "/\" title=\"" ++ countText count "office" "Posts" "posts" ++
+                    "<a href=\"/tag/" ++ tag ++ "/\" title=\"" ++ countText count "пост" "поста" "постов" ++
                     "\" class=\"weight-" ++ show (getWeight minCount maxCount count) ++ "\">" ++ tag ++ "</a>")
                 unwords tags
             let ctx =
                     listField "years" yearCtx (mapM (makeItem . fst) ym) `mappend`
                     pageCtx (defaultMetadata
-                        { metaTitle = Just "threads"
-                        , metaDescription = "Full list of topics (tags) on the site"
+                        { metaTitle = Just "Темы"
+                        , metaDescription = "Полный список тем (тегов) на сайте"
                         , metaUrl = "/tags/"
                         })
                 ym = sortBy (\a b -> compare (fst b) (fst a)) $ yearsMap1 years
@@ -554,8 +653,8 @@ tagsPagesRules = do
                         pageCtx (defaultMetadata
                             { metaTitle = Just $ "\"" ++ tag ++
                                 (if page == 1 then "\""
-                                    else "\", " ++ show page ++ "-th page")
-                            , metaDescription = "My personal blog entries tagged \"" ++ tag ++
+                                    else "\", " ++ show page ++ "-я страница")
+                            , metaDescription = "Мой персональный блог, записи с тегом \"" ++ tag ++
                                 (if page == 1 then "\"."
                                     else "\" с " ++ show ((page - 1) * 5 + 1) ++ " по " ++ show (page * 5) ++ ".")
                             , metaUrl = "/tag/" ++ tag ++
@@ -594,8 +693,8 @@ staticPagesRules = do
             getResourceBody
                 >>= loadAndApplyTemplate "templates/parts/_post-without-footer.html" postCtx
                 >>= loadAndApplyTemplate routePlannerTemplateName (pageCtx (defaultMetadata
-                    { metaTitle = Just "Route Planner"
-                    , metaDescription = "The calculation of the optimal route of travel by city"
+                    { metaTitle = Just "Планировщик маршрутов"
+                    , metaDescription = "Расчет оптимального маршрута путешествия по городам"
                     , metaUrl = "/route-planner/"
                     }))
 
@@ -604,13 +703,13 @@ staticPagesRules = do
             compile $
                 getResourceBody
                     >>= loadAndApplyTemplate visitedCountriesTemplateName (pageCtx (defaultMetadata
-                        { metaTitle = Just "Map of countries"
-                        , metaDescription = "Map of visited countries and cities"
+                        { metaTitle = Just "Карта стран"
+                        , metaDescription = "Карта посещённых стран и городов"
                         , metaUrl = "/map/"
                         }))
 
 
-    match (fromList ["resume.md", "about.md", "projects.md", "404.md"]) $ do
+    match (fromList ["about.md", "projects.md", "404.md"]) $ do
         route removeExtension
         compile $ do
             identifier <- getUnderlying
@@ -634,11 +733,11 @@ data SitemapItem = SitemapItem
 
 sitemapRules :: Rules ()
 sitemapRules = do
-    d <- makePatternDependency "posts/**/*.md"
+    d <- makePatternDependency "posts/**"
     rulesExtraDependencies [d] $ create ["sitemap.xml"] $ do
         route idRoute
 
-        ids <- getMatches "posts/**/*.md"
+        ids <- getMatches "posts/**"
         let
             postItems = map (\i -> SitemapItem ("http://ygpark2.github.io/" ++ identifierToUrl (toFilePath i)) "1.0") ids
         compile $
@@ -717,15 +816,15 @@ postWithCommentsCountCtx =
 pageCtx :: PageMetadata -> Context String
 pageCtx (PageMetadata title url description keywords fType)=
     constField "meta.title" (escapeHtml $ metaTitle' title) `mappend`
-    constField "meta.url" (escapeHtml $ "http://ygpark2.github.io/" ++ url) `mappend`
+    constField "meta.url" (escapeHtml $ "https://dikmax.name" ++ url) `mappend`
     constField "meta.description" (escapeHtml description) `mappend`
     constField "meta.keywords" (escapeHtml $ intercalate ", " keywords) `mappend`
     constField "meta.dc.subject" (escapeHtml $ intercalate "; " keywords) `mappend`
     facebookFields fType `mappend`
     defaultContext
     where
-        metaTitle' Nothing = "[Young Gyu's blog]"
-        metaTitle' (Just title') = title' ++ " :: [Young Gyu's blog]"
+        metaTitle' Nothing = "[dikmax's blog]"
+        metaTitle' (Just title') = title' ++ " :: [dikmax's blog]"
 
         facebookFields (FacebookArticle published keywords' images) =
                 constField "meta.facebook.article" "" `mappend`
@@ -757,7 +856,7 @@ defaultMetadata = PageMetadata
     { metaTitle = Nothing
     , metaUrl = "/"
     , metaDescription = ""
-    , metaKeywords = ["Blog", "Ain", "Siyul", "Sunju"]
+    , metaKeywords = ["Blog", "блог"]
     , metaType = FacebookNothing
     }
 
@@ -827,7 +926,7 @@ getItemUTC locale id' = do
   where
     empty'     = fail $ "Hakyll.Web.Template.Context.getItemUTC: " ++
         "could not parse time for " ++ show id'
-    parseTime' = parseTime locale
+    parseTime' = parseTimeM True locale
     formats    =
         [ "%a, %d %b %Y %H:%M:%S %Z"
         , "%Y-%m-%dT%H:%M:%S%Z"
@@ -859,7 +958,10 @@ pandocCompiler rss = do
         , siteDomain = mainSiteDomain
         , debugOutput = False
         }
-        (readMarkdown readerOptions $ itemBody post)
+        (extract $ readMarkdown readerOptions $ itemBody post)
+    where
+        extract (Right r) = r
+        extract _ = error "Pandoc parse error"
 
 
 readerOptions :: ReaderOptions
@@ -981,19 +1083,19 @@ removeExtension = customRoute $ removeExtension' . toFilePath
 
 removeExtension' :: String -> String
 removeExtension' filepath = subRegex (mkRegex "^(.*)\\.md$")
-                                        (subRegex (mkRegex "/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/index.html")
+                                        (subRegex (mkRegex "/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/index.html")
                                         "\\1/index.html"
 
 identifierToUrl :: String -> String
 identifierToUrl filepath = subRegex (mkRegex "^(.*)\\.md$")
-                                        (subRegex (mkRegex "/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/")
+                                        (subRegex (mkRegex "/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/")
                                         "\\1/"
 
 simplifiedUrl :: String -> String
 simplifiedUrl url = subRegex (mkRegex "/index\\.html$") url "/"
 
 identifierToDisqus :: String -> String
-identifierToDisqus filepath = subRegex (mkRegex "^post/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath  "\\1"
+identifierToDisqus filepath = subRegex (mkRegex "^posts/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath  "\\1"
 
 countText :: Int -> String -> String -> String -> String
 countText count one two many
