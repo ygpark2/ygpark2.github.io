@@ -10,4 +10,4 @@ Some people believe that unpaid community service should be a compulsory part of
 
 Some of the essential services in our community will not work properly without volunteers' dedicated effort. I believe such volunteers have been educated about how important their works are and experienced how much pleasure they will receive in return for their work. Thus I totally agree with the idea to include the social service program to high school curriculum.
 
-Firstly, we need to dwell on the several benefit from enforcing the course to ask the high school students to do social service.
+Firstly, we need to dwell on the several benefits from enforcing the course to ask the high school students to do social service without any financial compensation. The first thing they can obtain from the compelling social course is that they can fully enjoy the happyness money cannot give. For instance, one of my friends who had a strong idea to
