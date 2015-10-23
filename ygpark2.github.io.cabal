@@ -19,7 +19,8 @@ Executable post
   main-is: Post.hs
 
   Build-depends:
-    base >= 4 && < 5
+    base >= 4 && < 5,
+    template >= 0.2 && < 0.3
 
   if flag(development)
       cpp-options: -DDEVELOPMENT

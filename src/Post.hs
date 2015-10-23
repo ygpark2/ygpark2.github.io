@@ -6,8 +6,21 @@ import System.Environment (getArgs)
 import System.Console.GetOpt
 import System.Directory
 import Data.Time
+import Data.Time.Format (defaultTimeLocale)
+import Data.Time.Format
+-- import Locale
 -- import Data.String.Utils (replace, join)
 -- import System.Posix
+import qualified Data.ByteString.Lazy as S
+import qualified Data.Text as T
+import qualified Data.Text.Lazy.Encoding as E
+
+import Data.Text.Template
+
+-- | Create 'Context' from association list.
+context :: [(T.Text, T.Text)] -> Context
+context assocs x = maybe err id . lookup x $ assocs
+  where err = error $ "Could not find key: " ++ T.unpack x
 
 -- Default options
 
@@ -65,13 +78,28 @@ main = do
   -- Run the server
   putStrLn $ "Starting server on port " ++ (show title) ++ " at " ++ file
 
-  getCurrentDirectory >>= print
+  datePath <- fmap (formatTime defaultTimeLocale "/%Y/%m/%d/") getCurrentTime
+  currentPath <- getCurrentDirectory
+  -- formatTime defaultTimeLocale "The date is %A (%a) %d/%m/%Y" getCurrentTime
+
+  putStrLn datePath
+
+  putStrLn (currentPath ++ datePath)
+
+  -- getAppDataDirectory >>= print
+  -- getAppUserDataDirectory >>= print
   getHomeDirectory >>= print
   getUserDocumentsDirectory >>= print
+
+  S.putStr $ E.encodeUtf8 $ substitute helloTemplate helloContext
+  where
+    helloTemplate = "Hello, $name!\n"
+    helloContext  = context [("name", "Joe")]
 
   getCurrentTime >>= print
 
   now <- getCurrentTime
+
   let (year, month, day) = toGregorian $ utctDay now
   putStrLn $ "Year: " ++ show year
   putStrLn $ "Month: " ++ show month
