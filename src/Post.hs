@@ -91,10 +91,12 @@ main = do
   getHomeDirectory >>= print
   getUserDocumentsDirectory >>= print
 
+
+  let helloTemplate = "Hello, $name!\n"
+  helloContext <- context [("name", "Joe")]
+
   S.putStr $ E.encodeUtf8 $ substitute helloTemplate helloContext
-  where
-    helloTemplate = "Hello, $name!\n"
-    helloContext  = context [("name", "Joe")]
+
 
   getCurrentTime >>= print
 
