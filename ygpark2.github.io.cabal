@@ -20,6 +20,7 @@ Executable post
 
   Build-depends:
     base >= 4 && < 5,
+    cmdargs >= 0.10.13 && < 0.11,
     template >= 0.2 && < 0.3
 
   if flag(development)

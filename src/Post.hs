@@ -1,116 +1,100 @@
-module Main (main) where
+-- singleMode.hs
+-- License: PUBLIC DOMAIN
+{-# LANGUAGE DeriveDataTypeable, RecordWildCards #-}
 
-import Data.Monoid
--- import Httpd (runServer)
-import System.Environment (getArgs)
-import System.Console.GetOpt
+import System.Console.CmdArgs
+import System.Environment (getArgs, withArgs, getExecutablePath)
+import System.Exit
 import System.Directory
+import System.FilePath.Posix
+import Control.Monad (when)
 import Data.Time
-import Data.Time.Format (defaultTimeLocale)
-import Data.Time.Format
--- import Locale
--- import Data.String.Utils (replace, join)
--- import System.Posix
-import qualified Data.ByteString.Lazy as S
-import qualified Data.Text as T
-import qualified Data.Text.Lazy.Encoding as E
 
-import Data.Text.Template
+data PostOptions = PostOptions
+    { title :: String
+     , file :: FilePath
+    } deriving (Data, Typeable, Show, Eq)
 
--- | Create 'Context' from association list.
-context :: [(T.Text, T.Text)] -> Context
-context assocs x = maybe err id . lookup x $ assocs
-  where err = error $ "Could not find key: " ++ T.unpack x
+-- Customize your options, including help messages, shortened names, etc.
+postOpts :: PostOptions
+postOpts = PostOptions
+    { title = def &= help "your post title"
+     , file = def &= typDir &= help "your post file name"
+    }
 
--- Default options
+getOpts :: IO PostOptions
+getOpts = cmdArgs $ postOpts
+    &= verbosityArgs [explicit, name "Verbose", name "V"] []
+    &= versionArg [explicit, name "version", name "v", summary _PROGRAM_INFO]
+    &= summary (_PROGRAM_INFO ++ ", " ++ _COPYRIGHT)
+    &= help _PROGRAM_ABOUT
+    &= helpArg [explicit, name "help", name "h"]
+    &= program _PROGRAM_NAME
 
-defaultOptions = Options
-  { optFile = "new_post"
-  , optTitle = "dafault title"
-  }
+_PROGRAM_NAME = "post"
+_PROGRAM_VERSION = "0.0.1"
+_PROGRAM_INFO = _PROGRAM_NAME ++ " version " ++ _PROGRAM_VERSION
+_PROGRAM_ABOUT = "기본 포스팅 글을 생성해주는 프로그램"
+_COPYRIGHT = "(C) Young Gyu Park 2015"
 
--- Parsing command line options
-
-data Options = Options
-  { optFile :: FilePath    -- Root directory of the new post
-  , optTitle :: String   -- Post Title
-  } deriving (Eq,Show)
-
-options :: [OptDescr (Options -> Options)]
-options =
-  [ Option ['f'] ["file"]
-    (ReqArg (\f opts -> opts { optFile = f }) "DIR")
-    "file name"
-  , Option ['t'] ["title"]
-    (ReqArg (\t opts -> opts { optTitle = read t }) "S")
-    "post title"
+jungtoTemplate :: String -> String -> String -> String -> String
+jungtoTemplate thounsand hundred day today = unlines ["'---",
+    "title: " ++ thounsand ++ "차 천일 결사 " ++ hundred ++ "차 백일 기도 정진 " ++ day ++ "일째",
+    "date: " ++ today,
+    "published: true",
+    "tags: 10000 결사, " ++ thounsand ++ "000th, " ++ thounsand ++ "-" ++ hundred ++ "00th, " ++ day ++ "th",
+    "---",
+    "",
+    "#수행일지",
+    ""
   ]
 
-postOpts :: [String] -> IO (Options, [String])
-postOpts argv =
-  case getOpt Permute options argv of
-    (o,n,[]) -> do
-      let foldf = appEndo . mconcat . (map Endo)
-      return (foldf o defaultOptions, n)
-    (_,_,errs) ->
-      ioError (userError (concat errs ++ usageInfo header options))
-  where header = "Usage: httpd [OPTION...]"
-
-
-replace :: String -> Char -> String -> String
-replace xs c s = foldr go [] xs
-   where go x acc = if x == c  then acc ++ s
-                                  else acc ++ [x]
-
--- Main
+postTemplate :: String -> String -> String
+postTemplate title today = unlines [ "---",
+    "title: " ++ title ,
+    "date: " ++ today,
+    "published: true",
+    "tags: ",
+    "---",
+    "",
+    ""
+  ]
 
 main :: IO ()
 main = do
-  -- Parse command line options
-  args <- getArgs
-  (opts,_) <- postOpts args
-  let file = optFile opts
-  let title = optTitle opts
+    args <- getArgs
+    -- If the user did not specify any arguments, pretend as "--help" was given
+    opts <- (if null args then withArgs ["--help"] else id) getOpts
+    optionHandler opts
 
-  -- By default SIGPIPE exits the program, so ignore it.
-  -- installHandler sigPIPE Ignore Nothing
+-- Before directly calling your main program, you should warn your user about incorrect arguments, if any.
+optionHandler :: PostOptions -> IO ()
+optionHandler opts@PostOptions{..}  = do
+    -- Take the opportunity here to weed out ugly, malformed, or invalid arguments.
+    when (null title) $ putStrLn "--title is blank!" >> exitWith (ExitFailure 1)
+    when (null file) $ putStrLn "--file is blank!" >> exitWith (ExitFailure 1)
+    -- When you're done, pass the (corrected, or not) options to your actual program.
+    exec opts
 
-  -- Run the server
-  putStrLn $ "Starting server on port " ++ (show title) ++ " at " ++ file
-
-  datePath <- fmap (formatTime defaultTimeLocale "/%Y/%m/%d/") getCurrentTime
-  currentPath <- getCurrentDirectory
-  -- formatTime defaultTimeLocale "The date is %A (%a) %d/%m/%Y" getCurrentTime
-
-  putStrLn datePath
-
-  putStrLn (currentPath ++ datePath)
-
-  -- getAppDataDirectory >>= print
-  -- getAppUserDataDirectory >>= print
-  getHomeDirectory >>= print
-  getUserDocumentsDirectory >>= print
-
-
-  let helloTemplate = "Hello, $name!\n"
-  helloContext <- context [("name", "Joe")]
-
-  S.putStr $ E.encodeUtf8 $ substitute helloTemplate helloContext
-
-
-  getCurrentTime >>= print
-
+exec :: PostOptions -> IO ()
+exec opts@PostOptions{..} = do
   now <- getCurrentTime
+  currentPath <- getExecutablePath
 
-  let (year, month, day) = toGregorian $ utctDay now
-  putStrLn $ "Year: " ++ show year
-  putStrLn $ "Month: " ++ show month
-  putStrLn $ "Day: " ++ show day
+  -- hakyll date format
+  let today = formatTime defaultTimeLocale "%F %X+0000" now
 
-  -- handle <- openFile "file.txt" ReadMode
-  -- contents <- hGetContents handle
-  -- putStr contents
-  -- hClose handle
+  let datePath = formatTime defaultTimeLocale "/../../../posts/%Y/%m/%d/" now
 
-  -- writeFile "file.txt" "Hello, world!"
-  -- readFile "file.txt" >>= print
+  let newPostDir = takeDirectory currentPath
+
+  createDirectoryIfMissing True (newPostDir ++ datePath)
+
+  let newPostFile = newPostDir ++ datePath  ++ file ++ ".md"
+
+  -- putStrLn $ postTemplate "this is title" today
+
+  writeFile newPostFile (postTemplate "this is title" today)
+
+  putStrLn $ "Hello, " ++ title ++ "!"
+  putStrLn $ "You are " ++ file ++ " years old."
