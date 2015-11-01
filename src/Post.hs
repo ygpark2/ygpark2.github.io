@@ -1,5 +1,6 @@
--- singleMode.hs
--- License: PUBLIC DOMAIN
+-- Post.hs
+-- License: MIT3
+-- Author: Young Gyu Park
 {-# LANGUAGE DeriveDataTypeable, RecordWildCards #-}
 
 import System.Console.CmdArgs
@@ -82,7 +83,7 @@ exec opts@PostOptions{..} = do
   currentPath <- getExecutablePath
 
   -- hakyll date format
-  let today = formatTime defaultTimeLocale "%F %X+0000" now
+  let today = formatTime defaultTimeLocale "%FT%X+09:00" now
 
   let datePath = formatTime defaultTimeLocale "/../../../posts/%Y/%m/%d/" now
 
@@ -94,7 +95,7 @@ exec opts@PostOptions{..} = do
 
   -- putStrLn $ postTemplate "this is title" today
 
-  writeFile newPostFile (postTemplate "this is title" today)
+  writeFile newPostFile $ postTemplate title today
 
-  putStrLn $ "Hello, " ++ title ++ "!"
-  putStrLn $ "You are " ++ file ++ " years old."
+  putStrLn $ "Title => " ++ title
+  putStrLn $ "File Path => " ++ newPostFile
