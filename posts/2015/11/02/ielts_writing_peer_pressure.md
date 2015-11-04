@@ -10,3 +10,10 @@ Q. Teenagers are highly influenced by their friends. There is a term called 'pee
 What can parents do to make sure that their children do not give in to peer pressure?
 Explain and/or give examples of situations.
 
+
+
+Teenagers are very susceptible to the opinion or thought by their friends. They are very cautious and sensitive in expressing themselves since they constantly pay much attention to their friends' judgement or reaction with regard to their behaviors.  In this essay, I will explain what parents are able to make their kids be free from the influence from their peer.
+
+Firstly, I believe the first thing parents have to do to overcome the difficulty 'peer pressures' their kids are encountering in their school is that they have to bolster their children's confidence and self esteem.  There are several researches to prove that people who are less influenced by their friends' influence usually have a tendency to have a strong confidence and self esteem. For instance, when I was middle school student, I had a very low self esteem. My main decison criteria was always what my friends think and feel since I felt that my friends' judgement seems to be superior to mine.
+
+Secondly,
