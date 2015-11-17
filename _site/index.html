@@ -134,15 +134,94 @@
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/11/01/ielts_writing_interaction_technology/">Nowadays the way many people interact with each other has changed because of technology.</a></h1>
+        <h1><a href="/posts/2015/11/13/jpa_transaction/">JPA transaction 처리 방법</a></h1>
 
         
-            
+            <pre class='sourceCode java'><code class='sourceCode java'>@ Transactional(rollbackFor = {RuntimeException.class})
+public SomeService {
+  @ Autowired SomeRepository repository1;
+  @ Autowired AnotherRepository repository2;
+  @ Autowired ThirdRepository repository3;
+  ...
+  @ Transactional(rollbackFor = {RuntimeException.class})
+  public void SomeMethod(SomeEntity obj, String someNewValue) {
+    try {
+      repository1.updateMethod();
+      repository2.updateMethod();
+      obj.setValue(someNewValue);
+      repository3.save(obj);
+    } catch (Exception ex) {
+      throw new RuntimeException();
+    }
+  }
+}</code></pre><pre class='sourceCode java'><code class='sourceCode java'>class MyService2 {
+  @Transactional(noRollbackFor = IllegalArgumentException.class)
+  public void validateAddress(Address address) {
+    // Some validations using dao
+    if (!isValid) {
+      throws new IllegalArgumentException();
+    }
+  }
+}</code></pre>
         
     </div>
     <div class="panel-footer">
     
-         |
+        <a href="/tag/jpa/" class="label label-default">jpa</a> <a href="/tag/transaction/" class="label label-default">transaction</a>  |
+    
+
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-11-13T03:54:17+0000">Friday, 13 November 2015, 03:54</span>
+
+    
+    | <i class="fa fa-comment"></i>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/11/13/jpa_transaction/#disqus_thread' data-disqus-identifier="posts/2015/11/13/jpa_transaction.md">Comments ...</a></span>
+    
+</div>
+
+
+
+
+</div>
+
+        
+            <div class="panel panel-default post-container">
+    <div class="panel-body post-body">
+        <h1><a href="/posts/2015/11/02/ielts_writing_peer_pressure/">What can parents do to make sure that their children do not give in to peer pressure?</a></h1>
+
+        
+            <p id='p-1'>Q. Teenagers are highly influenced by their friends. There is a term called 'peer pressure' meaning that a child is forced to behave in a manner that is acceptable to his/her friends. These behaviors may range from simple dress codes to drinking and smoking. What can parents do to make sure that their children do not give in to peer pressure? Explain and/or give examples of situations.</p><p id='p-2'>Teenagers are very susceptible to the opinions or thoughts of their friends. They are very cautious and sensitive in expressing themselves since they constantly pay much attention to their friends’ judgement or reaction with regard to their behaviors. In this essay, I will explain what parents are able to make their kids be free from the influence from their peer.</p><p id='p-3'>Firstly, I believe the first thing parents have to do to provide a good advise for the difficulty 'peer pressures' their kids are encountering in their school is that they have to bolster their children’s confidence and self esteem. There are several researches to prove that people who are less influenced by their friends usually have a tendency to have a strong confidence and self esteem. For instance, when I was middle school student, I had a very low self esteem. My main decison criteria was always what my friends think and feel since I felt that my friends’ judgement seems to be superior to mine. Therefore, I always have to behave the way to make my friends happy.</p><p id='p-4'>Secondly, parents need to teach their kids that there is no way to please all people around them. Teenagers usually want to make a good relationship with any friends. In doing so, they have to keep considering their friends’ need and expectation. For example, when I realized that I cannot satisfy all my friends’ expectation and furthermore sometimes it require my sacrifice which certainly make me unhappy. Therefore I can be much more free after I dicide to abandon some of my friends’ judgements or thoughts.</p><p id='p-5'>In conclusion, it is quite meaningful for teenagers to realize what behaviors or thoughts can be acceptable to their peer. However parents also need to make an effort to teach their kids how to mingle with their friends without too much considering their friends’ expectation.</p>
+        
+    </div>
+    <div class="panel-footer">
+    
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/peer pressure/" class="label label-default">peer pressure</a>  |
+    
+
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-11-01T15:38:15+0000">Sunday,  1 November 2015, 15:38</span>
+
+    
+    | <i class="fa fa-comment"></i>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/11/02/ielts_writing_peer_pressure/#disqus_thread' data-disqus-identifier="posts/2015/11/02/ielts_writing_peer_pressure.md">Comments ...</a></span>
+    
+</div>
+
+
+
+
+</div>
+
+        
+            <div class="panel panel-default post-container">
+    <div class="panel-body post-body">
+        <h1><a href="/posts/2015/11/01/ielts_writing_interaction_technology/">Nowadays the way many people interact with each other has changed because of technology.</a></h1>
+
+        
+            <p id='p-1'>Q. Nowadays the way many people interact with each other has changed because of technology. In what ways has technology affected the types of relationships people make? Has this become a positive or negative development?</p><p id='p-2'>There is no denying that technology has been an indispensible element in our communication tools. As technology is becomeing more advanced, it has brought a significant change in the way people make a relationships. In this essay, I want to examine what impact it has brought.</p><p id='p-3'>First of all, the appearance of smart phone has brought a tremendous change in the way of people’s communication. Especially the programs such as Skype, Facebook and Twitter allow people to give many opportunities to meet your acquaintances, who you have known once, easily using the mechanism of following and follwer. For example, I have made a connection with a person who I knew in my workplace in Facebook. Accidently I came across his firends list on his Facebook and luckily I could find one my old friends who graduated at the same elementary school. Thanks to Facebook, I could meet again with my beloved friend and know other firends news as well through him.</p><p id='p-4'>On the other hand, we tend to rely heavily on the convenience of such technology, which will, I believe, lead to make the relationship vunerable since there is no consistent relationship without a constant effort to sustain the relationship. For instance, I have made several friends, when I travel abroad countries and I collected their email and Skype account since I believe that I can continuously maintain the relationship utilizing the technology. However, the convenience does not give a motivation to me. Furthermore, the belief that I can connect with them through the technology make me neglect endeavor to communicate with them, which naturally result in losing the friends.</p><p id='p-5'>In conclusion, the relationship we are making using technology can be beneficially as long as we are carefully using the advantages of technology. However we should also be cautious in adopting the technology for the purpose of making relationships since it might bring some undesirable result.</p>
+        
+    </div>
+    <div class="panel-footer">
+    
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/interaction/" class="label label-default">interaction</a> <a href="/tag/technology/" class="label label-default">technology</a>  |
     
 
     <i class="fa fa-calendar"></i> <span data-post-date="2015-11-01T01:53:08+0000">Sunday,  1 November 2015, 01:53</span>
@@ -204,60 +283,6 @@
     
     | <i class="fa fa-comment"></i>
     <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/10/26/ielts_writing_people_weight_problem.html/#disqus_thread' data-disqus-identifier="posts/2015/10/26/ielts_writing_people_weight_problem.html.md">Comments ...</a></span>
-    
-</div>
-
-
-
-
-</div>
-
-        
-            <div class="panel panel-default post-container">
-    <div class="panel-body post-body">
-        <h1><a href="/posts/2015/10/23/ielt_writing_social_networking.html/">Many people believe that social networking sites ( such as Facebook) have had a huge negative impact on both individuals and society. To what extend do you agree?</a></h1>
-
-        
-            <h2 id='p-1'>Many people believe that social networking sites ( such as Facebook) have had a huge negative impact on both individuals and society. To what extend do you agree?</h2><p id='p-2'>The vast majority of people are convinced that the increasing number of social networking sites seems to have side effect on people as well as society in terms of a variety of aspect. However, there are a few people still believe that the online networking application have encourage people to meet a new person and facilitated the connection between people. My argument about this issue is that we need to maximize the benefits such sites can bring about and minimize the negative effects they might incur.</p><p id='p-3'>The first good point we can obtain in using those sites is that they actually make it easier to meet an unknown person. To elaborate more, as the society is more specialized, people are experiencing meeting new people within their speciality boundary. For example we have to spend most of our time in our workplace, it is quite hard to imagine that we ᅟare highly like to meet new people who are totally unrelated with our job. Thus, at these days, the sites are the only channel we can utilize to broaden our social relationship.</p><p id='p-4'>Another positive aspect of harnessing those sites is that especially the society which is suffering due to low birth rate might be able to overcome the issue easily through those sites. For instance, as more people take advantage ot the sites, the number of marriage couple will naturally increase thanks to the sites, which will eventually lead to the high birth rate. Therefore the society need to make an effort to raise an awareness of those sites and encourage them to use more frequently.</p><p id='p-5'>In conclusion, we can conclude that the social networking sites seems to be beneficially not only to our society but also to individuals</p>
-        
-    </div>
-    <div class="panel-footer">
-    
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/social networking sites/" class="label label-default">social networking sites</a>  |
-    
-
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-10-23T14:38:54+0000">Friday, 23 October 2015, 14:38</span>
-
-    
-    | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/10/23/ielt_writing_social_networking.html/#disqus_thread' data-disqus-identifier="posts/2015/10/23/ielt_writing_social_networking.html.md">Comments ...</a></span>
-    
-</div>
-
-
-
-
-</div>
-
-        
-            <div class="panel panel-default post-container">
-    <div class="panel-body post-body">
-        <h1><a href="/posts/2015/10/21/ielt_writing_unpaid_community_service.html/">Some people believe that unpaid community service should be a compulsory part of high school programms</a></h1>
-
-        
-            <p id='p-1'>Some people believe that unpaid community service should be a compulsory part of high school programms (for example working for a charity, improving the neighbourhood or teaching sports to younger children) What extent do you agree or disagree?</p><p id='p-2'>Some of the essential services in our community will not work properly without volunteers’ dedicated effort. I believe such volunteers have been educated about how important their works are and experienced how much pleasure they will receive in return for their work. Thus I totally agree with the idea to include the social service program to high school curriculum.</p><p id='p-3'>Firstly, we need to dwell on the several benefits from enforcing the course to ask the high school students to do social service without any financial compensation. The first thing they can obtain from the compelling social course is that they can fully enjoy the happyness money cannot give. For instance, one of my friends who had a strong idea to</p>
-        
-    </div>
-    <div class="panel-footer">
-    
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/unpaid community service/" class="label label-default">unpaid community service</a>  |
-    
-
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-10-21T12:19:52+0000">Wednesday, 21 October 2015, 12:19</span>
-
-    
-    | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/10/21/ielt_writing_unpaid_community_service.html/#disqus_thread' data-disqus-identifier="posts/2015/10/21/ielt_writing_unpaid_community_service.html.md">Comments ...</a></span>
     
 </div>
 

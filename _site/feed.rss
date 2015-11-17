@@ -5,15 +5,58 @@
         <description>Young Gyu Park Story, Tech and Life</description>
         <link>http://ygpark2.github.io/</link>
         <language>ko</language>
-        <lastBuildDate>Sun, 01 Nov 2015 10:54:09 GMT</lastBuildDate>
-        <pubDate>Sun, 01 Nov 2015 01:53:08 GMT</pubDate>
+        <lastBuildDate>Fri, 13 Nov 2015 12:57:24 GMT</lastBuildDate>
+        <pubDate>Fri, 13 Nov 2015 03:54:17 GMT</pubDate>
         <ttl>180</ttl>
         <atom:link href="http://ygpark2.github.io/feed.rss" rel="self" type="application/rss+xml" />
 
         
         <item>
+            <title>JPA transaction 처리 방법</title>
+            <description>&lt;pre class=&#39;sourceCode java&#39;&gt;&lt;code class=&#39;sourceCode java&#39;&gt;@ Transactional(rollbackFor = {RuntimeException.class})
+public SomeService {
+  @ Autowired SomeRepository repository1;
+  @ Autowired AnotherRepository repository2;
+  @ Autowired ThirdRepository repository3;
+  ...
+  @ Transactional(rollbackFor = {RuntimeException.class})
+  public void SomeMethod(SomeEntity obj, String someNewValue) {
+    try {
+      repository1.updateMethod();
+      repository2.updateMethod();
+      obj.setValue(someNewValue);
+      repository3.save(obj);
+    } catch (Exception ex) {
+      throw new RuntimeException();
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;pre class=&#39;sourceCode java&#39;&gt;&lt;code class=&#39;sourceCode java&#39;&gt;class MyService2 {
+  @Transactional(noRollbackFor = IllegalArgumentException.class)
+  public void validateAddress(Address address) {
+    // Some validations using dao
+    if (!isValid) {
+      throws new IllegalArgumentException();
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;</description>
+            <link>http://ygpark2.github.io/posts/2015/11/13/jpa_transaction/</link>
+            <comments>http://ygpark2.github.io/posts/2015/11/13/jpa_transaction/#disqus_thread</comments>
+            <guid>http://ygpark2.github.io/posts/2015/11/13/jpa_transaction/</guid>
+            <pubDate>Fri, 13 Nov 2015 03:54:17 GMT</pubDate>
+        </item>
+        
+        <item>
+            <title>What can parents do to make sure that their children do not give in to peer pressure?</title>
+            <description>&lt;p id=&#39;p-1&#39;&gt;Q. Teenagers are highly influenced by their friends. There is a term called &#39;peer pressure&#39; meaning that a child is forced to behave in a manner that is acceptable to his/her friends. These behaviors may range from simple dress codes to drinking and smoking. What can parents do to make sure that their children do not give in to peer pressure? Explain and/or give examples of situations.&lt;/p&gt;&lt;p id=&#39;p-2&#39;&gt;Teenagers are very susceptible to the opinions or thoughts of their friends. They are very cautious and sensitive in expressing themselves since they constantly pay much attention to their friends’ judgement or reaction with regard to their behaviors. In this essay, I will explain what parents are able to make their kids be free from the influence from their peer.&lt;/p&gt;&lt;p id=&#39;p-3&#39;&gt;Firstly, I believe the first thing parents have to do to provide a good advise for the difficulty &#39;peer pressures&#39; their kids are encountering in their school is that they have to bolster their children’s confidence and self esteem. There are several researches to prove that people who are less influenced by their friends usually have a tendency to have a strong confidence and self esteem. For instance, when I was middle school student, I had a very low self esteem. My main decison criteria was always what my friends think and feel since I felt that my friends’ judgement seems to be superior to mine. Therefore, I always have to behave the way to make my friends happy.&lt;/p&gt;&lt;p id=&#39;p-4&#39;&gt;Secondly, parents need to teach their kids that there is no way to please all people around them. Teenagers usually want to make a good relationship with any friends. In doing so, they have to keep considering their friends’ need and expectation. For example, when I realized that I cannot satisfy all my friends’ expectation and furthermore sometimes it require my sacrifice which certainly make me unhappy. Therefore I can be much more free after I dicide to abandon some of my friends’ judgements or thoughts.&lt;/p&gt;&lt;p id=&#39;p-5&#39;&gt;In conclusion, it is quite meaningful for teenagers to realize what behaviors or thoughts can be acceptable to their peer. However parents also need to make an effort to teach their kids how to mingle with their friends without too much considering their friends’ expectation.&lt;/p&gt;</description>
+            <link>http://ygpark2.github.io/posts/2015/11/02/ielts_writing_peer_pressure/</link>
+            <comments>http://ygpark2.github.io/posts/2015/11/02/ielts_writing_peer_pressure/#disqus_thread</comments>
+            <guid>http://ygpark2.github.io/posts/2015/11/02/ielts_writing_peer_pressure/</guid>
+            <pubDate>Sun, 01 Nov 2015 15:38:15 GMT</pubDate>
+        </item>
+        
+        <item>
             <title>Nowadays the way many people interact with each other has changed because of technology.</title>
-            <description></description>
+            <description>&lt;p id=&#39;p-1&#39;&gt;Q. Nowadays the way many people interact with each other has changed because of technology. In what ways has technology affected the types of relationships people make? Has this become a positive or negative development?&lt;/p&gt;&lt;p id=&#39;p-2&#39;&gt;There is no denying that technology has been an indispensible element in our communication tools. As technology is becomeing more advanced, it has brought a significant change in the way people make a relationships. In this essay, I want to examine what impact it has brought.&lt;/p&gt;&lt;p id=&#39;p-3&#39;&gt;First of all, the appearance of smart phone has brought a tremendous change in the way of people’s communication. Especially the programs such as Skype, Facebook and Twitter allow people to give many opportunities to meet your acquaintances, who you have known once, easily using the mechanism of following and follwer. For example, I have made a connection with a person who I knew in my workplace in Facebook. Accidently I came across his firends list on his Facebook and luckily I could find one my old friends who graduated at the same elementary school. Thanks to Facebook, I could meet again with my beloved friend and know other firends news as well through him.&lt;/p&gt;&lt;p id=&#39;p-4&#39;&gt;On the other hand, we tend to rely heavily on the convenience of such technology, which will, I believe, lead to make the relationship vunerable since there is no consistent relationship without a constant effort to sustain the relationship. For instance, I have made several friends, when I travel abroad countries and I collected their email and Skype account since I believe that I can continuously maintain the relationship utilizing the technology. However, the convenience does not give a motivation to me. Furthermore, the belief that I can connect with them through the technology make me neglect endeavor to communicate with them, which naturally result in losing the friends.&lt;/p&gt;&lt;p id=&#39;p-5&#39;&gt;In conclusion, the relationship we are making using technology can be beneficially as long as we are carefully using the advantages of technology. However we should also be cautious in adopting the technology for the purpose of making relationships since it might bring some undesirable result.&lt;/p&gt;</description>
             <link>http://ygpark2.github.io/posts/2015/11/01/ielts_writing_interaction_technology/</link>
             <comments>http://ygpark2.github.io/posts/2015/11/01/ielts_writing_interaction_technology/#disqus_thread</comments>
             <guid>http://ygpark2.github.io/posts/2015/11/01/ielts_writing_interaction_technology/</guid>
@@ -81,24 +124,6 @@
             <comments>http://ygpark2.github.io/posts/2015/10/17/hakyll_installation.html/#disqus_thread</comments>
             <guid>http://ygpark2.github.io/posts/2015/10/17/hakyll_installation.html/</guid>
             <pubDate>Fri, 16 Oct 2015 15:01:41 GMT</pubDate>
-        </item>
-        
-        <item>
-            <title>8차 천일 결사 6차 백일 기도 정진 1일째</title>
-            <description>&lt;h2 id=&#39;p-1&#39;&gt;수행일지&lt;/h2&gt;&lt;p id=&#39;p-2&#39;&gt;몸이 피곤합니다. 몸이 피곤하니 정신도 멍한 상태입니다. 이익을 따지니 자꾸 맘쓰는것이 옹졸해집니다. 일리를 가자하면 십리를 가주겠다는 마음으로 살아보아야겠습니다. 옹졸하니 자꾸 걸리는것이 많고 걸리는것이 많으니 삶이 피곤해지는것 같습니다. 맘이 편안한 삶이 결코 쉽지 않은것 같습니다. 감사합니다. 오늘 하루도 이왕이면 재미있고 즐겁게 보내야겠습니다!&lt;/p&gt;</description>
-            <link>http://ygpark2.github.io/posts/2015/08/05/8_6_1.html/</link>
-            <comments>http://ygpark2.github.io/posts/2015/08/05/8_6_1.html/#disqus_thread</comments>
-            <guid>http://ygpark2.github.io/posts/2015/08/05/8_6_1.html/</guid>
-            <pubDate>Tue, 04 Aug 2015 21:19:35 GMT</pubDate>
-        </item>
-        
-        <item>
-            <title>8차 천일 결사 5차 백일 기도 정진 100일째</title>
-            <description>&lt;h2 id=&#39;p-1&#39;&gt;수행일지&lt;/h2&gt;&lt;p id=&#39;p-2&#39;&gt;어제 똥을 선물 받았습니다. 그리고 그 똥을 움켜쥐고는 어쩔줄 몰라했습니다. 그 똥을 선물한 상대를 미워하고 원망했습니다. 그 똥에 사로잡혀 한참을 고통스러워했습니다. 상대가 똥을 선물한 자유가 있듯이 나는 그 선물을 받지 않을 자유도 있습니다. 그 선물을 받지 않으면 되는것을 그 선물을 받아들고서는 상대를 미워했습니다. 다 내가 선택한 괴로움입니다. 잠깐 미쳐서 상대를 미워했습니다. 참회합니다.&lt;/p&gt;</description>
-            <link>http://ygpark2.github.io/posts/2015/08/04/8_5_100.html/</link>
-            <comments>http://ygpark2.github.io/posts/2015/08/04/8_5_100.html/#disqus_thread</comments>
-            <guid>http://ygpark2.github.io/posts/2015/08/04/8_5_100.html/</guid>
-            <pubDate>Mon, 03 Aug 2015 21:21:23 GMT</pubDate>
         </item>
         
     </channel>
