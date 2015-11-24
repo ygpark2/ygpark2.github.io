@@ -22,6 +22,9 @@ What is the smallest odd composite that cannot be written as the sum of a prime 
 
 ### Solution
 
+let square x y = map (\z -> x + 2^z) [1..y]
+
+map (\x -> square x) $ filter isPrime [1..100]
 
 
 
