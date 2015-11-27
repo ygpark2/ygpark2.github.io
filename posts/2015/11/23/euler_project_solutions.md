@@ -87,3 +87,6 @@ let divisors x = 1:[ y | y <- [2..(x `div` 2)], x `mod` y == 0] ++ [x]
 let isPrime x = divisors x == [1,x]
 
 filter (\ x -> (sum(x) - head(x) * 4) == 4) $ chunksOf 4 $ take 10000 [n | n <- [1..], (length $ filter isPrime $ divisors n) == 5]
+
+filter (\ x -> (sum(x) - head(x) * 4) == 4) $ chunksOf 4 [n | n <- [10000..100000], (length $ filter isPrime $ divisors n) == 5]
+
