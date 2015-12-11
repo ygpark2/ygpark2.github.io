@@ -15,4 +15,4 @@ It is widely considered that the paramount role of museum is to provide a variet
 
 On the other hand, there is very strong tendency to utilize musuems as a place to hold many cultural performance events as the museum is quite suitable place to serve that purpose. As this kind of events are increasing, people often apt to forget why they come to the museum and only focus on the enjoyment the events give. I do not oppose the function of museum to give pleasure people through various mediums. However, if we lose the main purpose the museum, which is education, by mesmerizing those pleasures. we are actully denying the original reason for the existence of the museum.
 
-In summary, museum is able to server a variety of purposes
+In summary, museum is able to server a variety of purposes as long as it is faithfully serving the original role to educate people and preserve the legacy. Therefore, we need to be vigilant in order not to confuse the original functionalities of museum.
