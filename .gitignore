@@ -1,6 +1,7 @@
 _site
 _cache
 _temp
+comments
 node_modules
 .cabal-sandbox
 ainsyl.tar.lzma
