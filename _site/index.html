@@ -134,47 +134,22 @@
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/11/13/jpa_transaction/">JPA transaction 처리 방법</a></h1>
+        <h1><a href="/posts/2015/12/22/ielts_writing_university_subjects/">Some people think that all university students should study whatever they like. Others believe that they sholud only be allowed to study subjects that will be useful in the future, such as those related to science and technology.</a></h1>
 
         
-            <pre class='sourceCode java'><code class='sourceCode java'>@ Transactional(rollbackFor = {RuntimeException.class})
-public SomeService {
-  @ Autowired SomeRepository repository1;
-  @ Autowired AnotherRepository repository2;
-  @ Autowired ThirdRepository repository3;
-  ...
-  @ Transactional(rollbackFor = {RuntimeException.class})
-  public void SomeMethod(SomeEntity obj, String someNewValue) {
-    try {
-      repository1.updateMethod();
-      repository2.updateMethod();
-      obj.setValue(someNewValue);
-      repository3.save(obj);
-    } catch (Exception ex) {
-      throw new RuntimeException();
-    }
-  }
-}</code></pre><pre class='sourceCode java'><code class='sourceCode java'>class MyService2 {
-  @Transactional(noRollbackFor = IllegalArgumentException.class)
-  public void validateAddress(Address address) {
-    // Some validations using dao
-    if (!isValid) {
-      throws new IllegalArgumentException();
-    }
-  }
-}</code></pre>
+            <p id='p-1'>Q. Some people think that all university students should study whatever they like. Others believe that they sholud only be allowed to study subjects that will be useful in the future, such as those related to science and technology. Discuss both these views and give your own opinion.</p>
         
     </div>
     <div class="panel-footer">
     
-        <a href="/tag/jpa/" class="label label-default">jpa</a> <a href="/tag/transaction/" class="label label-default">transaction</a>  |
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/university/" class="label label-default">university</a> <a href="/tag/subjects/" class="label label-default">subjects</a>  |
     
 
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-11-13T03:54:17+0000">Friday, 13 November 2015, 03:54</span>
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-12-21T19:40:38+0000">Monday, 21 December 2015, 19:40</span>
 
     
     | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/11/13/jpa_transaction/#disqus_thread' data-disqus-identifier="posts/2015/11/13/jpa_transaction.md">Comments ...</a></span>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/12/22/ielts_writing_university_subjects/#disqus_thread' data-disqus-identifier="posts/2015/12/22/ielts_writing_university_subjects.md">Comments ...</a></span>
     
 </div>
 
@@ -186,22 +161,22 @@ public SomeService {
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/11/02/ielts_writing_peer_pressure/">What can parents do to make sure that their children do not give in to peer pressure?</a></h1>
+        <h1><a href="/posts/2015/12/21/ielts_writing_punishment_for_education/">It is important for children to learn the difference between right and wrong at an early age. Punishment is necessary to help them learn this distinction.</a></h1>
 
         
-            <p id='p-1'>Q. Teenagers are highly influenced by their friends. There is a term called 'peer pressure' meaning that a child is forced to behave in a manner that is acceptable to his/her friends. These behaviors may range from simple dress codes to drinking and smoking. What can parents do to make sure that their children do not give in to peer pressure? Explain and/or give examples of situations.</p><p id='p-2'>Teenagers are very susceptible to the opinions or thoughts of their friends. They are very cautious and sensitive in expressing themselves since they constantly pay much attention to their friends’ judgement or reaction with regard to their behaviors. In this essay, I will explain what parents are able to make their kids be free from the influence from their peer.</p><p id='p-3'>Firstly, I believe the first thing parents have to do to provide a good advise for the difficulty 'peer pressures' their kids are encountering in their school is that they have to bolster their children’s confidence and self esteem. There are several researches to prove that people who are less influenced by their friends usually have a tendency to have a strong confidence and self esteem. For instance, when I was middle school student, I had a very low self esteem. My main decison criteria was always what my friends think and feel since I felt that my friends’ judgement seems to be superior to mine. Therefore, I always have to behave the way to make my friends happy.</p><p id='p-4'>Secondly, parents need to teach their kids that there is no way to please all people around them. Teenagers usually want to make a good relationship with any friends. In doing so, they have to keep considering their friends’ need and expectation. For example, when I realized that I cannot satisfy all my friends’ expectation and furthermore sometimes it require my sacrifice which certainly make me unhappy. Therefore I can be much more free after I dicide to abandon some of my friends’ judgements or thoughts.</p><p id='p-5'>In conclusion, it is quite meaningful for teenagers to realize what behaviors or thoughts can be acceptable to their peer. However parents also need to make an effort to teach their kids how to mingle with their friends without too much considering their friends’ expectation.</p>
+            <p id='p-1'>Q. It is important for children to learn the difference between right and wrong at an early age. Punishment is necessary to help them learn this distinction. To what extent do you agree or disagree with this opinion? What sort of punishment should parents and teachers be allowed to use to teach good behaviour to children?</p>
         
     </div>
     <div class="panel-footer">
     
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/peer pressure/" class="label label-default">peer pressure</a>  |
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/punishment/" class="label label-default">punishment</a>  |
     
 
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-11-01T15:38:15+0000">Sunday,  1 November 2015, 15:38</span>
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-12-20T15:57:10+0000">Sunday, 20 December 2015, 15:57</span>
 
     
     | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/11/02/ielts_writing_peer_pressure/#disqus_thread' data-disqus-identifier="posts/2015/11/02/ielts_writing_peer_pressure.md">Comments ...</a></span>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/12/21/ielts_writing_punishment_for_education/#disqus_thread' data-disqus-identifier="posts/2015/12/21/ielts_writing_punishment_for_education.md">Comments ...</a></span>
     
 </div>
 
@@ -213,22 +188,22 @@ public SomeService {
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/11/01/ielts_writing_interaction_technology/">Nowadays the way many people interact with each other has changed because of technology.</a></h1>
+        <h1><a href="/posts/2015/12/15/ielts_writing_cultural_difference/">Some people believe that visitors to other countries should follow local customs and behaviour. Others disagree and think that the host country should welcome cultural differences.</a></h1>
 
         
-            <p id='p-1'>Q. Nowadays the way many people interact with each other has changed because of technology. In what ways has technology affected the types of relationships people make? Has this become a positive or negative development?</p><p id='p-2'>There is no denying that technology has been an indispensible element in our communication tools. As technology is becomeing more advanced, it has brought a significant change in the way people make a relationships. In this essay, I want to examine what impact it has brought.</p><p id='p-3'>First of all, the appearance of smart phone has brought a tremendous change in the way of people’s communication. Especially the programs such as Skype, Facebook and Twitter allow people to give many opportunities to meet your acquaintances, who you have known once, easily using the mechanism of following and follwer. For example, I have made a connection with a person who I knew in my workplace in Facebook. Accidently I came across his firends list on his Facebook and luckily I could find one my old friends who graduated at the same elementary school. Thanks to Facebook, I could meet again with my beloved friend and know other firends news as well through him.</p><p id='p-4'>On the other hand, we tend to rely heavily on the convenience of such technology, which will, I believe, lead to make the relationship vunerable since there is no consistent relationship without a constant effort to sustain the relationship. For instance, I have made several friends, when I travel abroad countries and I collected their email and Skype account since I believe that I can continuously maintain the relationship utilizing the technology. However, the convenience does not give a motivation to me. Furthermore, the belief that I can connect with them through the technology make me neglect endeavor to communicate with them, which naturally result in losing the friends.</p><p id='p-5'>In conclusion, the relationship we are making using technology can be beneficially as long as we are carefully using the advantages of technology. However we should also be cautious in adopting the technology for the purpose of making relationships since it might bring some undesirable result.</p>
+            <p id='p-1'>Q. Some people believe that visitors to other countries should follow local customs and behaviour. Others disagree and think that the host country should welcome cultural differences. Discuss both these views and give your opinion.</p><p id='p-2'>The view of cultural differences has been the controversial issue amongst people. Some people believe that visitors need to respect or abide by the local rules or tradition whereas other people believe that the country need to show more leniency to foreigners. I will contemplate both perspectives and add comment to the reasoned conclusion.</p><p id='p-3'>Firstly, as many people travel abroad thanks to the technical advances in aviation industry leading to lower the cost of flying , they will frequently encounter some difficulties that resulted in the cultural difference in foreign countries where they are traveling. Obvioulsy the first response will be embarrassment for most people in such cases. Thus the most effective way to minimize or ease the awkward circumstances is to learn the country, which you are about to travel, with regard to their culture and tradition in advance. Furthermore, it will help you to understand the country more deeply and enrich your travel.</p><p id='p-4'>On the flip side, when it comes to the underdeveloped countries, foreign tourists are accounting for the main resource of their income. In such cases, they seem to be more lenient for the visitors since their living need to heavily rely on the tourists’ expense. However if you try to take advantage of their attitude toward foreign tourists, it might cause an unwanted trouble, For instance, when I travel middle east countries, I freely took pictures of a woman who wear a hijab. The woman called police to accuse me of taking the picture of her. I did not know that it is strictly prohibited to take a picture of woman in middle east countries.</p><p id='p-5'>In conclusion,</p>
         
     </div>
     <div class="panel-footer">
     
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/interaction/" class="label label-default">interaction</a> <a href="/tag/technology/" class="label label-default">technology</a>  |
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/cultural difference/" class="label label-default">cultural difference</a>  |
     
 
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-11-01T01:53:08+0000">Sunday,  1 November 2015, 01:53</span>
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-12-14T15:38:50+0000">Monday, 14 December 2015, 15:38</span>
 
     
     | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/11/01/ielts_writing_interaction_technology/#disqus_thread' data-disqus-identifier="posts/2015/11/01/ielts_writing_interaction_technology.md">Comments ...</a></span>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/12/15/ielts_writing_cultural_difference/#disqus_thread' data-disqus-identifier="posts/2015/12/15/ielts_writing_cultural_difference.md">Comments ...</a></span>
     
 </div>
 
@@ -240,22 +215,22 @@ public SomeService {
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/10/26/ielts_writing_traffic_pollution.html/">In some countries the average weight of people is increasing and their levels of health and fitness are decreasing</a></h1>
+        <h1><a href="/posts/2015/12/11/chnage_and_avoiding/">Some people prefer to spend their lives doing the same things and avoiding change. Others, however, think that change is always a good thing.</a></h1>
 
         
-            <p id='p-1'>Q. In some countries the average weight of people is increasing and their levels of health and fitness are decreasing. What do you think are the causes of these problems and what measures could be taken to solve them?</p><p id='p-2'>Many countries have struggled to tackle the issue caused by high health care cost for the people who are suffering due to obesity. In this essay I will analyse the causes about why this trend is worsening and what measures we can take to alleviate or eradicate the problems of deteriorated people’s health.</p><p id='p-3'>The foremost reason for obesity is food. Especially, instant food is regarded as the main causes to aggravate the health of people. Owing to the convenience and the relatively cheap price of the instant food, people is inclined to eat quite frequently , which result in obesity related disease. Another reason might be the intake of too much sugar. A recent report analysing the amount of sugar people consume daily said that the level of people’s consumption is dangerous and suggested that the public health authority need to take prompt action to curb the trend otherwise the society will have to pay a tremendous amount of cost to manage diabetes.</p><p id='p-4'>One of the measures I can think of to deter the worsening health issue among people is to raise awareness of the severe consequence of failing to manage their health due to their reckless eating habit. Additionaly, building many fitness centers which are adjacent to people’s resident area will naturally lead to increase the likelihood of exercise. These methods will bring some meaningful change to the current tendency to improve the continously increasing the average weight of people.</p><p id='p-5'>In summary, the reasons that I mentioned above are needed to be taken into further consideration to improve the problems of aggravating health and suggested measures should be implemented without hesitation to achieve the goal of maintaing people’s sound body.</p>
+            <p id='p-1'>Q. Some people prefer to spend their lives doing the same things and avoiding change. Others, however, think that change is always a good thing. Discuss both these views and give your own opinion.</p><p id='p-2'>Sometimes we encounter a tendency to resist change instead of to embrace it. But we are the ones who determine whether change is good or bad. I want to discuss both</p><p id='p-3'>Most people struggle with change even if it is for the better, especially old people. Not all the changes were successful but we learned from the failures too. However, some people still believe any change will not be favorable to their life so that they strongly resist chnage. I will discuss both perspectives and add my thought on the matter..</p><p id='p-4'>First of all, people who love to encounter change usually have had a number of good memories about change and these good memories are instensifying their favorable behaviour or decision toward change. For example, when I was an university student, IT technology was very popular and many expert predict that the IT jobs will be promising. On that account, I made up my mind to change my major from public adminitration to information communication technology and I am very content with the decision that I made at that time. This good consequence of the change seems to reinforce my action to positively react to change.</p><p id='p-5'>On the other hand, it is very obvious that most people do not want to embrace change. The paramount reason for people to resist to the change is that they do not want to face uncertanities in which the change might bring. For instance, when they are compelled to adapt to the new technology in the company they are working, they will be highly likely to dislike the situation since they are not sure about how much they can perform in the new field. Basically, they are not happy with the uncertainty inherent the circumstances</p><p id='p-6'>In conclusion, we can easily observe two response patterns to change which are</p><p id='p-7'>Not all changes were good.</p><p id='p-8'>Many changes over the years were not for the better.</p>
         
     </div>
     <div class="panel-footer">
     
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/weight/" class="label label-default">weight</a> <a href="/tag/health and fitness/" class="label label-default">health and fitness</a>  |
+        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/change/" class="label label-default">change</a>  |
     
 
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-10-26T00:47:52+0000">Monday, 26 October 2015, 00:47</span>
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-12-10T22:13:06+0000">Thursday, 10 December 2015, 22:13</span>
 
     
     | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/10/26/ielts_writing_traffic_pollution.html/#disqus_thread' data-disqus-identifier="posts/2015/10/26/ielts_writing_traffic_pollution.html.md">Comments ...</a></span>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/12/11/chnage_and_avoiding/#disqus_thread' data-disqus-identifier="posts/2015/12/11/chnage_and_avoiding.md">Comments ...</a></span>
     
 </div>
 
@@ -267,22 +242,22 @@ public SomeService {
         
             <div class="panel panel-default post-container">
     <div class="panel-body post-body">
-        <h1><a href="/posts/2015/10/26/ielts_writing_people_weight_problem.html/">Increasing the price of petrol is the best way to solve growing traffic and pollution problems</a></h1>
+        <h1><a href="/posts/2015/12/08/IntelliJ_IDEA_Memory_Settings/">The One and Only Reason to Customize IntelliJ IDEA Memory Settings</a></h1>
 
         
-            <p id='p-1'>Q. Increasing the price of petrol is the best way to solve growing traffic and pollution problems. To what extent do you agree or disagree? What other measures do you think might be effective?</p><p id='p-2'>Global warming and traffic jam, we are facing in our daily life, has received notable attention from many countries, which is believed to be caused by the sharply increasing the number of car on roads. Many people believe the price level of petrol is very cheap, which it stimulate people to buy more car. However I do not believe the petrol price is the only reason to aggravate the problems. I will examine what other measures can be considered to prevent the escalating pollution and traffic jam.</p><p id='p-3'>First of all, no one can deny that there is a close correlation between the price level of petrol and the escalating traffic jam and worsening pollution. However, it is quite naive belief that we are able to curb the number of cars and the pollution by solely controlling the price of petrol. Some of the people who are rich enough do not really care the price of petrol. Therefore I cannot trust such belief the price level of petrol will decisively determine the impact of traffic and pollution issues.</p><p id='p-4'>Secondly, the other measures to tackle those issues except setting the price of petrol are to levy a high tax on the buyer of the cars and to apply high tax rate to petrol. The money collected from the buyer under the name of tax should be invested to build new roads to lessen the traffic jam and to eliminate the bottleneck. In addition to this, the company to develop the equipment to clean the polluted air should be given incentives in terms of funding for research and development. Thus these methods will contribute significantly to contain the</p><p id='p-5'>In conclusion, as I examine the limited impact of price control for petrol against traffic and polution problems, we cannot solve the issues by only relying on the high price of petrol. Therefore we have to find a combined strategy to tackle the problems effectively and enhance the quality of human life.</p>
+            <p id='p-1'>http://tomaszdziurko.pl/2015/11/1-and-the-only-one-to-customize-intellij-idea-memory-settings/</p><p id='p-2'>위의 글을 번역했습니다.</p><h2 id='p-3'>인텔리제이 메모리 설정</h2><h3 id='p-4'>목표</h3><p id='p-5'>메모리 사용과 속도 개선을 위한 최적의 메모리 설정을 찾는 것입니다.</p><h3 id='p-6'>jstat -gcutil</h3><p id='p-7'>JDK에는 JVM과 Garbage Collector 통계를 모니터하기위한 툴입니다. 많은 옵션들이 있지만 우리는 여기서 다음의 옵션을 살펴보겠습니다.</p><p id='p-8'>-gcutil - Summary of garbage collection statistics.</p><p id='p-9'>S0: Survivor space 0 utilization as a percentage of the space’s current capacity. S1: Survivor space 1 utilization as a percentage of the space’s current capacity. E: Eden space utilization as a percentage of the space’s current capacity. O: Old space utilization as a percentage of the space’s current capacity. M: Metaspace utilization as a percentage of the space’s current capacity. CCS: Compressed class space utilization as a percentage. YGC: Number of young generation GC events. YGCT: Young generation garbage collection time. FGC: Number of full GC events. FGCT: Full garbage collection time. GCT: Total garbage collection time.</p><p id='p-10'>이 명령어의 출력 결과는 다음과 같습니다.</p><p id='p-11'>S0 S1 E O M CCS YGC YGCT FGC FGCT GCT 89.70 0.00 81.26 74.27 95.68 91.76 40 2.444 14 0.715 3.159</p><p id='p-12'>이 글에서 가장 중요한 파라메터들은 GC 이벤트(YGC, GFC) 수이고 그리고 컬렉션 타임(YGCT, FGCT) 입니다.</p><h4 id='p-13'>기본 설정</h4><p id='p-14'>-Xms128m -Xmx750m -XX:MaxPermSize=350m -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops</p><h4 id='p-15'>대용량 설정(붉은색)</h4><p id='p-16'>-Xms2g -Xmx2g -XX:ReservedCodeCacheSize=1024m -XX:+UseCompressedOops -server -Xms2g -Xmx2g -XX:NewRatio=3 -Xss16m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:ConcGCThreads=4 -XX:MaxPermSize=350m -XX:ReservedCodeCacheSize=240m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:+UseCompressedOops -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -Djsse.enableSNIExtension=false -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Dawt.useSystemAAFontSettings=lcd ### 복잡한 설정(오렌지색)</p><p id='p-17'>-server -Xms2g -Xmx2g -XX:NewRatio=3 -Xss16m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:ConcGCThreads=4 -XX:ReservedCodeCacheSize=240m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:+UseCompressedOops -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -Djsse.enableSNIExtension=false -ea</p><p id='p-18'>이 설정값들은 bin 폴더안의 idea64.vmoptions파일에 있습니다.</p><h4 id='p-19'>실험결과</h4><p id='p-20'>생략합니다.</p><h3 id='p-21'>요약</h3><p id='p-22'>인텔리제이 메모리 설정을 조그만 바꿈으로서 아주 상당한 성능의 개선을 볼수있다. 물론 더 많은 메모리를 할당할수록 더 많은 성능의 개선을 기대할 수 있다. 하지만 우리는 메모리를 사용하는 많은 프로그램들과 함께 사용해야하므로 성능과 메모리 소비에서 최적의 설정값들을 찾는것이 이 글의 목적이다. 대부분의 경우에는 Xmx값을 2g 또는 3g 사이에서 설정할 경우 가장 최상의 성능을 기대할 수 있는것 같다. 만약 당신이 좀 더 여유 시간이 있으시다면 jstat 또는 jvisualm가지고 여러 VM flags값들을 설정하면서 최고의 성능을 낼 수 있는 설정을 찾으면 좋을것같다.</p><p id='p-23'>이글을 읽고 찾은 나의 설정 값</p><p id='p-24'>-server -Xms2g -Xmx2g -XX:NewRatio=3 -Xss16m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:ConcGCThreads=4 -XX:MaxPermSize=350m -XX:ReservedCodeCacheSize=240m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:+UseCompressedOops -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -Djsse.enableSNIExtension=false -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Dawt.useSystemAAFontSettings=lcd</p>
         
     </div>
     <div class="panel-footer">
     
-        <a href="/tag/ielts/" class="label label-default">ielts</a> <a href="/tag/writing/" class="label label-default">writing</a> <a href="/tag/traffic/" class="label label-default">traffic</a> <a href="/tag/pollution/" class="label label-default">pollution</a>  |
+        <a href="/tag/IntelliJ/" class="label label-default">IntelliJ</a> <a href="/tag/Memory/" class="label label-default">Memory</a> <a href="/tag/Settings/" class="label label-default">Settings</a>  |
     
 
-    <i class="fa fa-calendar"></i> <span data-post-date="2015-10-26T00:41:52+0000">Monday, 26 October 2015, 00:41</span>
+    <i class="fa fa-calendar"></i> <span data-post-date="2015-12-07T16:15:17+0000">Monday,  7 December 2015, 16:15</span>
 
     
     | <i class="fa fa-comment"></i>
-    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/10/26/ielts_writing_people_weight_problem.html/#disqus_thread' data-disqus-identifier="posts/2015/10/26/ielts_writing_people_weight_problem.html.md">Comments ...</a></span>
+    <span class='post-comments'><a itemprop='discussionUrl' href='/posts/2015/12/08/IntelliJ_IDEA_Memory_Settings/#disqus_thread' data-disqus-identifier="posts/2015/12/08/IntelliJ_IDEA_Memory_Settings.md">Comments ...</a></span>
     
 </div>
 
