@@ -121,6 +121,7 @@ S0     S1    E     O     M    CCS  YGC YGCT FGC  FGCT   GCT
 -XX:ReservedCodeCacheSize=240m
 -XX:+AlwaysPreTouch
 -XX:+TieredCompilation
+-XX:+UseConcMarkSweepGC
 -XX:+UseCompressedOops
 -XX:SoftRefLRUPolicyMSPerMB=50
 -ea
@@ -130,3 +131,4 @@ S0     S1    E     O     M    CCS  YGC YGCT FGC  FGCT   GCT
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:-OmitStackTraceInFastThrow
 -Dawt.useSystemAAFontSettings=lcd
+
