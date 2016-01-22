@@ -10,17 +10,13 @@ Q. Today, the high sales of popular consumer goods reflect the power of advertis
 To what extent do you agree or disagree?
 
 
-There is no doubt that the influence of advertisement has been evident for many decades. Especially, the data showing strong correlation between advertisement and sales rate is quite appealing to business people. However, some of the advertisements are provoking people's desire to own the products which is unnecessarily to them. In this essay, I believe that the influence of advertisement is the most significant factor for the potential buyer, which lead to the increasing of sales.
+Advertising is a prominent feature of modern business operations. One can encounter advertising messages, while watching TV, reading magazines, listening to the radio, surfing the internet, or even simply while walking down the street, as advertisement has a stimulating influence on puchasing behaviour of the customer. Thanks to the increasing the influence of advertising,
 
-Basically, there is a consensus that advertisement can easily alter human being's preference or create unnecessary desire toward certain items. This is the main reason why many companies are so obsessed with utilizing the advertisement to maximize their profit. For example, according to the study about the effect of advertisement conducted by the national bureau of statistics, there is a strong positive correlation between the sales of a product and the money spent in advertising.
 
-Additionally, many advertisement companies have developed a number of methods to provoke people's curiosity or interest leading to purchasing the products. These methods are really well designed to deal with people
-
+Majority of adverts use appealing images and persuasive words as a code to convince individual's perception about the product and one of the ways is to use popularity's image to
 
 
 
-
-a huge amount of money to advertising.
 
 
 people seem to be constantly exposed to the advertisement regardless of whether they recognize or not. In other words, it is inconceivable that we are totally free from the influence of advertising. For example, Internet is very obvious case for this. If you visit any websites on the Internet, you will probably see the banner in any website since the banner is their main income.
