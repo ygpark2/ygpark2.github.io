@@ -22,3 +22,9 @@ Majority of adverts use appealing images and persuasive words as a code to convi
 
 
 people seem to be constantly exposed to the advertisement regardless of whether they recognize or not. In other words, it is inconceivable that we are totally free from the influence of advertising. For example, Internet is very obvious case for this. If you visit any websites on the Internet, you will probably see the banner in any website since the banner is their main income.
+
+
+
+
+
+The speaker believe that rules and incentives, which are believed the most effective tools to  are the biggest deterrence in fulfilling people's moral willingness. do you agreee his idea and if so, can you share your experience with regard to those values or if not,
