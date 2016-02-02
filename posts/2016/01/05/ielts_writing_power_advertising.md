@@ -10,10 +10,12 @@ Q. Today, the high sales of popular consumer goods reflect the power of advertis
 To what extent do you agree or disagree?
 
 
-Advertising is a prominent feature of modern business operations. One can encounter advertising messages, while watching TV, reading magazines, listening to the radio, surfing the internet, or even simply while walking down the street, as advertisement has a stimulating influence on puchasing behaviour of the customer. Thanks to the technological advancement, the power of advertising will gain more influence on people. Therefore, I believe that the advancement will easily distort the authentic need for the goods in society.
+Advertising is a prominent feature of modern business operations. One can encounter advertising messages, while watching TV, reading magazines, listening to the radio, surfing the internet, or even simply while walking down the street, as advertisement has a stimulating influence on puchasing behaviour of the customer. Thanks to the technological advancement, the power of advertising will gain more power on people's preference. Therefore, I believe that the advancement will easily distort the authentic need for the goods in society.
 
 
-First of all, there is no doubt that there is no better tools than advertisement to modify human being's perception or preference. Furthermore, many companies stratigically invested huge amount of money to advertising section to improve their product sales and utimately want to maxmize their profit, which largely contribute to the development of advancement's technology. For example, one of my friends who constantly watch TV program
+First of all, there is no doubt that there is no better tools than advertisement to alter human being's perception or preference. Furthermore, many companies stratigically invested huge amount of money to advertising section to improve their product sales and utimately want to maxmize their profit, which largely contribute to the development of advancement's technology. For example, one of my friends who constantly watched TV program depicting favorably the Lotte chocolate always bought the product. Sometimes he unconsciously bought the chocolate after watching the TV program. I believe the program's content actually stimulate his desire to consume the chocolate.
+
+Secondly,
 
 Majority of adverts use appealing images and persuasive words as a code to convince individual's perception about the product and one of the ways is to use popularity's image to
 

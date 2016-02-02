@@ -11,7 +11,7 @@ Some people think this is fully justified while others think it is unfair.
 Discuss both these views and give your own opinion.
 
 
-At these days, the news that many popular sports stars had made a great deal with the famous sports club can be seen quite frequently on the newspapers while other crucial professions are still make less money comparing to sports star. Some people think that the incomparable money that sports professionals was making seems to be justifiable while some people strongly support the idea that such discrepancy is not acceptable. In this essay I will look into both views and add my thought on those views.
+At these days, the news that many popular sports stars had made a great deal with the famous sports club can be seen quite frequently on the newspapers while other crucial professions are still make less money comparing to those sports star. Some people think that the incomparable money that sports professionals was making seems to be justifiable while some people strongly support the idea that such discrepancy is not acceptable. In this essay I will look into both views and add my thought on those views.
 
 First of all, the argument that the most famous sports professions deserve what they are paid now is because we consider their effort and time to reach a top position through many severe competitions. In addition to this, as most of sports' career duration is relatively short in comparison with other occupations, we need to compensate more generously for the loss caused by the sports players' relatively short career span. Thus it is reasonable that we should pay highly to those of top sports players.
 
