@@ -5,7 +5,7 @@ published: true
 tags: ielts, writing, art
 ---
 
-Art has been essential element of any human society from prehistoric times. However, at these days, the unprecedented technology development seems to undermine the value of art in human growth. I personally believe that art seems to be undervalued that is should deserve and we need to find a way to promote to the education of art in our public school.
+Art has been essential element of any human society from prehistoric times. However, at these days, the unprecedented technology development seems to undermine the value of art in human growth. I personally believe that art seems to be undervalued than it should deserve and we need to find a way to promote to the education of art in our public school.
 
 First of all, as the increasing importance of creativity in many areas is receiving more attention, people tend to pay more attention to how to enhance their creativity. The most effective method to develop creativity has been  the education of art since we can easily find the most creative person among the artists. In addition to this, art can also be used to cure a person who are psychologically damaged. Therefore, we can expect the benefits in terms of psychological aspect as well as develping creativity.
 
