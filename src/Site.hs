@@ -816,15 +816,15 @@ postWithCommentsCountCtx =
 pageCtx :: PageMetadata -> Context String
 pageCtx (PageMetadata title url description keywords fType)=
     constField "meta.title" (escapeHtml $ metaTitle' title) `mappend`
-    constField "meta.url" (escapeHtml $ "https://dikmax.name" ++ url) `mappend`
+    constField "meta.url" (escapeHtml $ "http://ygpark2.github.io" ++ url) `mappend`
     constField "meta.description" (escapeHtml description) `mappend`
     constField "meta.keywords" (escapeHtml $ intercalate ", " keywords) `mappend`
     constField "meta.dc.subject" (escapeHtml $ intercalate "; " keywords) `mappend`
     facebookFields fType `mappend`
     defaultContext
     where
-        metaTitle' Nothing = "[dikmax's blog]"
-        metaTitle' (Just title') = title' ++ " :: [dikmax's blog]"
+        metaTitle' Nothing = "[Young Gyu Park's blog]"
+        metaTitle' (Just title') = title' ++ " :: [Young Gyu Park's blog]"
 
         facebookFields (FacebookArticle published keywords' images) =
                 constField "meta.facebook.article" "" `mappend`
