@@ -5,16 +5,21 @@ published: true
 tags: ielts, writing, prevention, cure
 ---
 
+"Prevention is better than cure". Researching and treating diseses is too costly so it would be better to invest in preventative measures.
 
-Discuss both these views and give your own opinion.
+To what extend to you agree
 
-Give reasons for your answer and include any relevant examples from your own knowledge or experience.
 
+
+Diseses, for instance cold, are thought by some to have had a detrimental effect on the effort to research as well as treat the diseses. However, in my opinion, while I believe that such sites are mainly beneficial to the individual, I agree that they have had a damaging effect on local communities.
+
+
+With regards to cost, the impact that online social media has had on each individual person has clear advantages. Firstly, people from different countries are brought together through such sites as Facebook whereas before the development of technology and social networking sites, people rarely had the chance to meet or communicate with anyone outside of their immediate circle or community. Secondly, Facebook also has social groups which offer individuals a chance to meet and participate in discussions with people who share common interests.
+
+
+On the other hand, the effect that Facebook and other social networking sites have had on societies and local communities can only be seen as negative. Rather than individual people taking part in their local community, they are instead choosing to take more interest in people online. Consequently, the people within local communities are no longer forming close or supportive relationships. Furthermore, society as a whole is becoming increasingly disjointed and fragmented as people spend more time online with people they have never met face to face and who they are unlikely to ever meet in the future.
+
+
+To conclude, although social networking sites have brought individuals closer together, they have not had the same effect on society or local communities. Local communities should do more to try and involve local people in local activities  in order to promote the future of community life.
 
 When it comes to the subject of study, it is quite important to consider students' preference for the subjects since they might be able to exert their best performance on the subject they like.
-
-The Purpose of Electives
-
-elective courses give the opportunity to take classes outside of a prescribed plan of coursework.
-
-In both college and high school, elective courses give students the chance to take classes outside of a prescribed plan of coursework. This lets students pursue other interests they may have, giving them a more "well-rounded" education. These electives also let students find subjects that might interest them and change the direction they wish to take with their education. A student who takes an elective class in drafting, for example, might discover a love of design and engineering that leads to a career he or she might not otherwise have found.
