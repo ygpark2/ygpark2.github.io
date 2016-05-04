@@ -263,7 +263,8 @@ staticFilesRules = do
 --------------------------------------------------------------------------------
 
 {-
-lessc --clean-css -O2 --include-path=less less/style.less css/style.css
+********** npm install -g less-plugin-clean-css ************
+lessc --clean-css='--s1 --advanced --compatibility=ie8' --include-path=less less/style.less css/style.css
 -}
 
 lessCompilerRules :: Rules ()
@@ -277,14 +278,14 @@ lessCompilerRules = do
         compile $ loadBody "less/style.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "lessc" ["--clean-css=advanced", "--include-path=less","-"])
+              (unixFilter "lessc" ["--clean-css=\"--s1 --advanced --compatibility=ie8\"", "--include-path=less"])
 
     rulesExtraDependencies [d] $ create ["css/print.css"] $ do
         route idRoute
         compile $ loadBody "less/print.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "lessc" ["--clean-css=advanced", "--include-path=less","-"])
+              (unixFilter "lessc" ["--clean-css=\"--s1 --advanced --compatibility=ie8\"", "--include-path=less"])
 
 
 --------------------------------------------------------------------------------
