@@ -15,6 +15,7 @@ $partial("templates/parts/_topbar.html")$
         <a href="#" class="open-jumbotron-button">The most interesting entries &raquo;</a>
     </div>
 </div>
+
 <div class="container">
     <div class="panel-group">
         $for(posts)$
@@ -24,10 +25,11 @@ $partial("templates/parts/_topbar.html")$
 
     $partial("templates/parts/_pager.html")$
 
-    $partial("templates/parts/_footer.html")$
 </div>
-$partial("templates/parts/_yandex-metrika.html")$
-$partial("templates/parts/_disqus-list.html")$
-$partial("templates/parts/_scripts.html")$
+
+  $partial("templates/parts/_footer.html")$
+  $partial("templates/parts/_yandex-metrika.html")$
+  $partial("templates/parts/_disqus-list.html")$
+  $partial("templates/parts/_scripts.html")$
 </body>
 </html>

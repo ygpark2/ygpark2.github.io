@@ -35,7 +35,7 @@ import           XmlHtmlWriter
 main :: IO ()
 main = hakyll $ do
     staticFilesRules
-    lessCompilerRules
+    -- lessCompilerRules
     -- mapCompilerRules
     scriptsCompilerRules
     commentsRules
@@ -230,25 +230,29 @@ feedRules =
 -- DO NOT merge patterns with files! It won't work!
 staticFilesRules :: Rules ()
 staticFilesRules = do
-    match "fonts/*" $ do
+    match "assets/fonts/**" $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "images/**" $ do
+    match "assets/images/**" $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "demos/**" $ do
+    match "assets/css/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "assets/font/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "assets/js/**" $ do
         route   idRoute
         compile copyFileCompiler
 
     match (fromList
         [ "robots.txt"
-        , "yandex-widget-manifest.json"
-        , "css/style.css"
-        , "js/html5shiv.js"
-        , "js/respond.min.js"
-        , "map/data.json"
+        -- , "assets/css/*"
         ]) $ do
         route   idRoute
         compile copyFileCompiler
@@ -264,7 +268,7 @@ staticFilesRules = do
 
 {-
 ********** npm install -g less-plugin-clean-css ************
-lessc --clean-css='--s1 --advanced --compatibility=ie8' --include-path=less less/style.less css/style.css
+lessc --clean-css="--s1 --advanced --compatibility=ie8" --include-path=less less/style.less css/style.css
 -}
 
 lessCompilerRules :: Rules ()
@@ -278,14 +282,14 @@ lessCompilerRules = do
         compile $ loadBody "less/style.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "lessc" ["--clean-css=\"--s1 --advanced --compatibility=ie8\"", "--include-path=less"])
+              (unixFilter "lessc" ["-", "--include-path=less", "--clean-css"])
 
     rulesExtraDependencies [d] $ create ["css/print.css"] $ do
         route idRoute
         compile $ loadBody "less/print.less"
             >>= makeItem
             >>= withItemBody
-              (unixFilter "lessc" ["--clean-css=\"--s1 --advanced --compatibility=ie8\"", "--include-path=less"])
+              (unixFilter "lessc" ["-", "--include-path=less", "--clean-css"])
 
 
 --------------------------------------------------------------------------------
@@ -394,23 +398,23 @@ concatResources out inputs = do
 
 scriptsCompilerRules :: Rules ()
 scriptsCompilerRules = do
-    match (fromList ["dart/packages/browser/dart.js", "js/d3/d3.min.js", "js/topojson/topojson.min.js",
-        "js/polyhedron.js"]) $ compile getResourceBody
+    match (fromList ["dart/packages/browser/dart.js", "assets/js/d3/d3.min.js", "assets/js/topojson/topojson.min.js",
+        "assets/js/polyhedron.js"]) $ compile getResourceBody
 
     -- Building highlight.js
-    match "js/highlight.js/src/**" $
+    match "assets/js/highlight.js/src/**" $
         compile copyFileCompiler
 
-    highlightjs <- makePatternDependency "js/highlight.js/src/**"
-    rulesExtraDependencies [highlightjs] $ create ["js/highlight.pack.js"] $
+    highlightjs <- makePatternDependency "assets/js/highlight.js/src/**"
+    rulesExtraDependencies [highlightjs] $ create ["assets/js/highlight.pack.js"] $
         compile $ do
             -- TODO logging
             js <- unsafeCompiler $ do
                 (_, _, _, h) <- createProcess $ (proc "node" ("tools/build.js" : highlightLanguages)) {
-                        cwd = Just "js/highlight.js"
+                        cwd = Just "assets/js/highlight.js"
                     }
                 _ <- waitForProcess h
-                readFile "js/highlight.js/build/highlight.pack.js"
+                readFile "assets/js/highlight.js/build/highlight.pack.js"
             makeItem js
 
     -- Building additional js
@@ -688,7 +692,7 @@ getTags identifier = do
 
 staticPagesRules :: Rules ()
 staticPagesRules = do
-    match "route-planner/index.html" $ do
+    match "pages/route-planner/index.html" $ do
         route idRoute
         compile $
             getResourceBody
@@ -699,7 +703,7 @@ staticPagesRules = do
                     , metaUrl = "/route-planner/"
                     }))
 
-    match "map/index.html" $ do
+    match "pages/map/index.html" $ do
             route idRoute
             compile $
                 getResourceBody

@@ -31,10 +31,19 @@
     <meta name="theme-color" content="#474747">
 
     <link rel="yandex-tableau-widget" href="/yandex-widget-manifest.json" />
+
     <!-- Bootstrap -->
+    <!--
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
-    <link rel="alternate" type="application/rss+xml" title="Лента" href="/feed.rss" />
+    -->
+
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/icon?family=Material+Icons" >
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialize.min.css" media="screen,projection"/>
+
+    <link rel="alternate" type="application/rss+xml" title="rss" href="/feed.rss" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -75,6 +84,10 @@
     <link rel="image_src" href="$body$"/>
     $endfor$
     $endif$
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
 
     $partial("templates/parts/_google-analytics.html")$
 </head>
