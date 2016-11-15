@@ -7,10 +7,10 @@ tags: ielts, writing, IQ, student
 
 
 
-It is very important to raise kids with special intellectual talent since they will not be given any chance to develop their special ability in the class with mediocre students. Thus we need to design a course to serve the needs to focus on their talent so that we can provide a opportunity to maximize their talent. However, I think that an education to develop students with intellectual ability is bound to fail as well as give a detrimental influence on their mentality.
+It is very important to raise kids with special intellectual talent since their special talent might be hampered in the environment of educating people without considering their speciallities. Thus we need to design a course to serve the needs to focus on their talent so that we can provide an opportunity to maximize their talents. However, I think that an education to develop students with intellectual talent is bound to fail as well as give a detrimental influence on their mentality.
 
 
-First of all, the foremost reason why we have to educate them in the normal class with mediocre students is that they will be more likely to learn more lessons that the special schools cannot teach in the normal schools. For example, there is a very smart child in Korea. He have received constant media attention. Thanks to his special
+First of all, the foremost reason why it is encouraged to educate students with special talent in the normal class with mediocre students is that they will be more likely to learn more lessons such as social skills, respectful attitude and thoughtful behaviour. For example, there is a very smart child in Korea who have received constant media attention. He has finished university education at his age 16 and been pursuing PhD course in one of the prestigious universities in Korea. However, recently, he was publicly criticized of submitting a
 
 
 their special ability might be inhibited in the class with mediocre students
