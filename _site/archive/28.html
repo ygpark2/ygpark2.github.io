@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Hakyll Blog - Archives</title>
+  <meta name="description" content="This is a really greate blog">
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+  <!-- Material Design Lite css Library -->
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  
+  <!-- Material Design Fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Custom theme css -->
+  <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
+  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+
+  <!-- Material Design Lite js Library -->
+  <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
+
+  <!--
+  
+  <script rel="javascript" type="text/javascript" src="/assets/js/site.js"></script>
+  
+
+  <script rel="javascript" type="text/javascript" src="/assets/js/search.js"></script>
+  <script rel="javascript" type="text/javascript">
+    superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-search', // CSS Selector for search container element.
+      inputSelector: '#js-search__input', // CSS selector for <input>
+      resultsSelector: '#js-search__results' // CSS selector for results container
+    });
+  </script>
+  -->
+
+</head>
+
+  <body>
+
+    <div class="mdl-layout mdl-js-layout">
+
+      <!-- Start Layout -->
+      
+          <!-- search layout -->
+
+<!--
+<div class="super-search" id="js-search">
+  <ul class="super-search__results" id="js-search__results"></ul>        
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored super-search__close-btn" onclick="superSearch.toggle()">
+    <i class="material-icons">close</i>
+  </button>
+</div>
+-->
+
+<!-- /end search -->
+
+          
+<header class="mdl-layout__header mdl-layout__header--waterfall">
+  <!-- Top row, always visible -->
+  <div class="mdl-layout__header-row">
+    <!-- Title -->
+    <span class="mdl-layout-title">Young Gyu Blog</span>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+        <i class="material-icons">search</i>
+      </label>
+
+      <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+      </div>
+
+<!--
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="js-search__input" data-upgraded=",MaterialButton">
+        <i class="material-icons">search</i>
+      </label>
+
+      <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input super-search__input" type="text" id="js-search__input" />
+      </div>
+
+      <button class="mdl-button mdl-js-button mdl-button--icon" id="fixed-menu-lower-left">
+        <i class="material-icons">more_vert</i>
+      </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="fixed-menu-lower-left">
+        <li><a href="archive.html" class="mdl-menu__item">archive</a></li>
+        <li><a href="about.html" class="mdl-menu__item">about</a></li>
+        <li><a href="contact.html" class="mdl-menu__item">contact</a></li>
+        <li><a href="tagCloud.html" class="mdl-menu__item">tagCloud</a></li>
+      </ul>
+-->
+
+    </div>
+  </div>
+  <!-- Bottom row, not visible on scroll -->
+  <div class="mdl-layout__header-row">
+    <div class="mdl-layout-spacer"></div>
+    <!-- Navigation -->
+    <nav class="waterfall-header-nav mdl-navigation">
+      <a class="mdl-navigation__link" href="../">Home</a>
+      <a class="mdl-navigation__link" href="../archive.html">Archive</a>
+      <a class="mdl-navigation__link" href="../tagCloud.html">Tags</a>
+      <a class="mdl-navigation__link" href="../about.html">About</a>
+      <a class="mdl-navigation__link" href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title">메뉴</span>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="../">Home</a>
+    <a class="mdl-navigation__link" href="../archive.html">Archive</a>
+    <a class="mdl-navigation__link" href="../tagCloud.html">Tags</a>
+    <a class="mdl-navigation__link" href="../about.html">About</a>
+    <a class="mdl-navigation__link" href="../contact.html">Contact</a>
+  </nav>
+</div>
+
+      
+
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <!-- Your content goes here -->
+          Here you can find all my previous posts:
+<div class="hugo-blog__list mdl-grid">
+    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        
+        <div class="mdl-card__media mdl-color-text--grey-50">
+            <h3>All Posts:</h3>
+        </div>
+
+        <!-- begin pagination partial //-->
+
+        <!-- end pagination partial //-->
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-19</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/19/8_2_18.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 18일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-18</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/18/8_2_17.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 17일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-17</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/17/8_2_16.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 16일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-16</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/16/8_2_15.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 15일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-15</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/15/8_2_14.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 14일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-14</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/14/8_2_13.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 13일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-13</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/13/8_2_12.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 12일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-12</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/12/8_2_11.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 11일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-11</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/11/8_2_10.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 10일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-10</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/10/8_2_9.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 9일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-09</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/09/8_2_8.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 8일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-08</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/08/8_2_8.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 8일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-07</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/07/8_2_7.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 7일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-06</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/06/8_2_6.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 6일째</h5></a>
+        </div>
+        
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/"> Young Gyu </a></strong>
+                    <span>2014-07-05</span>
+                </div>
+            </div>
+
+            <a href="../posts/2014/07/05/8_2_5.html.html"><h5 class="mdl-color-text--grey-600">8차 천일 결사 2차 백일 기도 정진 5일째</h5></a>
+        </div>
+        
+        <!-- begin pagination partial //-->
+
+        <!-- end pagination partial //-->
+
+    </div>
+</div>
+
+
+<nav class="pagination">
+  
+    <a href="../archive.html">First</a>
+  
+  
+    <a href="../archive/27.html">Previous</a>
+  
+  28 of 36
+  
+    <a href="../archive/29.html">Next</a>
+  
+  
+    <a href="../archive/36.html">Last</a>
+  
+</nav>
+        </div>
+        
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Title</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Privacy & Terms</a></li>
+    </ul>
+  </div>
+</footer>
+      </main>
+      <div class="mdl-layout__obfuscator"></div>
+      <!-- /End Layout -->
+
+    </div>
+  </body>
+
+</html>
