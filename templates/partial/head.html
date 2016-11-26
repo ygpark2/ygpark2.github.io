@@ -1,0 +1,41 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Hakyll Blog - $title$</title>
+  <meta name="description" content="$site.description$">
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="$site.title$" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+  <!-- Material Design Lite css Library -->
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  
+  <!-- Material Design Fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Custom theme css -->
+  <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
+  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+
+  <!-- Material Design Lite js Library -->
+  <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
+
+  <!--
+  $if(site.pagination.type)$
+  <script rel="javascript" type="text/javascript" src="/assets/js/site.js"></script>
+  $endif$
+
+  <script rel="javascript" type="text/javascript" src="/assets/js/search.js"></script>
+  <script rel="javascript" type="text/javascript">
+    superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-search', // CSS Selector for search container element.
+      inputSelector: '#js-search__input', // CSS selector for <input>
+      resultsSelector: '#js-search__results' // CSS selector for results container
+    });
+  </script>
+  -->
+
+</head>

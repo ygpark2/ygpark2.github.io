@@ -1,7 +1,30 @@
-<ul>
-    $for(posts)$
-        <li>
-            <a href="$url$">$title$</a> - $date$
-        </li>
-    $endfor$
-</ul>
+<div class="hugo-blog__list mdl-grid">
+    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        
+        <div class="mdl-card__media mdl-color-text--grey-50">
+            <h3>All Posts:</h3>
+        </div>
+
+        <!-- begin pagination partial //-->
+
+        <!-- end pagination partial //-->
+        $for(posts)$
+        <div class="mdl-card__list-item mdl-color-text--grey-600">
+
+            <div class="meta">
+                <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+                <div>
+                    <strong><a href="http://jatkinson.me/about/">$if(author)$ $author$ $else$ Young Gyu $endif$</a></strong>
+                    <span>$date$</span>
+                </div>
+            </div>
+
+            <a href="$url$"><h5 class="mdl-color-text--grey-600">$title$</h5></a>
+        </div>
+        $endfor$
+        <!-- begin pagination partial //-->
+
+        <!-- end pagination partial //-->
+
+    </div>
+</div>
