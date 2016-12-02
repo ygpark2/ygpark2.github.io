@@ -1,6 +1,4 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
----
+
 //
 // Main sass file, to import all styles
 //
@@ -13,10 +11,132 @@ $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
+body {
+  background-size: cover;
+  /* font:$bodyfont; */
+  background-color: #3f3f3f;
+  color: #dcdccc;
+
+}
+
+header.mdl-layout__header {
+  color: #AACCFF;
+  background-color: #505050;
+}
+
+span.mdl-layout-title {
+  color: white;
+}
+
+.left-drawer {
+  background-color: #F0EFD0;
+}
+
+.post-view {
+  background-color: #3f3f3f;
+  padding: 0px 15px 0px 15px;
+
+}
+
+div.post-view-title {
+  @extend .post-view;
+  background-color:#263238;
+  padding: 0px 10px 0px 10px;
+
+}
+
+div.post-view-header {
+  @extend .post-view;
+  padding: 20px 15px 0px 15px;
+
+}
+
+div.post-view-content {
+  @extend .post-view;
+  padding: 20px 15px 0px 15px;
+  p {
+    font-size: 17px;
+  }
+}
+
+div.post-view-footer {
+  @extend .post-view;
+  padding: 20px 15px 0px 15px;
+  p {
+    font-size: 15px;
+  }
+}
+
+.archive {
+  background-color: #CAE682;
+  // padding: 0px 15px 0px 15px;
+  
+}
+
+div.archive-name {
+  @extend .archive;
+  background-color:#CAE682;
+
+}
+
+div.archive-row {
+  @extend .archive;
+  background-color:#F0EFD0;
+  border-bottom-style: solid;
+  border-bottom-color: #C0C0C0;
+  border-bottom-width: thin;
+  color: #dcdccc;
+}
+
+div.archive-avatar {
+  @extend .archive-row;
+  // padding: 0px 10px 0px 10px;
+  border-style: none;
+}
+
+div.archive-author {
+  @extend .archive-row;
+  // padding: 20px 15px 0px 15px;
+  border-style: none;
+
+}
+
+div.archive-title {
+  @extend .archive-row;
+  border-style: none;
+  a {
+    font-size: 17px;
+    h5 {
+        margin: 5px 0 10px 0px;
+    }
+  }
+}
+
+
+header#header #navigation a {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.page-content {
+  max-width: 960px;
+}
+
+nav.waterfall-header-nav .mdl-navigation__link:last-of-type {
+  padding-right: 0;
+}
+
 
 // Import partials from `sass_dir` (defaults to `_sass`)
+/*
 @import "sass/base",
         "sass/layout",
         "sass/syntax-highlighting",
         "sass/post",
         "sass/search";
+*/

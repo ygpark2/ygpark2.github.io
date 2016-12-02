@@ -1,15 +1,19 @@
 
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>$title$</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                $if(author)$
+                    <a href="http://jatkinson.me/about/">
+                        <strong>$author$</strong>
+                    </a>
+                $endif$
                 <span>$date$</span>
             </div>
             
@@ -17,14 +21,11 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             $body$
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            $if(author)$
-                <a href="http://jatkinson.me/about/">$author$</a>
-            $endif$
+        <div class="post-view-footer"> 
             <p>Tags: $tags$</p>
             <p>Category: $categories$</p>
         </div>  

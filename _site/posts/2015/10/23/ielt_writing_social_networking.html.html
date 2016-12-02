@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Many people believe that social networking sites ( such as Facebook) have had a huge negative impact on both individuals and society. To what extend do you agree?</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-10-23</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <h1 id="many-people-believe-that-social-networking-sites-such-as-facebook-have-had-a-huge-negative-impact-on-both-individuals-and-society.-to-what-extend-do-you-agree">Many people believe that social networking sites ( such as Facebook) have had a huge negative impact on both individuals and society. To what extend do you agree?</h1>
 <p>The vast majority of people are convinced that the increasing number of social networking sites seems to have side effect on people as well as society in terms of a variety of aspect. However, there are a few people still believe that the online networking application have encourage people to meet a new person and facilitated the connection between people. My argument about this issue is that we need to maximize the benefits such sites can bring about and minimize the negative effects they might incur.</p>
 <p>The first good point we can obtain in using those sites is that they actually make it easier to meet an unknown person. To elaborate more, as the society is more specialized, people are experiencing meeting new people within their speciality boundary. For example we have to spend most of our time in our workplace, it is quite hard to imagine that we ᅟare highly like to meet new people who are totally unrelated with our job. Thus, at these days, the sites are the only channel we can utilize to broaden our social relationship.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, we can conclude that the social networking sites seems to be beneficially not only to our society but also to individuals</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/social%20networking%20sites.html">social networking sites</a></p>
             <p>Category: <a href="../../../../categories/23.html">23</a></p>
         </div>  

@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>nodejs fs module 소개</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2014-04-06</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Today I felt very annoying to make a directory every day to create a new post. Because how my docpad blog system configured is to save each post into the folder named according to date information. For example today is 2014-04-05 then the directory structure will be like 2014/04/05/created_file. Hence I need to create day folder everyday since day will be chanaged everyday. If month changed then I also need to create month folder. Therefore I want to automate the whole process to make the procedure simple. The first thing I have done is to choose a proper task program What I try to do is to make a recursive directory according to today date.</p>
 <pre class="nodejs"><code>dirs.map(function(dir) {
   dir_path += &quot;/&quot; + dir
@@ -166,8 +166,7 @@
 });</code></pre>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/nodejs.html">nodejs</a>, <a href="../../../../tags/fs.html">fs</a></p>
             <p>Category: <a href="../../../../categories/06.html">06</a></p>
         </div>  

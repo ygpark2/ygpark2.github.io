@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>8차 천일 결사 5차 백일 기도 정진 95일째</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-07-29</span>
             </div>
             
@@ -151,13 +151,12 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <h1 id="수행일지">수행일지</h1>
 <p>편안한 가운데 또렷이 깨어있기가 정말 중요하다는 것을 느낍니다. 매번 긴장하고 있으니 잘 되고 있는것 같지만 그 긴장이 풀어지는 순간 다시 제 자리로 돌아와 버립니다. 마치 팽팽한 고무줄을 당기고 있다가 놓아버리면 자기 자리로 돌아가는것처럼 긴장하는 동안만 효과가 있습니다. 편안한 가운데 깨어있어야 이런 요요현상이 없을것 같습니다. 이치를 알았으니 이제 연습하는 일만 남았습니다. 감사합니다. 오늘도 조금씩 나아지고 있습니다.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/10000%20%EA%B2%B0%EC%82%AC.html">10000 결사</a>, <a href="../../../../tags/8000th.html">8000th</a>, <a href="../../../../tags/8-500th.html">8-500th</a>, <a href="../../../../tags/95th.html">95th</a></p>
             <p>Category: <a href="../../../../categories/30.html">30</a></p>
         </div>  

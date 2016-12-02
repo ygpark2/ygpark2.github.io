@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>8차 천일 결사 5차 백일 기도 정진 57일째</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-06-21</span>
             </div>
             
@@ -151,13 +151,12 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <h1 id="수행일지">수행일지</h1>
 <p>업식이 참 고치기 힘이듭니다. 저 자신을 합리화하며 그 순간 그렇게 행동해야 한다고 생각하고 행동했습니다. 하지만 지나고보니 그건 그 당시 그렇게 행동하기위한 합리화였습니다. 이렇게 변명이 끼어들면 참 깨어있기가 힘이듭니다. 마치 그 순간 그렇게하는것이 최선처럼 느껴집니다. 역시 평상심이 답인것 같습니다. 그 행동을 하는 순간에도 평상심을 유지하면 후회가 남지 않습니다. 그 행동을 하는순간 내 생각에 사로잡혀 나를 잃어버리면 그건 내가 한 행동이 아니라 나의 업식이 한 행동입니다. 감사합니다. 이렇게 매일 돌아보고 깨칠수 있어 감사합니다. 오늘도 조금씩 나아지겠습니다. 오늘은 어제와 다른 새로운 하루입니다. 감사합니다!</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/10000%20%EA%B2%B0%EC%82%AC.html">10000 결사</a>, <a href="../../../../tags/8000th.html">8000th</a>, <a href="../../../../tags/8-500th.html">8-500th</a>, <a href="../../../../tags/57th.html">57th</a></p>
             <p>Category: <a href="../../../../categories/22.html">22</a></p>
         </div>  

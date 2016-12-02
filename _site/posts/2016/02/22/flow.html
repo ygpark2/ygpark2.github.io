@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>몰입에 관하여</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-02-21</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>몰입의 방법</p>
 <p>첫째, 수면 시간이 부족해서는 안 된다. 최소한 하루 6~7시간은 자야 뇌가 지치지 않는다. 둘째, 깨어 있는 시간에는 1초도 쉬지 않고 한 가지 생각에 집중해야 한다. 셋째, 수험생의 경우 한 과목에 몰입하려면 최소 일주일 이상 시간 여유를 둬야 한다. 넷째, 집중하되 ‘이완된 집중’이 필요하다. 사람은 긴장할 때만 집중하는 게 아니다. 기도할 때나 명상할 때도 집중한다. 이것이 바로 이완된 집중인데, 이런 식의 집중은 시간이 흘러도 지치지 않는다는 강점을 갖고 있다. 다섯째, 진도를 천천히 나가더라도 내용은 완벽히 소화해야 한다. 여섯째, 잘 모르는 문제는 일단 주관식화해서 끝까지 답을 찾으려 노력하라. 객관식은 머리를 발달시키지 않는다. 일곱째, 결과보다는 과정을 중시하라. 결과에 집착하면 몰입이 안 된다. 여덟째, 선택과 집중을 해라. 잘 아는 문제를 열심히 푸는 것은 도움이 안 된다. 실력을 올리려면 내가 부족한 지점을 빨리, 정확히 찾아내야 한다. 가지와 이파리에 집착하기보다 줄기를 먼저 파악하는 것도 중요하다. 아홉째, 규칙적인 운동은 필수다. 체력이 뒷받침되면 몰입 강도 또한 높아지는 선순환이 일어난다. 열 번째, 구동력을 만들어야 한다. 시험을 앞두고 A학생은 ‘난 이번 시험에 최선을 다할 거야’ 생각하고, B학생은 ‘난 시험 때문이 아니라도 최선을 다할 거야’라고 생각한다 치자. 당연히 후자의 구동력이 훨씬 높을 수밖에 없다.</p>
 <p>구동력은 정신적 성숙에서 비롯된다. 정신적 성숙이란 게 뭘까. 한마디로 철이 든다는 거다.</p>
@@ -162,8 +162,7 @@
 <p>적절한 지적 도전이 필요하다. 지적 재능은 후천적인 것이다. 그런 만큼 머리가 좋아지는 방법으로 학습해야 한다. 10~20분이면 풀 수 있는 쉬운 문제부터 도전해 몰입 시간을 서서히 늘려가면 된다. 미지의 문제에 도전하는 일을 계속할 때 우리 머리는 가장 빠른 속도로 발전한다. 온 힘을 다해 몰입하는 경험을 쌓아가다 보면 생존과 행복, 자아실현을 동시에 추구할 수 있다. ‘열심히 일하라(Work hard)’ ‘열심히 공부하라(Study hard)’에서 ‘열심히 생각하라(Think hard)’로 패러다임을 전환할 필요가 있다.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/flow.html">flow</a></p>
             <p>Category: <a href="../../../../categories/22.html">22</a></p>
         </div>  

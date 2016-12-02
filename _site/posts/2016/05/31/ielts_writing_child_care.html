@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Some working parents believe that child-care centers provide the best care for their children. However, others think family members, such as grandparents, provide the best care</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-05-30</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Discuss both views and give your own opinion.</p>
 <p>It is quite controversial that childcare facilities will be the best place for children to be well taken care of, since other people believe that family members should be in charge of raising kids. In this essay, I will examine the two condradicting views and add my thought on the subject.</p>
 <p>To begin with, it is no doubt that child-care facilities are more competent in comparison of child’s relatives in terms of taking care of children. This is because people who are working in the child-care centers are required to be trained and educated in a university or special education centers for childcare, which ehnace their speciality in childcare. In addition to this, most of child-care facilities are well designed and specialized to serve the purpose of nurturing kids, which is believed to be lacking in family home.</p>
@@ -159,8 +159,7 @@
 <p>To sum up, the two differen point of views with regard to raising kids by family members or child-care centers seem to have their own advantages and disadvantages. In my opinion, raising kids with family members seems to provide the best environment for the kids in various aspects.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/child-care.html">child-care</a></p>
             <p>Category: <a href="../../../../categories/31.html">31</a></p>
         </div>  

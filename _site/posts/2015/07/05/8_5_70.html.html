@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>8차 천일 결사 5차 백일 기도 정진 70일째</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-07-05</span>
             </div>
             
@@ -151,13 +151,12 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <h1 id="수행일지">수행일지</h1>
 <p>오늘의 경전 말씀 중 “집착 없는 정신으로 화내지 않고, 오만하지 않고, 질투하지 않고, 성급하지 않고, 현자는 대화를 이끌어어야 하리” 이 부분은 마치 저를 두고 하신 말씀 같아 너무 가슴에 와 다았습니다. 제 자신을 돌아보면 위에것증 어느것 하나 제대로 되는것이 없습니다. 언젠가는 저렇게 되어야겠다는 다짐을 해 봅니다. 이 생각 저 생각으로 마음은 산란합니다. 오늘 하루도 너무 욕심내지 말고 너무 집착하지 말고 그냥 아무렇지 않게 그냥 가볍게 살아보아야지 라고 다짐해 봅니다. 감사합니다.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/10000%20%EA%B2%B0%EC%82%AC.html">10000 결사</a>, <a href="../../../../tags/8000th.html">8000th</a>, <a href="../../../../tags/8-500th.html">8-500th</a>, <a href="../../../../tags/70th.html">70th</a></p>
             <p>Category: <a href="../../../../categories/05.html">05</a></p>
         </div>  

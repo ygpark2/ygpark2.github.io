@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Increasing the price of petrol is the best way to solve growing traffic and pollution problems</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-10-26</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Q. Increasing the price of petrol is the best way to solve growing traffic and pollution problems. To what extent do you agree or disagree? What other measures do you think might be effective?</p>
 <p>Global warming and traffic jam, we are facing in our daily life, has received notable attention from many countries, which is believed to be caused by the sharply increasing the number of car on roads. Many people believe the price level of petrol is very cheap, which it stimulate people to buy more car. However I do not believe the petrol price is the only reason to aggravate the problems. I will examine what other measures can be considered to prevent the escalating pollution and traffic jam.</p>
 <p>First of all, no one can deny that there is a close correlation between the price level of petrol and the escalating traffic jam and worsening pollution. However, it is quite naive belief that we are able to curb the number of cars and the pollution by solely controlling the price of petrol. Some of the people who are rich enough do not really care the price of petrol. Therefore I cannot trust such belief the price level of petrol will decisively determine the impact of traffic and pollution issues.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, as I examine the limited impact of price control for petrol against traffic and polution problems, we cannot solve the issues by only relying on the high price of petrol. Therefore we have to find a combined strategy to tackle the problems effectively and enhance the quality of human life.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/traffic.html">traffic</a>, <a href="../../../../tags/pollution.html">pollution</a></p>
             <p>Category: <a href="../../../../categories/26.html">26</a></p>
         </div>  

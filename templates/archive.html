@@ -1,18 +1,24 @@
-Here you can find all my previous posts:
-$partial("templates/post-list.html")$
 
-<nav class="pagination">
-  $if(firstPageUrl)$
-    <a href="$firstPageUrl$">First</a>
-  $endif$
-  $if(previousPageUrl)$
-    <a href="$previousPageUrl$">Previous</a>
-  $endif$
-  $currentPageNum$ of $numPages$
-  $if(nextPageUrl)$
-    <a href="$nextPageUrl$">Next</a>
-  $endif$
-  $if(lastPageUrl)$
-    <a href="$lastPageUrl$">Last</a>
-  $endif$
-</nav>
+<div class="mdl-grid" style="width: 100%;">
+
+    $partial("templates/post-list.html")$
+
+    <!-- begin pagination partial //-->
+    <nav class="pagination">
+    $if(firstPageUrl)$
+        <a href="$firstPageUrl$">First</a>
+    $endif$
+    $if(previousPageUrl)$
+        <a href="$previousPageUrl$">Previous</a>
+    $endif$
+    $currentPageNum$ of $numPages$
+    $if(nextPageUrl)$
+        <a href="$nextPageUrl$">Next</a>
+    $endif$
+    $if(lastPageUrl)$
+        <a href="$lastPageUrl$">Last</a>
+    $endif$
+    </nav>
+    <!-- end pagination partial //-->
+
+</div>

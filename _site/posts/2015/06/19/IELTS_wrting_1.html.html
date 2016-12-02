@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Some people say that advertising encourages us to buy things that we really do not need. Others say that advertisements tell us about new products that may improve our lives.</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-06-19</span>
             </div>
             
@@ -151,15 +151,14 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>At these days, advertisement is such an important matter in modern society since the purpose of advertisement is to influence people to take an expected action. As a result, more people are influenced by advertisement consciously or unconsciously. Thus I want to analyze the pros and cons of the advertisement.</p>
 <p>Some people believe that advertisement have contributed tremendously to the development of our daily lives in terms of introducing very innovative product which radically change the way we live in a positive way. Moreover we are bombarded with a number of products which we cannot even recognize the products are on the market. Without the help of advertisement, it will be hard for us to choose a proper products which can serve our needs well. Therefore advertisement is necessary element in our life from the perspective of helping us to decide which product we should buy by providing a necessary information about the product to us.</p>
 <p>However we also need to dwell on the possible consequence which an advertisement might bring to our daily lives. If we think about the purpose of advertisement which is to boost products’ consumption to increase a company’s profit, we can naturally estimate what kind of impact it will be. For example, the company only pursuing profit want to maximize the revenue by adopting an advertisement having mentally detrimental or toxic content to the target customers. Thus we should regulate the advertisement not considering the negative effect to people and censor the advertisement to prevent.</p>
 <p>In conclusion, we have seen advertisement can be conducive to our life as long as it is controlled to enhance the function to provide information to customers and restrain the desire to pursue profit by neglecting the side effects.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/advertisements.html">advertisements</a>, <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/english.html">english</a></p>
             <p>Category: <a href="../../../../categories/19.html">19</a></p>
         </div>  

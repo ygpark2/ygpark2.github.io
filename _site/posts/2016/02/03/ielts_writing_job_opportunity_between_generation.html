@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Companaies should encourage old employees (55 years old or above) to retire in order to give opportunities to the new generation</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-02-02</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Companaies should encourage old employees (55 years old or above) to retire in order to give opportunities to the new generation. To what extent do you agree or disagree with the ideas.</p>
 <p>Many companaies want to dismiss old employees due to their high salaries and strong resistence to the change which sometimes make the company precarious. Thus some companaies hire more youth employees instead of old experienced people while prompting old employees to retire so that they can invigorate the company. However, I am strongly convinced that old people should be maintained and treated well in the company since it will bring many benefits to the company.</p>
 <p>The first main reason of paying respect to experienced employees is that the young generation who are about to work in the company will envisage their future from the life of the old employees in that company. If the old employees’ life is not very desirable from the sight of young employees, they are more likely to work less and try to find an alternative way to ensure their uncertain future as they cannot find bright future from their upper generation. Hence, providing job security and good compensation for the old employees, who have dedicated their whole life to develop the company, will be beneficial not only for the company but for the all employees in the company regardless of their age since the company can expect the loyalty and dedication from their employees which will lead to the advancement of the company.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion,</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/job.html">job</a>, <a href="../../../../tags/opportunity.html">opportunity</a>, <a href="../../../../tags/generation.html">generation</a></p>
             <p>Category: <a href="../../../../categories/03.html">03</a></p>
         </div>  

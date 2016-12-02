@@ -8,7 +8,7 @@ import Data.Monoid ((<>), mappend)
 -- import qualified Data.Map as M
 import Hakyll
 import Text.Pandoc
-
+-- import Hakyll.Web.Sass (sassCompiler)
 -- import Text.Pandoc.Options
 
 import Site.Configuration
@@ -26,13 +26,19 @@ main = hakyllWith config $ do
       route idRoute
       compile copyFileCompiler
 
-{--
     match "assets/css/style.scss" $ do
         route   $ setExtension "css"
         compile $ getResourceFilePath
             >>= \fp -> unixFilter "sass" ["--scss", "--compass", "--style", "compressed", "--load-path",  "assets/css/sass", fp] ""
             >>= makeItem
             >>= return . fmap compressCss
+
+{--
+
+    match "assets/css/*.scss" $ do
+        route $ setExtension "css"
+        let compressCssItem = fmap compressCss
+        compile (compressCssItem <$> sassCompiler)
 
     match "assets/css/style.scss" $ do
       route $ setExtension "css"

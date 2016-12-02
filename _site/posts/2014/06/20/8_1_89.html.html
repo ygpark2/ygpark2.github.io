@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>8차 천일 결사 1차 백일 기도 정진 89일째</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2014-06-20</span>
             </div>
             
@@ -151,13 +151,12 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <h1 id="수행일지">수행일지</h1>
 <p>요즘 읽고 있는 금강경 책은 사람을 무기력하게 만드는 것 같습니다. 지금까지 제가 가지고 있던 모든 생각들과 가치관들을 버리라고 말합니다. 심지어 그 가치관과 생각들을 버린다는 생각조차도 버리라고 합니다. 마치 금강경은 절벽 끝에 서있는 저에게 아래로 뛰어내리라고 소리치고 있는것 같습니다. 두려운 마음이 일어납니다. 기존의 생각들과 가치관을 놓으면 어떻게 살아간단 말인가 그리고 무엇을 기준으로 잡고 살아간단 말인가 많은 의문이 듭니다. 금강경은 그 절벽넘어에 깨달음이 있다고 말하는 것 같습니다. 제 마음은 두려움과 혼란이 함께 있습니다. 금강경이라는 책은 참 오묘합니다. 어제까지 기쁨과 감사함을 주다 오늘은 다시 두려움과 혼란을 일으킵니다. 오늘 하루도 감사하며 살겠습니다. 감사합니다. 부처님!</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/8000th.html">8000th</a>, <a href="../../../../tags/8-100th.html">8-100th</a>, <a href="../../../../tags/89th.html">89th</a>, <a href="../../../../tags/10000%20%EA%B2%B0%EC%82%AC.html">10000 결사</a></p>
             <p>Category: <a href="../../../../categories/20.html">20</a></p>
         </div>  

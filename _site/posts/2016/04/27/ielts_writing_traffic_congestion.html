@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>With an increase in the number of privately owned vehicle, roads are becomming more congested. What measures could both goverment and individuals take to deal with this situation</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-26</span>
             </div>
             
@@ -151,15 +151,14 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Nowadays, traffic congestion is becomming part of our life, since most of people tend to regard a vehicle as an essential commodity rather than a luxury item. Furthermore, as the income of family is sharply increasing thanks to economic development in my country, there are many people who can afford to buy a vehicle readily, which lead to exacerbating traffic congestion. I will deal with this issue in terms of the way how goverment and people are able to alleviate the problem.</p>
 <p>First of all, the most urgent task that the goverment need to take care of is that it need to come up with a policy to levy a high tax rate to people who want to buy a second car. As people’s income is rising, there are many families who want to buy a second car, which is the main factor to cause the escalating problem of traffic congestion. I believe that it is the most effective method to curb the increasing number of cars as well as to lessen the traffic load on the road in terms of goverment.</p>
 <p>Secondly, the easiest and simplest method to contribute to relieve the traffic congestion as an individual is to use public transfortation as many times as they can. Using public transfortation have a numerous of advantages. For example, they can enjoy reading books or chatting with their friends while they are in a bus. In addition to this, they can also freely use their mobile devices without conerning that distraction caused by cellphones might jeopardize other people’s life when you drive.</p>
 <p>In summary, it is evident that the goverment and a person need to work together to address the traffic jam as a result of the increasing number of cars. People’s active using public transfortation and the goverment’s policy to punish a family having more than one cars should be encouraged. If these combined works proceed, we are able to see the significant difference in traffic congestion.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/traffic.html">traffic</a>, <a href="../../../../tags/congestion.html">congestion</a></p>
             <p>Category: <a href="../../../../categories/27.html">27</a></p>
         </div>  

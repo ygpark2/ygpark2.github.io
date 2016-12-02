@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>People say that a child's success is depedent on the way parents bring them up</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-17</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>To what extent do you agree or disagree?</p>
 <p>As the competition for success is becomming more severe, people seem to pay more attention how to achieve success. In particular, parents, who want their children to be succeeded in a field, are really interested in the way how to raise their children successful. Some expert insist that a child’s success is solely determined by thy way how the parent educate the children. However, I believe that there are more factors to influence child’s the process of growth leading to the success except thy way the parent bring them up.</p>
 <p>First of all, we are able to see many evidences that people, who was raised without their parents proper guidance, have made a successful career. For example, Barack Obama is a very representative case for this, since his parents are divorced at the time when he was very young age. His mother also cannot afford to take care of him adequately due to financial difficulty. That is the reason why he was sent to his grandmother and spent most of his childhood with their grandmother, which give hime a chance to learn many valuable lessons which became the cornerstone of becomming United States of America’s president.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, it is quite hard to say that human’s success is solely depending on the way how to educate them. Human’s success seems to involve numerous factors such as willingness, determination and environment where they was grown. Therefore, people need to pay more attention to those factors to be deemed to influence to human’s success.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/child.html">child</a>, <a href="../../../../tags/success.html">success</a></p>
             <p>Category: <a href="../../../../categories/17.html">17</a></p>
         </div>  

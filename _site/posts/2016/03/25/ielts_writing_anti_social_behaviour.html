@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>There is an increasing lack of respect for others and a rising trend in anti-social behaviour</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-03-24</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>What are the reasons for this problem? What action can be taken to address this problem?</p>
 <p>It is abundantly evident that people are losing consideration for other people and their lack of understanding other people frequently cause many social conflicts in society. In this essay, I will analyze the reasons for the issue and devise possible measures to tackle this social phenomenon.</p>
 <p>First of all, I believe that such negative social trend is mainly attributed to nuclear family with one or two children since people who have been grown up in nuclear family have a strong tendency to show selfishness in social relationship. A recent study about the correlation between people’s social behaviour and the size of family also support the argument. More specifically, the study proved that children who have been receiving too much care and attention from parent and relatives in nuclear family apt to show worse performance in comprehending other people’s emotion and situation. Thus it will lead to many social problems.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, as nuclear families are becomming more common and the number of children who are raised in the nuclear family are increasing, it is inevitable to encounter those social problems. Therefore, we need to capitalize on the media to raise awareness about the aggravating problems caused by people lacking of due respect for the others, which might lead to a bigger social concern.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/respect.html">respect</a>, <a href="../../../../tags/anti-social%20behaviour.html">anti-social behaviour</a></p>
             <p>Category: <a href="../../../../categories/25.html">25</a></p>
         </div>  

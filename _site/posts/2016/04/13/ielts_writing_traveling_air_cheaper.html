@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Traveling by air becomes cheaper every year. Give your opinion on this, and the advantages and disadvantages of this development</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-12</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words</p>
 <p>Nobody cannot deny that traveling is becomming a big part of our lives because of the technology development combined with decreasing oil price. Naturally, this trend have brought several benefits to our society in addition to some drawbacks. I will dwell on those positive and negative aspects in this essay and leave my comment on that.</p>
 <p>On the one hand, one of benefits we can expect from the increasing number of overseas traveller thanks to the cheaper air fare is that we can easily experience or meet a variety of ethnic group of people in my country, which is not a very common case several decades ago. For instance, when I was a middle school student, I could hardly find a chance to meet a foreigner in my town. Thus, the only channels that I can access foreign cultures and languages are books, movies and newspapers, which result in my impractical understanding about foreign cultures and languages. However such problem is withering into insignificance due to the increasing number of foreigners thanks to the cheaper air fare.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, the cheap air fare enable many people to travel abroad countries, which contribute to abolish many countral discrepancies and prejudice against foreigners. However, such low fare also undermine our safe air journey, which caused by severe price competition among airlines. Therefore, we need to come up with measures to curb the increased possibility of endangered air travel as the result of harsh price competition while maintainging the low price of air travel.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/traveling.html">traveling</a>, <a href="../../../../tags/air.html">air</a></p>
             <p>Category: <a href="../../../../categories/13.html">13</a></p>
         </div>  
