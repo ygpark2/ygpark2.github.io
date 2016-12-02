@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../">Home</a>
@@ -130,20 +130,24 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Rosa Rosa Rosam</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
+                    <a href="http://jatkinson.me/about/">
+                        <strong>Ovidius</strong>
+                    </a>
+                
                 <span>2015-10-07</span>
             </div>
             
@@ -151,7 +155,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Suspendisse pharetra ullamcorper sem et auctor. Suspendisse vitae tellus eu turpis dignissim gravida ut ut tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi aliquam sapien quis nisl sodales non aliquet nisl iaculis. Curabitur fermentum orci vel sapien pellentesque id condimentum metus vehicula. Curabitur turpis purus, scelerisque at interdum quis, placerat sit amet tortor. Aliquam erat volutpat.</p>
 <p>Integer posuere felis non arcu suscipit ullamcorper. Nam tempus risus venenatis orci sagittis eu aliquam ante tincidunt. Aenean vehicula ipsum id sapien tincidunt commodo. Aliquam erat volutpat. Curabitur vehicula libero ac turpis cursus consectetur. Praesent posuere egestas purus et dapibus. Mauris egestas, lectus vitae scelerisque ultricies, metus lorem tempor nisi, sed vehicula tortor mauris nec urna. Quisque urna tellus, facilisis at mollis eget, adipiscing in nisl. Proin quam arcu, euismod et imperdiet sed, ultricies sed orci.</p>
 <p>Nulla malesuada sem eget lectus scelerisque nec rhoncus metus interdum. In dui felis, rhoncus id scelerisque eget, vulputate id sem. Nulla facilisi. Vestibulum eleifend, metus dignissim lacinia ornare, magna nulla vehicula nisi, sed molestie mauris ipsum vel turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla urna leo, vehicula eget dignissim a, hendrerit ut risus. Fusce ultricies elementum placerat. Nam at dolor sed nisi mollis sollicitudin vitae at urna. Vestibulum iaculis adipiscing eros et mollis.</p>
@@ -159,10 +163,7 @@
 <p>Proin lorem sapien, iaculis et faucibus nec, dictum sed nunc. Pellentesque in purus justo. Vestibulum facilisis rutrum nisi, a egestas nunc suscipit sed. Ut quis tortor a arcu bibendum placerat non sed ante. Praesent orci sem, posuere sit amet cursus molestie, volutpat ut purus. Curabitur aliquam, purus in pharetra viverra, lorem leo aliquam tellus, vel consequat felis neque et mauris. Aliquam erat volutpat.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
-                <a href="http://jatkinson.me/about/">Ovidius</a>
-            
+        <div class="post-view-footer"> 
             <p>Tags: </p>
             <p>Category: <a href="../categories/posts.html">posts</a></p>
         </div>  

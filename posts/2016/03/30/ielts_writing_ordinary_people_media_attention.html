@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>More and more media attention is being paid to people from ordinary backgrounds who have become famous. These individuals have achieved success in areas such as sport, small business and entertainment</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-03-29</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Why is interest in these people increasing? Is this a good thing or a bad thing?</p>
 <p>Nowadays, it is not supprising anymore even if you are able to find your mediocre friend in TV programs. In particular, the introduction of new technologies such as the Internet and mobile devices in mass media seems to exacerbate this trend even further. These technological progress make many people become more powerful and influential in our soceity, which has previously been extremely difficult to bring an unimaginable wealth and fame. In this essay, I will look into the reasons why such trend is intensified and what kind of results it might bring into our society.</p>
 <p>One of the obvious reasons to make such trend interesting is that mediocre people start to realize that they also have a potential to become like the people who have achieved a huge success without any special backgrounds. It is dramatic change in our soceity, since obtaining intensive media focus on mediocre people was not very plausible occurrence before. Furthermore, it is anticipated that this trend will be continuously intensified due to the technological advancement. For example, there are many youth who have drown huge public attention because of the viedio clip they uploaded on Youtube. This was not even possible if the platform allowing them to share the smalll viedio publicly was not existed.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, as it is predicted that the trend will be becomming more prevailed, people Given unpreceded change, which the technology brought to our daily lives, enable mediocre people to gain enormous success and respect, it</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/media.html">media</a>, <a href="../../../../tags/ordinary%20backgrounds.html">ordinary backgrounds</a></p>
             <p>Category: <a href="../../../../categories/30.html">30</a></p>
         </div>  

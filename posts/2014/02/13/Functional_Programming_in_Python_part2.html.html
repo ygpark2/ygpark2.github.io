@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>파이썬 함수형 언어 파트 2</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2014-02-13</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>파트 1에서 함수형 언어 개념의 기본을 설명했습니다. 이번장에서는 좀더 깊은 개념적 영역으로 들어가 보겠습니다. Bryn Keller씨의 “Xoltar Toolkit”이 아주 큰 도움이 될 것입니다. Keller씨 이 Toolkit은 함수형 언어의 많은 장점들을 순수한 파이썬 언어의 기능으로 구현해 놓았습니다. 이 모듈은 함수형 기능뿐만 아니라 필요할때 수행되는 lazy evaluation 기능도 또한 포함하고 있습니다. 많은 전통적 함수형 언어들은 lazy evaluation을 가지고 있으며, 이 모듈은 또한 해스켈과 같은 함수형 언어에서 찾을 수 있는 많은 것들을 할 수 있게 합니다.</p>
 <p>In Part 1, my previous column on functional programming, I introduced some basic concepts of FP. This column will delve a little bit deeper into this quite rich conceptual realm. For much of our delving, Bryn Keller’s “Xoltar Toolkit” will provide valuable assistance. Keller has collected many of the strengths of FP into a nice little module containing pure Python implementations of the techniques. In addition to the module functional, Xoltar Toolkit includes the lazy module, which supports structures that evaluate “only when needed.” Many traditionally functional languages also have lazy evaluation, so between these components, the Xoltar Toolkit lets you do much of what you might find in a functional language like Haskell.</p>
 <h1 id="bindings">Bindings</h1>
@@ -278,8 +278,7 @@ print<span class="st">&quot;Lisp-style taxes due =&quot;</span>, <span class="op
 <p>Each closure function we have defined takes any values defined within the function scope, and binds those values into the global scope of the function object. However, what appears as the function’s global scope is not necessarily the same as the true module global scope, nor identical to a different closure’s “global” scope. The closure simply “carries the data” with it. In our example, we utilize a few particular functions to put specific bindings within a closure’s scope (income, deduct, rate). It would be simple enough to modify the design to put any arbitrary binding into scope. We also – just for the fun of it – use two slightly different functional styles in the example. The first successively binds additional values into closure scope; by allowing taxFP to be mutable, these “add to closure” lines can appear in any order. However, if we were to use immutable names like tax_with_Income, we would have to arrange the binding lines in a specific order, and pass the earlier bindings to the next ones. In any case, once everything necessary is bound into closure scope, we can call the “seeded” function. The second style looks a bit more like Lisp, to my eyes (the parentheses mostly). Beyond the aesthetic, two interesting things happen in the second style. The first is that name binding is avoided altogether. This second style is a single expression, with no statements used (see Part 1 for a discussion of why this matters). The other interesting thing about the “Lisp-style” use of the closures is how much it resembles the “Smalltalk-style” message-passing methods given above. Both essentially accumulate values along the way to calling the taxdue() function/method (both will raise errors in these crude versions if the right data is not available). The “Smalltalk-style” passes an object between each step, while the “Lisp-style” passes a continuation. But deep down, functional and object-oriented programming amount to much the same thing.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/numpy.html">numpy</a>, <a href="../../../../tags/python.html">python</a></p>
             <p>Category: <a href="../../../../categories/13.html">13</a></p>
         </div>  

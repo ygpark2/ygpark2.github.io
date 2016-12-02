@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>We can get information and gather knowledge from the news, but we are unsure how much we should trust journalists</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-03-23</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>How true is this statement? What are the important qualities that a journalists should have.</p>
 <p>Nobody cannot deny the fact that the influence of media in our daily lives has been unprecedented over the past several decades. Such trend is becomming aggravated thanks to the advancement of technology such as mobile devices, the Internet and cable TV channels. In this circumstance, the question about how to ensure the credibility of journalists is gaining importance as we are heavily relying on the media as a tool to obtain information and knowledge.</p>
 <p>On the one hand, people seem to start to suspect the truthfulness of the information from the news because there are many players to influence media companeis to manipulate the information to serve their needs. For instance, Samsung is one of the biggest sponsor to media companeis as they spend a huge amount of money for advertisement of its products. some of media companeis report about Samsung’s inhumane treatment of employee. As a result of the report, the media company have to suffer financial difficulty for a long time since Samsung did not provide any advertising deals to the company in retaliation to the news to reveal the dark side of Samsung.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, people who are benefiting from the news or information produced by many journalists also need to help them achieve their goal to be free from the pressure from other influential people or companies. In addition to this, goverment also need to take this issue seriously and come up with a countermeasure to tackle the problem to jeopardize the effort of journalists to produce truthful information and news.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/news.html">news</a>, <a href="../../../../tags/journalists.html">journalists</a></p>
             <p>Category: <a href="../../../../categories/24.html">24</a></p>
         </div>  

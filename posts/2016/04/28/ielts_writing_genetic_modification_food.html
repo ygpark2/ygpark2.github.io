@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Many people disagree with the use of genetic modification on our food supplies.Do you agree with this statement</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-27</span>
             </div>
             
@@ -151,15 +151,14 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Nowaday, GMO food is grave concern to many people, since the safety of GMO food is not fully scientifically proved. Basically, many big agricultural companies are heavily relying on GMO technology to enhance the amount of yielding crop while reducing the cost of growing the plants. However, I believe that it is still premature to determine that people should be encourged to adopt GMO food actively.</p>
 <p>First of all, there are no scietific evidences to prove that GMO food is not pernicious to human body. Many scientist and doctors told that the GMO food’s long-term effect on human body is not meticulously examined. For example, one of my friends have been taking pills regulary to cure his chronic emotional depression. A few years later, a scientific report is released. The report found out the fact that the pills, he have taken for many years, are actually the main causes resulting in a cancer. Thus we need to postpone the use of GMO food until scientists confirm that the GMO food is thorougly harmless to human body.</p>
 <p>Another potential downside to GMO food is allergic reactions. In the process of modifying the genes in crops or vegetables, it might create unexpected proteins or genes that may cause new allergic reaction to people. It is also lack of evidences to support the argument that GMO foods are the direct cause to trigger the allergic reaction. However, there is a evident trend that people living in a country which import many GMO products show a high rate of allergic reaction. Therefore, at least, it seems to be meaningful effort to take additional precaution in dealing with GMO products.</p>
 <p>In conclusion, it is still short of time to investigate fully about the corellation between GMO foods and such negative effects. However, those detrimental symtoms are continuously reported in various countries and people from intake of GMO foods. Thus, we need to redouble the effort to prove how GMO food affect our body.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/genetic%20modification.html">genetic modification</a>, <a href="../../../../tags/food.html">food</a></p>
             <p>Category: <a href="../../../../categories/28.html">28</a></p>
         </div>  

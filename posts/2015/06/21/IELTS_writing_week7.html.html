@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>some reasons why this is occurring and give tips on how to motivate people to exercise</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2015-06-21</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>People no longer seem to be inspired to exercise. Many medical researchers are becoming more concerned about the physical state of the general public, as the number of people who exercise continues to go down. Mention some reasons why this is occurring and give tips on how to motivate people to exercise.</p>
 <p>There is raising a social concern among people with regard to ailment caused by paying not much attention to their health. Most of people want to enjoy healthy life but the reality seems to be always the opposite. I want to examine why it is always the case.</p>
 <p>Firstly, urbanization is playing the key role to make people less activity than ever before. Because people can access easily most of facilities such as convenient store, bus stop and train station they want to use. To elaborate, people have to walk quite long distance to catch a bus or train in rural area because the public transportation cannot cover the whole area where people live. Naturally they have to walk at least several hours a day, once they want to go to the downtown. Another point which make people enjoy sedentary lifestyle is owing to the information technology development. To illustrate, many Internet messenger or SNS allow people to communicate each other, which make meeting people face to face unnecessarily. Therefore I am strongly convinced that urbanization and information technology are two major factors which lead people to little bit of worrisome physical state.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, health related disease due to lack of exercise is rampant in our society as the lifestyle rapidly change thanks to urbanization and the development of information technology. Therefore we need to make an effort to motivate people to exercise by raising awareness and shrinking the number of frequency of use of a messenger and SNS.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/IELTS.html">IELTS</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/english.html">english</a>, <a href="../../../../tags/exercise.html">exercise</a></p>
             <p>Category: <a href="../../../../categories/21.html">21</a></p>
         </div>  

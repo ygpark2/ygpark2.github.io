@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../">Home</a>
@@ -130,20 +130,24 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Tu Quoque</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
+                    <a href="http://jatkinson.me/about/">
+                        <strong>Julius</strong>
+                    </a>
+                
                 <span>2015-12-07</span>
             </div>
             
@@ -151,7 +155,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Vestibulum leo turpis, dignissim quis ultrices sit amet, iaculis ac ligula. Pellentesque tristique, velit eget scelerisque scelerisque, est dolor ultrices arcu, quis ullamcorper justo arcu luctus mauris. Integer congue molestie nisi id posuere. Fusce pellentesque gravida tempus. Integer viverra tortor nec eros mollis quis convallis sem laoreet. Nulla id libero ac erat varius laoreet. Proin sed est est. Curabitur lacinia fermentum lorem, elementum malesuada ipsum malesuada ut. Donec suscipit elit id leo vehicula mattis non sed leo. Morbi varius eleifend varius. Nulla vestibulum, neque vitae aliquam eleifend, nisi tellus placerat nunc, quis suscipit elit turpis eu tortor. Etiam euismod convallis lectus quis venenatis. Phasellus laoreet magna in nibh cursus eu egestas nulla convallis. Aliquam vel ullamcorper risus. Fusce dictum, massa id consequat viverra, nulla ante tristique est, a faucibus nisi enim nec dui. Donec metus ligula, condimentum at porttitor eget, lobortis at quam.</p>
 <p>Aenean vel libero in magna ultricies congue in a odio. Donec faucibus rutrum ornare. Fusce dictum eleifend fermentum. Vestibulum vel nibh a metus porttitor rhoncus. Pellentesque id quam neque, eget molestie arcu. Integer in elit vel neque viverra ultricies in eget massa. Nam ut convallis est. Pellentesque eros eros, sodales non vehicula et, tincidunt ut odio. Cras suscipit ultrices metus sit amet molestie. Fusce enim leo, vehicula sed sodales quis, adipiscing at ipsum.</p>
 <p>Nunc tempor dignissim enim, sed tincidunt eros bibendum quis. Curabitur et dolor augue, id laoreet mi. Nulla cursus felis id dui vehicula vitae ornare lorem blandit. Cras eget dui nec odio volutpat pharetra. Fusce hendrerit justo justo, vel imperdiet enim. Vivamus elit risus, interdum ultrices accumsan eleifend, vestibulum vitae sapien. Integer bibendum ullamcorper tristique. Nulla quis odio lectus, quis eleifend augue. Integer a ligula mauris. Aenean et tempus tortor. Quisque at tortor mi. Vivamus accumsan feugiat est a blandit. Sed vitae enim ut dolor semper sodales. Duis tristique, ante et placerat elementum, nulla tellus pellentesque sapien, quis posuere velit mi eget nulla. Sed vestibulum nunc non est porttitor ut rutrum nibh semper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -159,10 +163,7 @@
 <p>Donec a lectus eu nibh malesuada aliquam. Proin at metus quam, et tincidunt leo. Quisque lacus justo, scelerisque sodales pulvinar sed, dignissim ut sapien. Vivamus diam felis, adipiscing sollicitudin ultricies id, accumsan ac felis. In eu posuere ligula. Suspendisse potenti. Donec porttitor dictum dui id vehicula. Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
-                <a href="http://jatkinson.me/about/">Julius</a>
-            
+        <div class="post-view-footer"> 
             <p>Tags: </p>
             <p>Category: <a href="../categories/posts.html">posts</a></p>
         </div>  

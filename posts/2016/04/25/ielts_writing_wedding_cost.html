@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Today in many countries, people hold bigger and more expensive weddings than ever before. What do you think about the cost of weddings these days? Is it a positive or a negative development?</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-24</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Discuss the advantages and disadvantages of expensive weddings.</p>
 <p>Wedding is a momentous occasion in most cultures as most of people will marry someone at least once in a lifetime. Many people pull out all the stops and want to hold extravagant weddings to make unforgettable ceremonies. In this essay, I will dwell on the positive and negative aspects of expensive weddings.</p>
 <p>On the one hand, there are numerous advantages that we can expect from the extravagant wedding ceremony. First of all, we are able to provide very expensive services, such as high quality meals and luxury presents, as a reward for attedning to our weddings, which may leave a good memory to people who participated our weddings. Secondly, couples who are supposed to marry do not need to pay much attention to preparing a wedding as they hired a company to do all the jobs for the wedding for the sake of them. Hence, those two reasons are the most important benefits we can expect from an expensive wedding.</p>
@@ -159,8 +159,7 @@
 <p>In summary, nobody cannot deny the fact that money is crucial to make a successful wedding ceremony. However if we put too much emphasis on the role of money to enjoy the extravagant wedding, we might be negligent of the values such as experience to prepare presents and meals, effort to make unique wedding ceremony. Thus, it should encourage people to build the wedding with their own power as it will make the wedding more meaningful to us.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/weddings.html">weddings</a>, <a href="../../../../tags/cost.html">cost</a></p>
             <p>Category: <a href="../../../../categories/25.html">25</a></p>
         </div>  

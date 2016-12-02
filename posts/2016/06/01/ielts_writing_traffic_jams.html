@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Traffic jams are a problem in many towns and cities. Some people suggest that governments should build wider roads in order to solve the problem</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-05-31</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Do you agree or disagree?</p>
 <p>Aggravating traffic congestion is a major concern to many cities. Many people suggest different solutions for the problem. One of the solutions that is commonly debated is that governments should take a policy to construct wider roads which will target to increase the capacities of the roads to contain more cars. However, I firmly object the idea since the manner cannot be the ultimate solution for the problem.</p>
 <p>To begin with, it is not a very desirable idea to build a wider road since it will hamper the vitality of the city in various ways. More specifically, the policy to build a wider road will not make a city more livable as a city more focused on development for the convenience of the driver will not be a place where many people want to live. For example, there is a newly built city with 10 lanes of road in Brazil because they want to build a city which free from the common traffic jams problem. However, they sooner or later encounter another problem that nobody want to live the city because the city is only considering traffic issue by building a wide road.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, I absolutely agree with the idea that governments should not abandon any policies to extend the road to alleviate the deteriorating traffic problem. Therefore, governments need to come up with idea as to how to reduce the number of cars instead of widening roads.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/traffic%20jams.html">traffic jams</a></p>
             <p>Category: <a href="../../../../categories/01.html">01</a></p>
         </div>  

@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Many museums charge for admission while others are free. Do you think the advantages of charging people for admission to museums outweigh the disadvantages?</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-05-17</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p>
 <p>Museums are quite important facilities to human life in many aspects. Especially, for the purpose of education of young children, it has been playing a crucial role in our society. In order to maximize the benefits of such facilities, it is important question as to whether the museum should be operating on a charge basis or not. Personally, I stick to the thought that the cost of running museum should be compensated by the public fund, which lead to the free service of museum.</p>
 <p>The one of evident benefits we can expect from the free charge of museum is that it will provide a chance to enjoy the museum to people which cannot afford to pay the fee for the admission. It goes without saying that it will contribute to narrow down the gap between rich and poor people in terms of education opportunities. For example, when I traveled Philippine, I had a chance to visit a museum. The museum charge a small fee for the entrance which is not a big money to me but local people felt that the fee is almost half of their daily income, which deprive the people of the chance to learn and experience their museum because of the fee.</p>
@@ -159,8 +159,7 @@
 <p>To sum up, it seems evident that the drawbacks of admission fee for the museum exceed the advantages. Therefore, as more people freely enjoy the museum without admission fee, the museum will become a place loved by many people, which lead to the improvement of the quality of people’s lives.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/museums.html">museums</a>, <a href="../../../../tags/charge.html">charge</a></p>
             <p>Category: <a href="../../../../categories/18.html">18</a></p>
         </div>  

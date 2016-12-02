@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Many people say that cultures and traditions should be embraced and preserved. However, there are others who prefer to leave their unique traditions behind and follow the traditions of others. Is this good or bad? Support your answer</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-01-30</span>
             </div>
             
@@ -151,15 +151,14 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>There was a consensus of opinion as to how vital the traditions and cultures are among people. Many people believe that we need to embrace our cultures and traditions while others argue that we should pursue other traditions and cultures which are believed more advanced than ours. In this essay, I insist that our cultures and traditions are need to be embraced rather than following the others’ traditions and cultures.</p>
 <p>First of all, our culture and tradition has been developed for many centuries for serving our people’s need and requirement well. Hence, we feel comfortable when we play with our culture or see our tradition. For example, when we wear our traditional dress on special days, it give us comfortable feeling due to the fact that it is designed to fit our body well, in addition to adding particular meaning on the days.</p>
 <p>Secondly, supposing we abandon our culture and tradition while pursuing other tradition based on the belief that other tradition is much more advanced than ours, we might lose our identity. Because the tradition we preserved will tell us who we are and where we come from. If we keep following other culture and tradition, we might end up with identity crisis. As a result, we might have to pay a hefty price for being negligent in the effort of protecting our culture and tradition.</p>
 <p>In conclusion, people should pay more attention to the call for embracing our culture and tradition. Because it will enrich our culture as well as help us understand who we are better.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/cultures.html">cultures</a>, <a href="../../../../tags/traditions.html">traditions</a></p>
             <p>Category: <a href="../../../../categories/31.html">31</a></p>
         </div>  

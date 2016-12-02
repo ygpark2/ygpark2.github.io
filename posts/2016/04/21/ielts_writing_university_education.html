@@ -13,14 +13,14 @@
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
   <!-- Material Design Lite css Library -->
-  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.grey-orange.min.css">
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
   
   <!-- Material Design Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom theme css -->
   <!-- <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"> -->
-  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <!-- Material Design Lite js Library -->
   <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
@@ -116,7 +116,7 @@
   </div>
 </header>
 
-<div class="mdl-layout__drawer">
+<div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="../../../../">Home</a>
@@ -130,20 +130,20 @@
       
 
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content mdl-grid">
           <!-- Your content goes here -->
           
-<div class="hugo-blog__posts mdl-grid">
+<div class="mdl-grid" style="width: 100%;">
     <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
         
-        <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('/images/default.jpg'); background-color:#263238;">
+        <div class="post-view-title mdl-card__media">
             <h3>Compeleting university education is thought by some to be the best way to get a good job. On the other hand, other people think that getting experience and developing soft skills is more important</h3>
         </div>
           
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+        <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                <strong>Jeremy Atkinson</strong>
+                
                 <span>2016-04-20</span>
             </div>
             
@@ -151,7 +151,7 @@
             
         </div>
             
-        <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+        <div class="post-view-content">
             <p>Discuss both sides and give your opinion</p>
 <p>The belief that university degree will be a ticket to a better life is still prevailing in most advanced societies as the society is requiring more people who are having expert knowledge which can be abtained through the university education. On the contrary, there are still many people who believe that experience and soft skills which cannot be easily taught in university curriculum are vital to determine people’s career. In this article, I will ananyze the both points of view and add my thoght.</p>
 <p>On the one hand, nobody cannot deny the fact that there is a strong correlation between having a university degree and the likelihood of being employed. To elaborate more, many people’s deep-rooted prejudice that people with university degree are usually more capable of doing a job is still rampant in our soceity. However, it is observable in many different fields that people who did not graduate or drop out a university have made huge success in their areas. For example, Bill Gates is a very representative case for this as he drop out of Harvard university and built one of the historical companies in IT field.</p>
@@ -159,8 +159,7 @@
 <p>In conclusion, university education is important as well as helpful to secure competitive advantage in harsh competition. However, university graduation cannot guarantee that it will solve every problems you face in the society. Therefore, we need to make an effort to develop other skills such as experience and soft skills.</p>
         </div>
         
-        <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments"> 
-            
+        <div class="post-view-footer"> 
             <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/university.html">university</a>, <a href="../../../../tags/education.html">education</a></p>
             <p>Category: <a href="../../../../categories/21.html">21</a></p>
         </div>  
