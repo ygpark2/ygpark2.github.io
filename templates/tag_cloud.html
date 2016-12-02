@@ -1,15 +1,30 @@
 
+<div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+    
+    <div class="tag-cloud mdl-card__media">
+        $tagcloud$
+    </div>
 
-<div class="tagcloud">
-  $tagcloud$
-</div>
-
-Here you can find my previous recent posts:
-
-<ul>
     $for(posts)$
-        <li>
-            <a href="$url$">$title$</a> - $date$
-        </li>
+    <div class="archive-row mdl-grid" style="width: 100%;">
+        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
+
+        </div>
+        <div class="archive-author mdl-cell mdl-cell--2-col">
+            <a href="/about.html">
+                <strong>
+                $if(author)$ $author$ $else$ Young Gyu $endif$
+                </strong>
+            </a>
+            <br/>
+            <span>$date$</span>
+        </div>
+        <div class="archive-title mdl-cell mdl-cell--9-col">
+            <a href="$url$">
+                <h5>$title$</h5>
+            </a>
+        </div>
+    </div>
     $endfor$
-</ul>
+
+</div>

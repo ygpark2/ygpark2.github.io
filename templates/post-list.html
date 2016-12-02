@@ -2,31 +2,29 @@
 <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
     
     <div class="archive-name mdl-card__media">
-        <h3>All Posts:</h3>
+        <h3>$title$</h3>
     </div>
 
-    <!-- begin pagination partial //-->
-
-    <!-- end pagination partial //-->
     $for(posts)$
     <div class="archive-row mdl-grid" style="width: 100%;">
         <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
 
         </div>
         <div class="archive-author mdl-cell mdl-cell--2-col">
-            <strong>
-                <a href="http://jatkinson.me/about/">
+            <a href="/about.html">
+                <strong>
                 $if(author)$ $author$ $else$ Young Gyu $endif$
-                </a>
-            </strong>
+                </strong>
+            </a>
             <br/>
             <span>$date$</span>
         </div>
         <div class="archive-title mdl-cell mdl-cell--9-col">
             <a href="$url$">
-                <h5 class="mdl-color-text--grey-600">$title$</h5>
+                <h5>$title$</h5>
             </a>
         </div>
     </div>
     $endfor$
+
 </div>

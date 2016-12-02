@@ -9,11 +9,11 @@
         <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
             <div>
-                $if(author)$
-                    <a href="http://jatkinson.me/about/">
-                        <strong>$author$</strong>
-                    </a>
-                $endif$
+                <a href="/about.html">
+                    <strong>
+                        $if(author)$ $author$ $else$ Young Gyu $endif$
+                    </strong>
+                </a>
                 <span>$date$</span>
             </div>
             
