@@ -9,8 +9,8 @@
   <title>My Hakyll Blog - Archives</title>
   <meta name="description" content="This is a really greate blog">
 
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="canonical" href="http://ygpark2.github.io">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
 
   <!-- Material Design Lite css Library -->
   <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
@@ -146,6 +146,26 @@
         <h3>Archives</h3>
     </div>
 
+    
+    <div class="archive-row mdl-grid" style="width: 100%;">
+        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
+
+        </div>
+        <div class="archive-author mdl-cell mdl-cell--2-col">
+            <a href="../about.html">
+                <strong>
+                 Young Gyu 
+                </strong>
+            </a>
+            <br />
+            <span>2014-09-29</span>
+        </div>
+        <div class="archive-title mdl-cell mdl-cell--9-col">
+            <a href="../posts/2014/09/29/8_2_90.html.html">
+                <h5>8차 천일 결사 2차 백일 기도 정진 90일째</h5>
+            </a>
+        </div>
+    </div>
     
     <div class="archive-row mdl-grid" style="width: 100%;">
         <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
@@ -427,52 +447,34 @@
         </div>
     </div>
     
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2014-09-14</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2014/09/14/8_2_75.html.html">
-                <h5>8차 천일 결사 2차 백일 기도 정진 75일째</h5>
-            </a>
-        </div>
-    </div>
-    
 
 </div>
 
-    <!-- begin pagination partial //-->
-    <nav class="pagination">
-    
-        <a href="../archive.html">First</a>
-    
-    
-        <a href="../archive/22.html">Previous</a>
-    
-    23 of 36
-    
-        <a href="../archive/24.html">Next</a>
-    
-    
-        <a href="../archive/36.html">Last</a>
-    
-    </nav>
-    <!-- end pagination partial //-->
+    <div class="page-nav mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        <!-- begin pagination partial //-->
+        <nav class="pagination">
+        
+            <a href="../archive.html">First</a>
+        
+        
+            <a href="../archive/22.html">Previous</a>
+        
+        23 of 36
+        
+            <a href="../archive/24.html">Next</a>
+        
+        
+            <a href="../archive/36.html">Last</a>
+        
+        </nav>
+        <!-- end pagination partial //-->
+    </div>
 
 </div>
 
         </div>
         
-        <footer class="mdl-mini-footer">
+        <footer class="page-footer mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Title</div>
     <ul class="mdl-mini-footer__link-list">

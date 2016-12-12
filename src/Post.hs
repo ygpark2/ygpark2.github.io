@@ -80,22 +80,21 @@ optionHandler opts@PostOptions{..}  = do
 exec :: PostOptions -> IO ()
 exec opts@PostOptions{..} = do
   now <- getCurrentTime
-  currentPath <- getExecutablePath
+  currentPath <- getCurrentDirectory -- getExecutablePath
 
   -- hakyll date format
   let today = formatTime defaultTimeLocale "%FT%X+09:00" now
 
-  let datePath = formatTime defaultTimeLocale "/../../../posts/%Y/%m/%d/" now
+  let datePath = formatTime defaultTimeLocale "/posts/%Y/%m/%d/" now
 
-  let newPostDir = takeDirectory currentPath
+  let newPostDir = currentPath ++ datePath
 
-  createDirectoryIfMissing True (newPostDir ++ datePath)
+  createDirectoryIfMissing True (newPostDir)
 
-  let newPostFile = newPostDir ++ datePath  ++ file ++ ".md"
-
-  -- putStrLn $ postTemplate "this is title" today
+  let newPostFile = newPostDir ++ file ++ ".md"
 
   writeFile newPostFile $ postTemplate title today
 
+  -- putStrLn $ postTemplate "this is title" today
   putStrLn $ "Title => " ++ title
   putStrLn $ "File Path => " ++ newPostFile

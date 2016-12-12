@@ -50,24 +50,24 @@ body {
   /* font:$bodyfont; */
   background-color: #3f3f3f;
   color: #dcdccc;
-  a:link {
+
+  a {
+    &:link { 
       text-decoration: none;
       color: #F0EFD0;
-  }
-
-  a:visited {
+    }
+    &:visited {
       text-decoration: none;
       color: #F0EFD0
-  }
-
-  a:hover {
+    }
+    &:hover {
       text-decoration: underline;
       color: #EFEFAF;
-  }
-
-  a:active {
+    }
+    &:active {
       text-decoration: none;
       color: #F0EFD0
+    }
   }
 }
 
@@ -80,12 +80,22 @@ span.mdl-layout-title {
   color: white;
 }
 
-.left-drawer {
-  background-color: #F0EFD0;
+div.left-drawer {
+  background-color: #616161;
+  nav {
+    a {
+      color: white !important;
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+        color: #3f3f3f;
+      }
+    }
+  }
 }
 
 .post-view {
-  background-color: #3f3f3f;
+  background-color: #505050;
   padding: 0px 15px 0px 15px;
 
 }
@@ -99,8 +109,12 @@ div.post-view-title {
 
 div.post-view-header {
   @extend .post-view;
+  text-align: right;
   padding: 20px 15px 0px 15px;
-
+  div.info{
+    // background-color:#808080;
+    padding: 5px 5px 5px 5px;
+  }
 }
 
 div.post-view-content {
@@ -115,7 +129,8 @@ div.post-view-footer {
   @extend .post-view;
   padding: 20px 15px 0px 15px;
   p {
-    font-size: 15px;
+    font-size: 19px;
+    text-align: right;
   }
 }
 
@@ -170,6 +185,11 @@ div.archive-title {
   }
 }
 
+div.page-nav {
+  @extend div.archive-row;
+  min-height: 30px;
+  align-items: center;
+}
 
 header#header #navigation a {
     color: black;
@@ -183,6 +203,12 @@ header#header #navigation a {
 
 .page-content {
   max-width: 960px;
+}
+
+footer.page-footer {
+  background-color: #505050;
+  // padding: 0px 15px 0px 15px;
+  align-items: right;
 }
 
 nav.waterfall-header-nav .mdl-navigation__link:last-of-type {

@@ -9,8 +9,8 @@
   <title>My Hakyll Blog - Blog</title>
   <meta name="description" content="This is a really greate blog">
 
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="canonical" href="http://ygpark2.github.io">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
 
   <!-- Material Design Lite css Library -->
   <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
@@ -188,7 +188,32 @@
 
 <div class="mdl-card mdl-cell mdl-cell--8-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238; padding: 0px 15px 0px 15px;">
+        <h3><a href="./posts/2016/12/12/haskell_functor_applicative_monad.html">Functor, Applicative, and Monad</a></h3>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        
+
+        
+    </div>
+
+    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+        <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+        <div>
+            <strong>
+                 Young Gyu 
+            </strong>
+            <span>2016-12-12</span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="mdl-card mdl-cell mdl-cell--12-col">
+
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
         <h3><a href="./posts/2016/06/02/ielts_writing_food_travels.html">Today, food travels thousands of miles from farms to consumers. Why does this happen?</a></h3>
     </div>
 
@@ -215,11 +240,9 @@
     </div>
 </div>
 
-
-
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
         <h3><a href="./posts/2016/06/01/ielts_writing_traffic_jams.html">Traffic jams are a problem in many towns and cities. Some people suggest that governments should build wider roads in order to solve the problem</a></h3>
     </div>
 
@@ -248,7 +271,7 @@
 
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
         <h3><a href="./posts/2016/05/31/ielts_writing_child_care.html">Some working parents believe that child-care centers provide the best care for their children. However, others think family members, such as grandparents, provide the best care</a></h3>
     </div>
 
@@ -271,7 +294,7 @@
 
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
         <h3><a href="./posts/2016/05/30/ielts_writing_unhealthy_diets_exercise.html">Nowadays, people have unhealthy diets and do not do enough exercise</a></h3>
     </div>
 
@@ -292,37 +315,17 @@
     </div>
 </div>
 
-<div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
-        <h3><a href="./posts/2016/05/27/ielts_writing_business_responsibilities.html">As well as making money, businesses also have social responsibilities.</a></h3>
-    </div>
-
-    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        
-
-        
-    </div>
-
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
-        <div>
-            <strong>
-                 Young Gyu 
-            </strong>
-            <span>2016-05-26</span>
-        </div>
-    </div>
-</div>
-
-
-    <nav class="mdl-cell mdl-cell--12-col">
+    <nav class="mdl-cell mdl-cell--12-col" style="text-align: right;">
         <div class="section-spacer"></div>
-        <a href="./post/" class="hugo-nav__button" title="show more">
+        <a href="./archive.html" class="hugo-nav__button" title="show more">
             More
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons icon ion-android-arrow-forward" role="presentation"></i>
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                </span>
+            </button>
         </a>
     </nav>
 
@@ -330,7 +333,7 @@
 
         </div>
         
-        <footer class="mdl-mini-footer">
+        <footer class="page-footer mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Title</div>
     <ul class="mdl-mini-footer__link-list">

@@ -57,7 +57,8 @@ main = hakyllWith config $ do
     match (fromList ["about.rst", "contact.markdown"]) $ do
       route $ setExtension "html"
       compile $ pandocCompiler
-        >>= loadAndApplyTemplate "templates/default.html" siteContext
+        >>= loadAndApplyTemplate "templates/post.html" postContext
+        >>= loadAndApplyTemplate "templates/default.html" postContext
         >>= relativizeUrls
 
     tags <- buildTags "posts/**" (fromCapture "tags/*.html")

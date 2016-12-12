@@ -54,7 +54,7 @@ title: Home
 $for(headPost)$
 <div class="mdl-card mdl-cell mdl-cell--8-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238; padding: 0px 15px 0px 15px;">
         <h3><a href="$url$">$title$</a></h3>
     </div>
 
@@ -82,7 +82,7 @@ $endfor$
 $for(tailPosts)$
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
         <h3><a href="$url$">$title$</a></h3>
     </div>
 
@@ -107,13 +107,16 @@ $for(tailPosts)$
 </div>
 $endfor$
 
-    <nav class="mdl-cell mdl-cell--12-col">
+    <nav class="mdl-cell mdl-cell--12-col" style="text-align: right;">
         <div class="section-spacer"></div>
-        <a href="/post/" class="hugo-nav__button" title="show more">
+        <a href="/archive.html" class="hugo-nav__button" title="show more">
             More
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons icon ion-android-arrow-forward" role="presentation"></i>
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                </span>
+            </button>
         </a>
     </nav>
 

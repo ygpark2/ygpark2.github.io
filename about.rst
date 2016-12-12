@@ -1,5 +1,8 @@
 ---
 title: About
+date: 2016-12-12T20:37:43+09:00
+published: true
+tags: about
 ---
 Nullam imperdiet sodales orci vitae molestie. Nunc quam orci, pharetra a
 rhoncus vitae, eleifend id felis. Suspendisse potenti. Etiam vitae urna orci.

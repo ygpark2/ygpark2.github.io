@@ -19,6 +19,7 @@ data AppConfig = AppConfig {
                      cfgTitle :: String,
                      cfgDescription :: String,
                      cfgEmail :: String,
+                     cfgUrl :: String,
                      cfgHeaderType :: String,
                      cfgPaginationType :: String,
                      cfgSnsGithubUsername :: String,
@@ -35,6 +36,7 @@ loadConfig = do
   return AppConfig { cfgTitle = cfg "" $ T.pack "site.title" 
                    , cfgDescription = cfg "" $ T.pack "site.description" 
                    , cfgEmail = cfg "" $ T.pack "site.email" 
+                   , cfgUrl = cfg "" $ T.pack "site.url" 
                    , cfgHeaderType = cfg "" $ T.pack "site.header.type"
                    , cfgPaginationType = cfg "" $ T.pack "site.pagination.type"
                    , cfgSnsGithubUsername = cfg "" $ T.pack "site.sns.github.username"
@@ -48,6 +50,7 @@ siteContext :: Context String
 siteContext = constField "site.title" (cfgTitle conf) `mappend`
               constField "site.description" (cfgDescription conf) `mappend`
               constField "site.email" (cfgEmail conf) `mappend`
+              constField "site.url" (cfgUrl conf) `mappend`
               constField "site.header.type" (cfgHeaderType conf) `mappend`
               constField "site.pagination.type" (cfgPaginationType conf) `mappend`
               constField "site.sns.github.username" (cfgSnsGithubUsername conf) `mappend`

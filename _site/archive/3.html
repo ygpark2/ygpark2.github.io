@@ -9,8 +9,8 @@
   <title>My Hakyll Blog - Archives</title>
   <meta name="description" content="This is a really greate blog">
 
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="canonical" href="http://ygpark2.github.io">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
 
   <!-- Material Design Lite css Library -->
   <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
@@ -146,6 +146,26 @@
         <h3>Archives</h3>
     </div>
 
+    
+    <div class="archive-row mdl-grid" style="width: 100%;">
+        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
+
+        </div>
+        <div class="archive-author mdl-cell mdl-cell--2-col">
+            <a href="../about.html">
+                <strong>
+                 Young Gyu 
+                </strong>
+            </a>
+            <br />
+            <span>2016-03-29</span>
+        </div>
+        <div class="archive-title mdl-cell mdl-cell--9-col">
+            <a href="../posts/2016/03/30/ielts_writing_ordinary_people_media_attention.html">
+                <h5>More and more media attention is being paid to people from ordinary backgrounds who have become famous. These individuals have achieved success in areas such as sport, small business and entertainment</h5>
+            </a>
+        </div>
+    </div>
     
     <div class="archive-row mdl-grid" style="width: 100%;">
         <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
@@ -427,52 +447,34 @@
         </div>
     </div>
     
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2016-01-30</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2016/01/31/ielts_writing_culture_tradition.html">
-                <h5>Many people say that cultures and traditions should be embraced and preserved. However, there are others who prefer to leave their unique traditions behind and follow the traditions of others. Is this good or bad? Support your answer</h5>
-            </a>
-        </div>
-    </div>
-    
 
 </div>
 
-    <!-- begin pagination partial //-->
-    <nav class="pagination">
-    
-        <a href="../archive.html">First</a>
-    
-    
-        <a href="../archive/2.html">Previous</a>
-    
-    3 of 36
-    
-        <a href="../archive/4.html">Next</a>
-    
-    
-        <a href="../archive/36.html">Last</a>
-    
-    </nav>
-    <!-- end pagination partial //-->
+    <div class="page-nav mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        <!-- begin pagination partial //-->
+        <nav class="pagination">
+        
+            <a href="../archive.html">First</a>
+        
+        
+            <a href="../archive/2.html">Previous</a>
+        
+        3 of 36
+        
+            <a href="../archive/4.html">Next</a>
+        
+        
+            <a href="../archive/36.html">Last</a>
+        
+        </nav>
+        <!-- end pagination partial //-->
+    </div>
 
 </div>
 
         </div>
         
-        <footer class="mdl-mini-footer">
+        <footer class="page-footer mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Title</div>
     <ul class="mdl-mini-footer__link-list">
