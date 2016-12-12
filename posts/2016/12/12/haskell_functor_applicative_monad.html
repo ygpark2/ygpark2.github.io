@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Hakyll Blog - Functor, Applicative, and Monad</title>
+  <meta name="description" content="This is a really greate blog">
+
+  <link rel="canonical" href="http://ygpark2.github.io">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
+
+  <!-- Material Design Lite css Library -->
+  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
+  
+  <!-- Material Design Fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+  <!-- Custom theme css -->
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+
+  <!-- Material Design Lite js Library -->
+  <script type="text/javascript" src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js"></script>
+
+  <!--
+  
+  <script rel="javascript" type="text/javascript" src="/assets/js/site.js"></script>
+  
+
+  <script rel="javascript" type="text/javascript" src="/assets/js/search.js"></script>
+  <script rel="javascript" type="text/javascript">
+    superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-search', // CSS Selector for search container element.
+      inputSelector: '#js-search__input', // CSS selector for <input>
+      resultsSelector: '#js-search__results' // CSS selector for results container
+    });
+  </script>
+  -->
+
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+  <body>
+
+    <div class="mdl-layout mdl-js-layout">
+
+      <!-- Start Layout -->
+      
+          <!-- search layout -->
+
+<!--
+<div class="super-search" id="js-search">
+  <ul class="super-search__results" id="js-search__results"></ul>        
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored super-search__close-btn" onclick="superSearch.toggle()">
+    <i class="material-icons">close</i>
+  </button>
+</div>
+-->
+
+<!-- /end search -->
+
+          
+<header class="mdl-layout__header mdl-layout__header--waterfall">
+  <!-- Top row, always visible -->
+  <div class="mdl-layout__header-row">
+    <!-- Title -->
+    <span class="mdl-layout-title">Young Gyu Blog</span>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+        <i class="material-icons">search</i>
+      </label>
+
+      <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+      </div>
+
+<!--
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="js-search__input" data-upgraded=",MaterialButton">
+        <i class="material-icons">search</i>
+      </label>
+
+      <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input super-search__input" type="text" id="js-search__input" />
+      </div>
+
+      <button class="mdl-button mdl-js-button mdl-button--icon" id="fixed-menu-lower-left">
+        <i class="material-icons">more_vert</i>
+      </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="fixed-menu-lower-left">
+        <li><a href="archive.html" class="mdl-menu__item">archive</a></li>
+        <li><a href="about.html" class="mdl-menu__item">about</a></li>
+        <li><a href="contact.html" class="mdl-menu__item">contact</a></li>
+        <li><a href="tagCloud.html" class="mdl-menu__item">tagCloud</a></li>
+      </ul>
+-->
+
+    </div>
+  </div>
+  <!-- Bottom row, not visible on scroll -->
+  <div class="mdl-layout__header-row">
+    <div class="mdl-layout-spacer"></div>
+    <!-- Navigation -->
+    <nav class="waterfall-header-nav mdl-navigation">
+      <a class="mdl-navigation__link" href="../../../../">Home</a>
+      <a class="mdl-navigation__link" href="../../../../archive.html">Archive</a>
+      <a class="mdl-navigation__link" href="../../../../tagCloud.html">Tags</a>
+      <a class="mdl-navigation__link" href="../../../../about.html">About</a>
+      <a class="mdl-navigation__link" href="../../../../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="left-drawer mdl-layout__drawer">
+  <span class="mdl-layout-title">메뉴</span>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="../../../../">Home</a>
+    <a class="mdl-navigation__link" href="../../../../archive.html">Archive</a>
+    <a class="mdl-navigation__link" href="../../../../tagCloud.html">Tags</a>
+    <a class="mdl-navigation__link" href="../../../../about.html">About</a>
+    <a class="mdl-navigation__link" href="../../../../contact.html">Contact</a>
+  </nav>
+</div>
+
+      
+
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-grid">
+          <!-- Your content goes here -->
+          
+<div class="mdl-grid" style="width: 100%;">
+    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        
+        <div class="post-view-title mdl-card__media">
+            <h3>Functor, Applicative, and Monad</h3>
+        </div>
+          
+        <div class="post-view-header meta">
+            <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+            <div class="info">
+                <a href="../../../../about.html">
+                    <strong>
+                         Young Gyu 
+                    </strong>
+                </a>
+                <span>2016-12-12</span>
+            </div>
+            
+            <div class="section-spacer"></div>
+            
+        </div>
+            
+        <div class="post-view-content">
+            <p>아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    year <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show (<span class="dv">2020</span> <span class="fu">-</span> read year)</code></pre></div>
+<p>만약 그 프로그램을 실행 후 유효한 년도를 입력하면, 올바른 답을 구하실 것입니다. 만약 이상한 년도 값을 입력하면 어떤 일이 벌어질까요?</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">Please</span> enter your birth year
+<span class="ex">hello</span>
+<span class="ex">main.hs</span>: Prelude.read: no parse</code></pre></div>
+<p>사용자 입력은 문자로 들어오고 그 문자를 Integer로 변환할려고 합니다. 그러나, 모든 문자들이 항상 유효한 Integer값은 아닙니다. read는 partial 함수입니다. 그것은 어떤 상황에서는 에러를 발생시킬수 있다는 것을 의미합니다.</p>
+<p>좀더 견고한 프로그램을 작성하는 방법은 Maybe Integer 값을 반환하는 readMay함수를 쓰는것입니다. 이 함수는<br />
+A more resilient way to write our code is to use the readMay function, which will return a Maybe Integer value. This makes it clear with the types themselves that the parse may succeed or fail. To test this out, try running the following code:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    <span class="co">-- We use explicit types to tell the compiler how to try and parse the</span>
+    <span class="co">-- string.</span>
+    print (readMay <span class="st">&quot;1980&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)
+    print (readMay <span class="st">&quot;hello&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)
+    print (readMay <span class="st">&quot;2000&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)
+    print (readMay <span class="st">&quot;two-thousand&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)</code></pre></div>
+<p>So how can we use this to solve our original problem? We need to now determine if the result of readMay was successful (as Just) or failed (a Nothing). One way to do this is with pattern matching:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    yearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">case</span> readMay yearString <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided an invalid year&quot;</span>
+        <span class="dt">Just</span> year <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show (<span class="dv">2020</span> <span class="fu">-</span> year)</code></pre></div>
+<p>Decoupling code This code is a bit coupled; let’s split it up to have a separate function for displaying the output to the user, and another separate function for calculating the age.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided an invalid year&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearToAge year <span class="fu">=</span> <span class="dv">2020</span> <span class="fu">-</span> year
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    yearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span>
+            <span class="kw">case</span> readMay yearString <span class="kw">of</span>
+                <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Nothing</span>
+                <span class="dt">Just</span> year <span class="ot">-&gt;</span> <span class="dt">Just</span> (yearToAge year)
+    displayAge maybeAge</code></pre></div>
+<p>This code does exactly the same thing as our previous version. But the definition of maybeAge in the main function looks pretty repetitive to me. We check if the parse year is Nothing. If it’s Nothing, we return Nothing. If it’s Just, we return Just, after applying the function yearToAge. That seems like a lot of line noise to do something simple. All we want is to conditionally apply yearToAge.</p>
+<p>Functors Fortunately, we have a helper function to do just that. fmap, or functor mapping, will apply some function over the value contained by a functor. Maybe is one example of a functor, another common one is a list. In the case of Maybe, fmap does precisely what we described above. So we can replace our code with:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided an invalid year&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearToAge year <span class="fu">=</span> <span class="dv">2020</span> <span class="fu">-</span> year
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    yearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> fmap yearToAge (readMay yearString)
+    displayAge maybeAge</code></pre></div>
+<p>Our code definitely got shorter, and hopefully a bit clearer as well. Now it’s obvious that all we’re doing is applying the yearToAge function over the contents of the Maybe value.</p>
+<p>So what is a functor? It’s some kind of container of values. In Maybe, our container holds zero or one values. With lists, we have a container for zero or more values. Some containers are even more exotic; the IO functor is actually providing an action to perform in order to retrieve a value. The only thing functors share is that they provide some fmap function which lets you modify their contents.</p>
+<p>do-notation We have another option as well: we can use do-notation. This is the same way we’ve been writing our main function in so far. That’s because- as we mentioned in the previous paragraph- IO is a functor as well. Let’s see how we can change our code to not use fmap:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided an invalid year&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearToAge year <span class="fu">=</span> <span class="dv">2020</span> <span class="fu">-</span> year
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    yearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            yearInteger <span class="ot">&lt;-</span> readMay yearString
+            return <span class="fu">$</span> yearToAge yearInteger
+    displayAge maybeAge</code></pre></div>
+<p>Inside the do-block, we have the slurp operator &lt;-. This operator is special for do-notation, and is used to pull a value out of its wrapper (in this case, Maybe). Once we’ve extracted the value, we can manipulate it with normal functions, like yearToAge. When we complete our do-block, we have to return a value wrapped up in that container again. That’s what the return function does.</p>
+<p>do-notation isn’t available for all Functors; it’s a special feature reserved only for Monads. Monads are an extension of Functors that provide a little extra power. We’re not really taking advantage of any of that extra power here; we’ll need to make our program more complicated to demonstrate it.</p>
+<p>Dealing with two variables It’s kind of limiting that we have a hard-coded year to compare against. Let’s fix that by allowing the user to specify the “future year.” We’ll start off with a simple implementation using pattern matching and then move back to do notation.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span>
+            <span class="kw">case</span> readMay birthYearString <span class="kw">of</span>
+                <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Nothing</span>
+                <span class="dt">Just</span> birthYear <span class="ot">-&gt;</span>
+                    <span class="kw">case</span> readMay futureYearString <span class="kw">of</span>
+                        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Nothing</span>
+                        <span class="dt">Just</span> futureYear <span class="ot">-&gt;</span> <span class="dt">Just</span> (futureYear <span class="fu">-</span> birthYear)
+    displayAge maybeAge</code></pre></div>
+<p>OK, it gets the job done… but it’s very tedious. Fortunately, do-notation makes this kind of code really simple:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            return <span class="fu">$</span> yearDiff futureYear birthYear
+    displayAge maybeAge</code></pre></div>
+<p>This is very convenient: we’ve now slurped our two values in our do-notation. If either parse returns Nothing, then the entire do-block will return Nothing. This demonstrates an important property about Maybe: it provides short circuiting.</p>
+<p>Without resorting to other helper functions or pattern matching, there’s no way to write this code using just fmap. So we’ve found an example of code that requires more power than Functors provide, and Monads provide that power.</p>
+<p>Partial application But maybe there’s something else that provides enough power to write our two-variable code without the full power of Monad. To see what this might be, let’s look more carefully at our types.</p>
+<p>We’re working with two values: readMay birthYearString and readMay futureYearString. Both of these values have the type Maybe Integer. And we want to apply the function yearDiff, which has the type Integer -&gt; Integer -&gt; Integer.</p>
+<p>If we go back to trying to use fmap, we’ll seemingly run into a bit of a problem. The type of fmap- specialized for Maybe and Integer- is (Integer -&gt; a) -&gt; Maybe Integer -&gt; Maybe a. In other words, it takes a function that takes a single argument (an Integer) and returns a value of some type a, takes a second argument of a Maybe Integer, and gives back a value of type Maybe a. But our function- yearDiff- actually takes two arguments, not one. So fmap can’t be used at all, right?</p>
+<p>Not true actually. This is where one of Haskell’s very powerful features comes into play. Any time we have a function of two arguments, we can also look at is as a function of one argument which returns a function. We can make this more clear with parentheses:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">yearDiff ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>
+<span class="ot">yearDiff ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>)
+<span class="dt">So</span> how does that help us<span class="fu">?</span> <span class="dt">We</span> can look at the fmap function as<span class="fu">:</span>
+
+fmap<span class="ot"> ::</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>))
+     <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>)
+<span class="dt">Then</span> when we apply fmap to yearDiff, we end up with<span class="fu">:</span>
+
+fmap<span class="ot"> yearDiff ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span>)</code></pre></div>
+<p>That’s pretty cool. We can apply this to our readMay futureYearString and end up with:</p>
+<p>fmap yearDiff (readMay futureYearString) :: Maybe (Integer -&gt; Integer) That’s certainly very interesting, but it doesn’t help us. We need to somehow apply this value of type Maybe (Integer -&gt; Integer) to our readMay birthYearString of type Maybe Integer. We can do this with do-notation:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            yearToAge <span class="ot">&lt;-</span> fmap yearDiff (readMay futureYearString)
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span> yearToAge birthYear
+    displayAge maybeAge</code></pre></div>
+<p>We can even use fmap twice and avoid the second slurp:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            yearToAge <span class="ot">&lt;-</span> fmap yearDiff (readMay futureYearString)
+            fmap yearToAge (readMay birthYearString)
+    displayAge maybeAge</code></pre></div>
+<p>But we don’t have a way to apply our Maybe (Integer -&gt; Integer) function to our Maybe Integer directly.</p>
+<p>Applicative functors And now we get to our final concept: applicative functors. The idea is simple: we want to be able to apply a function which is inside a functor to a value inside a functor. The magic operator for this is &lt;*&gt;. Let’s see how it works in our example:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+<span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;*&gt;))
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span>
+            fmap yearDiff (readMay futureYearString)
+                <span class="fu">&lt;*&gt;</span> readMay birthYearString
+    displayAge maybeAge</code></pre></div>
+<p>In fact, the combination of fmap and &lt;*&gt; is so common that we have a special operator, &lt;$&gt;, which is a synonym for fmap. That means we can make our code just a little prettier:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+<span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;$&gt;), (&lt;*&gt;))
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+<span class="co">-- show</span>
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> yearDiff
+            <span class="fu">&lt;$&gt;</span> readMay futureYearString
+            <span class="fu">&lt;*&gt;</span> readMay birthYearString
+<span class="co">-- /show</span>
+    displayAge maybeAge</code></pre></div>
+<p>Notice the distinction between &lt;$&gt; and &lt;*&gt;. The former uses a function which is not wrapped in a functor, while the latter applies a function which is wrapped up.</p>
+<p>So we don’t need Monads? So if we can do such great stuff with functors and applicative functors, why do we need monads at all? The terse answer is context sensitivity: with a monad, you can make decisions on which processing path to follow based on previous results. With applicative functors, you have to always apply the same functions.</p>
+<p>Let’s give a contrived example: if the future year is less than the birth year, we’ll assume that the user just got confused and entered the values in reverse, so we’ll automatically fix it by reversing the arguments to yearDiff. With do-notation and an if statement, it’s easy:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span>
+                <span class="kw">if</span> futureYear <span class="fu">&lt;</span> birthYear
+                    <span class="kw">then</span> yearDiff birthYear futureYear
+                    <span class="kw">else</span> yearDiff futureYear birthYear
+    displayAge maybeAge</code></pre></div>
+<p>Exercises Implement fmap using &lt;*&gt; and return.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;*&gt;), <span class="dt">Applicative</span>)
+<span class="kw">import </span><span class="dt">Prelude</span> (return, <span class="dt">Monad</span>)
+<span class="kw">import qualified</span> <span class="dt">Prelude</span>
+
+fmap<span class="ot"> ::</span> (<span class="dt">Applicative</span> m, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (m a <span class="ot">-&gt;</span> m b)
+<span class="co">-- show</span>
+fmap <span class="fu">...</span> <span class="fu">...</span> <span class="fu">=</span> <span class="dt">FIXME</span>
+<span class="co">-- /show</span>
+
+main <span class="fu">=</span>
+    <span class="kw">case</span> fmap (<span class="fu">Prelude.+</span> <span class="dv">1</span>) (<span class="dt">Prelude.Just</span> <span class="dv">2</span>) <span class="kw">of</span>
+        <span class="dt">Prelude.Just</span> <span class="dv">3</span> <span class="ot">-&gt;</span> Prelude.putStrLn <span class="st">&quot;Good job!&quot;</span>
+        _ <span class="ot">-&gt;</span> Prelude.putStrLn <span class="st">&quot;Try again&quot;</span>
+<span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;*&gt;))
+
+<span class="co">-- show</span>
+myFmap function wrappedValue <span class="fu">=</span> return function <span class="fu">&lt;*&gt;</span> wrappedValue
+
+main <span class="fu">=</span> print <span class="fu">$</span> myFmap (<span class="fu">+</span> <span class="dv">1</span>) <span class="fu">$</span> <span class="dt">Just</span> <span class="dv">5</span>
+<span class="co">-- /show</span>
+<span class="dt">How</span> is return implemented for the <span class="dt">Maybe</span> monad<span class="fu">?</span> <span class="dt">Try</span> replacing return with its implementation <span class="kw">in</span> the code above<span class="fu">.</span>
+
+<span class="co">-- show</span>
+returnMaybe <span class="fu">=</span> <span class="dt">FIXME</span>
+<span class="co">-- /show</span>
+
+main
+    <span class="fu">|</span> returnMaybe <span class="st">&quot;Hello&quot;</span> <span class="fu">==</span> <span class="dt">Just</span> <span class="st">&quot;Hello&quot;</span> <span class="fu">=</span> putStrLn <span class="st">&quot;Correct!&quot;</span>
+    <span class="fu">|</span> otherwise <span class="fu">=</span> putStrLn <span class="st">&quot;Incorrect, please try again&quot;</span>
+return is simply the <span class="dt">Just</span> constructor<span class="fu">.</span> <span class="dt">This</span> gets defined as<span class="fu">:</span>
+
+<span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Maybe</span> <span class="kw">where</span>
+    return <span class="fu">=</span> <span class="dt">Just</span></code></pre></div>
+<p>yearDiff is really just subtraction. Try to replace the calls to yearDiff with explicit usage of the - operator.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span>
+<span class="co">-- show</span>
+                <span class="kw">if</span> futureYear <span class="fu">&lt;</span> birthYear
+                    <span class="kw">then</span> yearDiff birthYear futureYear
+                    <span class="kw">else</span> yearDiff futureYear birthYear
+<span class="co">-- /show</span>
+    displayAge maybeAge
+<span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span>
+<span class="co">-- show</span>
+                <span class="kw">if</span> futureYear <span class="fu">&lt;</span> birthYear
+                    <span class="kw">then</span> birthYear <span class="fu">-</span> futureYear
+                    <span class="kw">else</span> futureYear <span class="fu">-</span> birthYear
+<span class="co">-- /show</span>
+    displayAge maybeAge</code></pre></div>
+<p>It’s possible to write an applicative functor version of the auto-reverse-arguments code by modifying the yearDiff function. Try to do so.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+<span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;$&gt;), (&lt;*&gt;))
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+<span class="co">-- show</span>
+yearDiff futureYear birthYear <span class="fu">=</span> <span class="dt">FIXME</span>
+<span class="co">-- /show</span>
+
+main
+    <span class="fu">|</span> yearDiff <span class="dv">5</span> <span class="dv">6</span> <span class="fu">==</span> <span class="dv">1</span> <span class="fu">=</span> putStrLn <span class="st">&quot;Correct!&quot;</span>
+    <span class="fu">|</span> otherwise <span class="fu">=</span> putStrLn <span class="st">&quot;Please try again&quot;</span>
+<span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+<span class="co">-- show</span>
+yearDiff futureYear birthYear
+    <span class="fu">|</span> futureYear <span class="fu">&gt;</span> birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+    <span class="fu">|</span> otherwise <span class="fu">=</span> birthYear <span class="fu">-</span> futureYear
+<span class="co">-- /show</span>
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span>
+                <span class="kw">if</span> futureYear <span class="fu">&lt;</span> birthYear
+                    <span class="kw">then</span> yearDiff birthYear futureYear
+                    <span class="kw">else</span> yearDiff futureYear birthYear
+    displayAge maybeAge</code></pre></div>
+<p>Now try to do it without modifying yearDiff directly, but by using a helper function which is applied to yearDiff.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
+<span class="kw">import </span><span class="dt">Control.Applicative</span> ((&lt;$&gt;), (&lt;*&gt;))
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+<span class="co">-- show</span>
+yourHelperFunction f <span class="fu">...</span>
+<span class="co">-- /show</span>
+
+main
+    <span class="fu">|</span> yourHelperFunction yearDiff <span class="dv">5</span> <span class="dv">6</span> <span class="fu">==</span> <span class="dv">1</span> <span class="fu">=</span> putStrLn <span class="st">&quot;Correct!&quot;</span>
+    <span class="fu">|</span> otherwise <span class="fu">=</span> putStrLn <span class="st">&quot;Please try again&quot;</span>
+<span class="kw">import </span><span class="dt">Safe</span> (readMay)
+
+displayAge maybeAge <span class="fu">=</span>
+    <span class="kw">case</span> maybeAge <span class="kw">of</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided invalid input&quot;</span>
+        <span class="dt">Just</span> age <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In that year, you will be: &quot;</span> <span class="fu">++</span> show age
+
+yearDiff futureYear birthYear <span class="fu">=</span> futureYear <span class="fu">-</span> birthYear
+
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    birthYearString <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="st">&quot;Please enter some year in the future&quot;</span>
+    futureYearString <span class="ot">&lt;-</span> getLine
+    <span class="kw">let</span> maybeAge <span class="fu">=</span> <span class="kw">do</span>
+            futureYear <span class="ot">&lt;-</span> readMay futureYearString
+            birthYear <span class="ot">&lt;-</span> readMay birthYearString
+            return <span class="fu">$</span>
+                <span class="kw">if</span> futureYear <span class="fu">&lt;</span> birthYear
+                    <span class="kw">then</span> yourHelperFunction yearDiff birthYear futureYear
+                    <span class="kw">else</span> yourHelperFunction yearDiff futureYear birthYear
+    displayAge maybeAge
+
+<span class="co">-- show</span>
+yourHelperFunction f x y
+    <span class="fu">|</span> x <span class="fu">&gt;</span> y <span class="fu">=</span> f x y
+    <span class="fu">|</span> otherwise <span class="fu">=</span> f y x
+<span class="co">-- /show</span></code></pre></div>
+        </div>
+        
+        <div class="post-view-footer"> 
+             <p class="tags">Tags: <a href="../../../../tags/Haskell.html">Haskell</a>, <a href="../../../../tags/Functor.html">Functor</a>, <a href="../../../../tags/Applicative.html">Applicative</a>, <a href="../../../../tags/Monad.html">Monad</a></p> 
+             <p class="categories">Category: <a href="../../../../categories/12.html">12</a></p> 
+        </div>  
+    </div>
+
+    <nav class="hugo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+        <a href="../../../../post/shellprocesses/" class="hugo-nav__button">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation" data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="icon ion-android-arrow-back"></i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+            Older
+        </a>
+        <div class="section-spacer"></div>
+    
+    </nav>
+
+</div>
+        </div>
+        
+        <footer class="page-footer mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Title</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Privacy & Terms</a></li>
+    </ul>
+  </div>
+</footer>
+      </main>
+      <div class="mdl-layout__obfuscator"></div>
+      <!-- /End Layout -->
+
+    </div>
+  </body>
+
+</html>

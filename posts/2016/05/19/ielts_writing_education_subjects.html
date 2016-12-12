@@ -9,8 +9,8 @@
   <title>My Hakyll Blog - The role of education is to prepare children for the modern world. Schools should cut art and music out of the curriculum so that children can focus on useful subjects such as information technology</title>
   <meta name="description" content="This is a really greate blog">
 
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="{{ " feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="canonical" href="http://ygpark2.github.io">
+  <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
 
   <!-- Material Design Lite css Library -->
   <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.css">
@@ -146,7 +146,7 @@
           
         <div class="post-view-header meta">
             <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
-            <div>
+            <div class="info">
                 <a href="../../../../about.html">
                     <strong>
                          Young Gyu 
@@ -168,8 +168,8 @@
         </div>
         
         <div class="post-view-footer"> 
-            <p>Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/education.html">education</a>, <a href="../../../../tags/subjects.html">subjects</a></p>
-            <p>Category: <a href="../../../../categories/19.html">19</a></p>
+             <p class="tags">Tags: <a href="../../../../tags/ielts.html">ielts</a>, <a href="../../../../tags/writing.html">writing</a>, <a href="../../../../tags/education.html">education</a>, <a href="../../../../tags/subjects.html">subjects</a></p> 
+             <p class="categories">Category: <a href="../../../../categories/19.html">19</a></p> 
         </div>  
     </div>
 
@@ -188,7 +188,7 @@
 </div>
         </div>
         
-        <footer class="mdl-mini-footer">
+        <footer class="page-footer mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Title</div>
     <ul class="mdl-mini-footer__link-list">
