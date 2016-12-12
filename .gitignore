@@ -2,5 +2,7 @@
 
 .stack-work/
 .sass-cache/
+.vscode/
 
 _cache/
+

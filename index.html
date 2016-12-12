@@ -3,8 +3,7 @@ title: Home
 ---
 
 <div class="page-content mdl-grid">
-    
-    
+
 <div class="mdl-card profile-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
     <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600" style="background-image: url('/images/avatar-192x210.png');">
     </div>
@@ -19,127 +18,96 @@ title: Home
         <a href="/about">
             <button id="about" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--primary" title="About Me" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="icon ion-person mdl-color-text--white" role="presentation"></i>
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                </span>
+            </button>
         </a>
         
         <a href="/project">
             <button id="projects" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--primary" title="My Projects" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="icon ion-code mdl-color-text--white" role="presentation"></i>
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                </span>
+            </button>
         </a>
         
-        <a href="mailto:jeremy@jatkinson.me?subject=Hi">
+        <a href="mailto:ygpark2@gmail.com?subject=Hi">
             <button id="email" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--primary" title="Email Me" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="icon ion-email mdl-color-text--white" role="presentation"></i>
-            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                </span>
+            </button>
         </a>
-        
-        
-        
-        
-        
-        
-        
     </div>
 </div>
 
     <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600 ">
         <div>
-            <strong>Jeremy Atkinson</strong>
+            <strong>Young Gyu Park</strong>
         </div>
-
     </div>
 </div>
-    
-    
-     
-    
-        
+
+$for(headPost)$
 <div class="mdl-card mdl-cell mdl-cell--8-col">
 
-    
     <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238;">
-        <h3><a href="/post/simpleExpressServer/">Overview Of A Simple Express.Js Server</a></h3>
+        <h3><a href="$url$">$title$</a></h3>
     </div>
 
-    
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        <p>If you want to start playing around with Express, why not start by writing a few lines to serve up some static html? In this post I attempt to break down all the necessary commands so that you (and I) understand what’s going on, atleast conceptually.</p>
+        $if(teaser)$
+            $teaser$
+            <a href="$url$">Read More&hellip;</a>
+        $else$
 
+        $endif$
     </div>
 
-    
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        
         <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
         <div>
-            <strong><a href="http://jatkinson.me/about/">Jeremy Atkinson</a></strong>
-            <span>Sep 8, 2015</span>
+            <strong>
+                $if(author)$ $author$ $else$ Young Gyu $endif$
+            </strong>
+            <span>$date$</span>
         </div>
     </div>
-
 </div>
-     
- 
-    
-        
+$endfor$
+
+$for(tailPosts)$
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
-    
     <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238;">
-        <h3><a href="/post/shellprocesses/">Shell Processes</a></h3>
+        <h3><a href="$url$">$title$</a></h3>
     </div>
 
-    
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        <p>I’ve been experimenting with node, mongodb, and express for the past few days to learn more about backend development. There’s been a few times I’ve had errors with ports being in use (Error: listen EADDRINUSE), and it turns out that it’s caused by my sloppy fingerwork.</p>
+        $if(teaser)$
+            $teaser$
+            <a href="$url$">Read More&hellip;</a>
+        $else$
 
+        $endif$
     </div>
 
-    
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        
         <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
         <div>
-            <strong><a href="http://jatkinson.me/about/">Jeremy Atkinson</a></strong>
-            <span>Aug 24, 2015</span>
+            <strong>
+                $if(author)$ $author$ $else$ Young Gyu $endif$
+            </strong>
+            <span>$date$</span>
         </div>
     </div>
-
 </div>
-     
- 
-    
-        
-<div class="mdl-card mdl-cell mdl-cell--12-col">
+$endfor$
 
-    
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238;">
-        <h3><a href="/post/first/">Obligatory, First</a></h3>
-    </div>
-
-    
-    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        Test. This is my obligatory first post. I just started working with Hugo, an open source, fast, and flexible static site generator. There’s some interesting features packed in, and I’ve only scratched the surface so far, but I like what I see. Its super easy to get set up and writing. I recently started learning web development. In the past couple weeks I’ve gone through various courses provided by codeschool, FreeCodeCamp, codecademy, etc to learn basic HTML, CSS, and Javascript.
-    </div>
-
-    
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        
-        <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
-        <div>
-            <strong><a href="http://jatkinson.me/about/">Jeremy Atkinson</a></strong>
-            <span>Aug 18, 2015</span>
-        </div>
-    </div>
-
-</div>
-     
-
-    
-    
-    
-        <nav class="mdl-cell mdl-cell--12-col">
+    <nav class="mdl-cell mdl-cell--12-col">
         <div class="section-spacer"></div>
         <a href="/post/" class="hugo-nav__button" title="show more">
             More

@@ -1,4 +1,4 @@
-module Site.Context (siteContext, postCtxWithTags, feedContext, postContext) where
+module Site.Context (siteContext, postCtxWithTags, feedContext, postContext, teaserContext) where
 
 import           Hakyll                     hiding (load)
 
@@ -71,6 +71,10 @@ siteContext = constField "site.title" (cfgTitle conf) `mappend`
 postContext :: Context String
 postContext =
   dateField "date" "%Y-%m-%d" `mappend` siteContext
+
+teaserContext :: Context String
+teaserContext =
+  teaserField "teaser" "content" `mappend` postContext
 
 postCtxWithTags :: Tags -> Tags -> Context String
 postCtxWithTags tags categories = tagsField "tags" tags

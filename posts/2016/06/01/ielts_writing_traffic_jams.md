@@ -11,6 +11,7 @@ Do you agree or disagree?
 
 Aggravating traffic congestion is a major concern to many cities. Many people suggest different solutions for the problem. One of the solutions that is commonly debated is that governments should take a policy to construct wider roads which will target to increase the capacities of the roads to contain more cars. However, I firmly object the idea since the manner cannot be the ultimate solution for the problem.
 
+<div></div><!--more-->
 
 To begin with, it is not a very desirable idea to build a wider road since it will hamper the vitality of the city in various ways. More specifically, the policy to build a wider road will not make a city more livable as a city more focused on development for the convenience of the driver will not be a place where many people want to live. For example, there is a newly built city with 10 lanes of road in Brazil because they want to build a city which free from the common traffic jams problem. However, they sooner or later encounter another problem that nobody want to live the city because the city is only considering traffic issue by building a wide road.
 

@@ -104,13 +104,13 @@ main = hakyllWith config $ do
     match "posts/**" $ do
       route (setExtension "html")
       compile $ pandocCompilerWithTOC
-        >>= loadAndApplyTemplate "templates/post.html" (postCtxWithTags tags categories)
         >>= saveSnapshot "content"
+        >>= loadAndApplyTemplate "templates/post.html" (postCtxWithTags tags categories)
         >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags categories)
         >>= relativizeUrls
 
     -- Render the articles
-{-
+    {-
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
@@ -119,7 +119,7 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/social.hamlet" (postContext tagsOfPosts)
             >>= loadAndApplyTemplate "templates/flame.hamlet" (postContext tagsOfPosts)
             >>= relativizeUrls
--}
+    -}
 
     create ["tagCloud.html"] $ do
       route idRoute
@@ -130,7 +130,6 @@ main = hakyllWith config $ do
               field "tagcloud" (const $ renderTagCloud 30 150 tags) `mappend`
               constField "title" "Archives" `mappend`
               siteContext
-
         makeItem ""
           >>= loadAndApplyTemplate "templates/tag_cloud.html" archiveContext
           >>= loadAndApplyTemplate "templates/default.html" archiveContext
@@ -140,11 +139,8 @@ main = hakyllWith config $ do
       route idRoute
       compile $ do
         posts <- fmap (take 5) . recentFirst =<< loadAll "posts/**"
-        let indexContext =
-              listField "posts" postContext (return posts) `mappend`
-              constField "title" "Blog" `mappend`
-              siteContext
-
+        let (headPost, tailPosts) = splitAt 1 posts
+        let indexContext = listField "headPost" teaserContext (return headPost) `mappend` listField "tailPosts" teaserContext (return tailPosts) `mappend` constField "title" "Blog" `mappend` siteContext
         getResourceBody
           >>= applyAsTemplate indexContext
           >>= loadAndApplyTemplate "templates/default.html" indexContext
@@ -171,7 +167,7 @@ main = hakyllWith config $ do
 pandocCompilerWithTOC :: Compiler (Item String)
 pandocCompilerWithTOC = do
       ident <- getUnderlying
-      toc    <- getMetadataField ident "toc"
+      toc   <- getMetadataField ident "toc"
       let writerSettings = case toc of
                                 Just "yes"  -> myWriterOptionsToc
                                 _           -> myWriterOptions

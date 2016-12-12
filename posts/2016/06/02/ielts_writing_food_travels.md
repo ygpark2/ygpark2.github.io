@@ -5,12 +5,12 @@ published: true
 tags: ielts, writing, food, travels
 ---
 
-
 Is this a positive or negative trend?
 
 
 Nowadays, most of food we eat everyday is comming from thousands miles away even though some identical local food is available for purchasing. In this essay, I will dwell on why it is consistent and examine what impact it brought to our lives.
 
+<div></div><!--more-->
 
 First of all, technological advances in food transportation along with cheap oil price have allowed food industry to move greater quantities of food faster and over longer distances than ever before. More specifically, air transportation, high-speed rails and a cold-storage car are the ones which enable food to travel such a long distance. In addition to this, the high demand for food in a such densely populated city is a driving force to precipitate these technological development because locally grown food cannot meet such a high demand. Accordingly, it is inevitable to use those technological advancement to unravel the food shortage problem in such densely populated cities.
 
