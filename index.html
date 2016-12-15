@@ -69,7 +69,7 @@
           
 <header class="mdl-layout__header mdl-layout__header--waterfall">
   <!-- Top row, always visible -->
-  <div class="mdl-layout__header-row">
+  <div class="first-head-row mdl-layout__header-row">
     <!-- Title -->
     <span class="mdl-layout-title">Young Gyu Blog</span>
     <div class="mdl-layout-spacer"></div>
@@ -107,7 +107,7 @@
     </div>
   </div>
   <!-- Bottom row, not visible on scroll -->
-  <div class="mdl-layout__header-row">
+  <div class="second-head-row mdl-layout__header-row">
     <div class="mdl-layout-spacer"></div>
     <!-- Navigation -->
     <nav class="waterfall-header-nav mdl-navigation">
@@ -189,7 +189,7 @@
 <div class="mdl-card mdl-cell mdl-cell--8-col">
 
     <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#263238; padding: 0px 15px 0px 15px;">
-        <h3><a href="./posts/2016/12/12/haskell_functor_applicative_monad.html">Functor, Applicative, and Monad</a></h3>
+        <h3><a href="./posts/2016/12/13/elasticsearch_reference.html">Elasticsearch Reference</a></h3>
     </div>
 
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
@@ -204,12 +204,42 @@
             <strong>
                  Young Gyu 
             </strong>
-            <span>2016-12-12</span>
+            <span>2016-12-13</span>
         </div>
     </div>
 </div>
 
 
+
+<div class="mdl-card mdl-cell mdl-cell--12-col">
+
+    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
+        <h3><a href="./posts/2016/12/12/haskell_functor_applicative_monad.html">Functor, Applicative, and Monad</a></h3>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        
+            <p>https://www.schoolofhaskell.com/school/advanced-haskell/functors-applicative-functors-and-monads</p>
+<p>아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
+    year <span class="ot">&lt;-</span> getLine
+    putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show (<span class="dv">2020</span> <span class="fu">-</span> read year)</code></pre></div>
+
+            <a href="./posts/2016/12/12/haskell_functor_applicative_monad.html">Read More&hellip;</a>
+        
+    </div>
+
+    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+        <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+        <div>
+            <strong>
+                 Young Gyu 
+            </strong>
+            <span>2016-12-12</span>
+        </div>
+    </div>
+</div>
 
 <div class="mdl-card mdl-cell mdl-cell--12-col">
 
@@ -288,29 +318,6 @@
                  Young Gyu 
             </strong>
             <span>2016-05-30</span>
-        </div>
-    </div>
-</div>
-
-<div class="mdl-card mdl-cell mdl-cell--12-col">
-
-    <div class="mdl-card__media mdl-color-text--grey-50" style=" background-color:#666238; padding: 0px 15px 0px 15px;">
-        <h3><a href="./posts/2016/05/30/ielts_writing_unhealthy_diets_exercise.html">Nowadays, people have unhealthy diets and do not do enough exercise</a></h3>
-    </div>
-
-    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-        
-
-        
-    </div>
-
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
-        <div>
-            <strong>
-                 Young Gyu 
-            </strong>
-            <span>2016-05-29</span>
         </div>
     </div>
 </div>
