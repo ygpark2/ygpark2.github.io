@@ -45,14 +45,26 @@ $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
+/// Mixin printing a linear-gradient
+/// as well as a plain color fallback
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {Keyword | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
 body {
   background-size: cover;
   /* font:$bodyfont; */
-  background-color: #3f3f3f;
+  background-color: #2c3e50; // #3f3f3f;
   color: #dcdccc;
 
   a {
-    &:link { 
+    &:link {
       text-decoration: none;
       color: #F0EFD0;
     }
@@ -73,7 +85,8 @@ body {
 
 header.mdl-layout__header {
   color: #AACCFF;
-  background-color: #505050;
+  // background-color: #445f7a; // #505050;
+  @include linear-gradient(#34495e, #445f7a);
 }
 
 span.mdl-layout-title {
@@ -81,7 +94,7 @@ span.mdl-layout-title {
 }
 
 div.left-drawer {
-  background-color: #616161;
+  background-color: #3b6691;
   nav {
     a {
       color: white !important;
@@ -143,7 +156,7 @@ div.tag-cloud {
 .archive {
   background-color: #CAE682;
   // padding: 0px 15px 0px 15px;
-  color: #808080;  
+  color: #808080;
 }
 
 div.archive-name {
@@ -189,6 +202,9 @@ div.page-nav {
   @extend div.archive-row;
   min-height: 30px;
   align-items: center;
+  nav.pagination {
+    margin-top: 4px;
+  }
 }
 
 header#header #navigation a {
@@ -206,7 +222,7 @@ header#header #navigation a {
 }
 
 footer.page-footer {
-  background-color: #505050;
+  background-color: #3a5e82;
   // padding: 0px 15px 0px 15px;
   align-items: right;
 }

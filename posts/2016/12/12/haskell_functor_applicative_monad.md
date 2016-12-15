@@ -5,6 +5,8 @@ published: true
 tags: Haskell, Functor, Applicative, Monad
 ---
 
+https://www.schoolofhaskell.com/school/advanced-haskell/functors-applicative-functors-and-monads
+
 아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.
 
 ```haskell
@@ -13,6 +15,7 @@ main = do
     year <- getLine
     putStrLn $ "In 2020, you will be: " ++ show (2020 - read year)
 ```
+<!--more-->
 
 만약 그 프로그램을 실행 후 유효한 년도를 입력하면, 올바른 답을 구하실 것입니다. 만약 이상한 년도 값을 입력하면 어떤 일이 벌어질까요? 
 

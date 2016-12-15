@@ -69,7 +69,7 @@
           
 <header class="mdl-layout__header mdl-layout__header--waterfall">
   <!-- Top row, always visible -->
-  <div class="mdl-layout__header-row">
+  <div class="first-head-row mdl-layout__header-row">
     <!-- Title -->
     <span class="mdl-layout-title">Young Gyu Blog</span>
     <div class="mdl-layout-spacer"></div>
@@ -107,7 +107,7 @@
     </div>
   </div>
   <!-- Bottom row, not visible on scroll -->
-  <div class="mdl-layout__header-row">
+  <div class="second-head-row mdl-layout__header-row">
     <div class="mdl-layout-spacer"></div>
     <!-- Navigation -->
     <nav class="waterfall-header-nav mdl-navigation">
@@ -160,11 +160,13 @@
         </div>
             
         <div class="post-view-content">
-            <p>아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.</p>
+            <p>https://www.schoolofhaskell.com/school/advanced-haskell/functors-applicative-functors-and-monads</p>
+<p>아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Please enter your birth year&quot;</span>
     year <span class="ot">&lt;-</span> getLine
     putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show (<span class="dv">2020</span> <span class="fu">-</span> read year)</code></pre></div>
+<!--more-->
 <p>만약 그 프로그램을 실행 후 유효한 년도를 입력하면, 올바른 답을 구하실 것입니다. 만약 이상한 년도 값을 입력하면 어떤 일이 벌어질까요?</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">Please</span> enter your birth year
 <span class="ex">hello</span>
