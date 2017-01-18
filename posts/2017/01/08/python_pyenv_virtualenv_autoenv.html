@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>My Hakyll Blog - Posts tagged "python"</title>
+  <title>My Hakyll Blog - Python pyenv, virtualenv, autoenv, venv 사용법 및 비교</title>
   <meta name="description" content="This is a really greate blog">
 
   <link rel="canonical" href="http://ygpark2.github.io">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
 
   <!-- Custom theme css -->
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../../../assets/css/style.css">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 
@@ -111,11 +111,11 @@
     <div class="mdl-layout-spacer"></div>
     <!-- Navigation -->
     <nav class="waterfall-header-nav mdl-navigation">
-      <a class="mdl-navigation__link" href="../">Home</a>
-      <a class="mdl-navigation__link" href="../archive.html">Archive</a>
-      <a class="mdl-navigation__link" href="../tagCloud.html">Tags</a>
-      <a class="mdl-navigation__link" href="../about.html">About</a>
-      <a class="mdl-navigation__link" href="../contact.html">Contact</a>
+      <a class="mdl-navigation__link" href="../../../../">Home</a>
+      <a class="mdl-navigation__link" href="../../../../archive.html">Archive</a>
+      <a class="mdl-navigation__link" href="../../../../tagCloud.html">Tags</a>
+      <a class="mdl-navigation__link" href="../../../../about.html">About</a>
+      <a class="mdl-navigation__link" href="../../../../contact.html">Contact</a>
     </nav>
   </div>
 </header>
@@ -123,11 +123,11 @@
 <div class="left-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">메뉴</span>
   <nav class="mdl-navigation">
-    <a class="mdl-navigation__link" href="../">Home</a>
-    <a class="mdl-navigation__link" href="../archive.html">Archive</a>
-    <a class="mdl-navigation__link" href="../tagCloud.html">Tags</a>
-    <a class="mdl-navigation__link" href="../about.html">About</a>
-    <a class="mdl-navigation__link" href="../contact.html">Contact</a>
+    <a class="mdl-navigation__link" href="../../../../">Home</a>
+    <a class="mdl-navigation__link" href="../../../../archive.html">Archive</a>
+    <a class="mdl-navigation__link" href="../../../../tagCloud.html">Tags</a>
+    <a class="mdl-navigation__link" href="../../../../about.html">About</a>
+    <a class="mdl-navigation__link" href="../../../../contact.html">Contact</a>
   </nav>
 </div>
 
@@ -138,116 +138,58 @@
           <!-- Your content goes here -->
           
 <div class="mdl-grid" style="width: 100%;">
-    
-<div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-    
-    <div class="archive-name mdl-card__media">
-        <h3>Posts tagged "python"</h3>
+    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+        
+        <div class="post-view-title mdl-card__media">
+            <h3>Python pyenv, virtualenv, autoenv, venv 사용법 및 비교</h3>
+        </div>
+          
+        <div class="post-view-header meta">
+            <div class="minilogo" style="background-image: url('/images/avatar-64x64.png');"></div>
+            <div class="info">
+                <a href="../../../../about.html">
+                    <strong>
+                         Young Gyu 
+                    </strong>
+                </a>
+                <span>2017-01-08</span>
+            </div>
+            
+            <div class="section-spacer"></div>
+            
+        </div>
+            
+        <div class="post-view-content">
+            <h1 id="pyenv">pyenv</h1>
+<h1 id="virtualenvwrapper">virtualenvwrapper</h1>
+<h2 id="기본적인-설치법">기본적인 설치법</h2>
+<p>$ pip install virtualenvwrapper</p>
+<p>or:</p>
+<p>$ sudo pip install virtualenvwrapper</p>
+<h2 id="쉘-시작-파일">쉘 시작 파일</h2>
+<p>Add three lines to your shell startup file (.bashrc, .profile, etc.) to set the location where the virtual environments should live, the location of your development project directories, and the location of the script installed with this package:</p>
+<p>다음 라인을 쉘 설정 파일(.bashrc, .profile, etc.)에 추가해 주세요.</p>
+<p>export WORKON_HOME=<span class="math inline">\(HOME/.virtualenvs  export PROJECT_HOME=\)</span>HOME/Devel source /usr/local/bin/virtualenvwrapper.sh</p>
+        </div>
+        
+        <div class="post-view-footer"> 
+             <p class="tags">Tags: <a href="../../../../tags/python.html">python</a>, <a href="../../../../tags/pyenv.html">pyenv</a>, <a href="../../../../tags/virtualenv.html">virtualenv</a>, <a href="../../../../tags/autoenv.html">autoenv</a>, <a href="../../../../tags/venv.html">venv</a></p> 
+             <p class="categories">Category: <a href="../../../../categories/08.html">08</a></p> 
+        </div>  
     </div>
 
+    <nav class="hugo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2017-01-08</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2017/01/08/python_pyenv_virtualenv_autoenv.html">
-                <h5>Python pyenv, virtualenv, autoenv, venv 사용법 및 비교</h5>
-            </a>
-        </div>
-    </div>
+        <a href="../../../../post/shellprocesses/" class="hugo-nav__button">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation" data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="icon ion-android-arrow-back"></i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+            Older
+        </a>
+        <div class="section-spacer"></div>
     
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
+    </nav>
 
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2014-02-18</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2014/02/18/numpy_data_type.html.html">
-                <h5>Numpy Data Type</h5>
-            </a>
-        </div>
-    </div>
-    
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2014-02-13</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2014/02/13/Functional_Programming_in_Python_part2.html.html">
-                <h5>파이썬 함수형 언어 파트 2</h5>
-            </a>
-        </div>
-    </div>
-    
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2014-02-12</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2014/02/12/Functional_Programming_in_Python_part1.html.html">
-                <h5>파이썬 함수형 언어 파트 1</h5>
-            </a>
-        </div>
-    </div>
-    
-    <div class="archive-row mdl-grid" style="width: 100%;">
-        <div class="archive-avatar mdl-cell mdl-cell--1-col" style="background-image: url('/images/avatar-64x64.png');">
-
-        </div>
-        <div class="archive-author mdl-cell mdl-cell--2-col">
-            <a href="../about.html">
-                <strong>
-                 Young Gyu 
-                </strong>
-            </a>
-            <br />
-            <span>2014-02-10</span>
-        </div>
-        <div class="archive-title mdl-cell mdl-cell--9-col">
-            <a href="../posts/2014/02/10/Functional_Programming_in_Python_part3.html.html">
-                <h5>파이썬 함수형 언어 파트 3</h5>
-            </a>
-        </div>
-    </div>
-    
-
-</div>
 </div>
         </div>
         
