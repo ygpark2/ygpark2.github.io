@@ -172,8 +172,7 @@
 <span class="ex">hello</span>
 <span class="ex">main.hs</span>: Prelude.read: no parse</code></pre></div>
 <p>사용자 입력은 문자로 들어오고 그 문자를 Integer로 변환할려고 합니다. 그러나, 모든 문자들이 항상 유효한 Integer값은 아닙니다. read는 partial 함수입니다. 그것은 어떤 상황에서는 에러를 발생시킬수 있다는 것을 의미합니다.</p>
-<p>좀더 견고한 프로그램을 작성하는 방법은 Maybe Integer 값을 반환하는 readMay함수를 쓰는것입니다. 이 함수는<br />
-A more resilient way to write our code is to use the readMay function, which will return a Maybe Integer value. This makes it clear with the types themselves that the parse may succeed or fail. To test this out, try running the following code:</p>
+<p>좀더 견고한 프로그램을 작성하는 방법은 Maybe Integer 값을 반환하는 readMay함수를 쓰는것입니다. 이 함수는 그 파싱이 성공 또는 실패할지도 모르는 형들을 분명히 한다. 이것을 테스트할려면, 다음 코드를 실행해보세요. A more resilient way to write our code is to use the readMay function, which will return a Maybe Integer value. This makes it clear with the types themselves that the parse may succeed or fail. To test this out, try running the following code:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
 
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -183,7 +182,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     print (readMay <span class="st">&quot;hello&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)
     print (readMay <span class="st">&quot;2000&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)
     print (readMay <span class="st">&quot;two-thousand&quot;</span><span class="ot"> ::</span> <span class="dt">Maybe</span> <span class="dt">Integer</span>)</code></pre></div>
-<p>So how can we use this to solve our original problem? We need to now determine if the result of readMay was successful (as Just) or failed (a Nothing). One way to do this is with pattern matching:</p>
+<p>그래서 어떻게 우리는 이 코드를 우리의 원래 문제를 풀기 위해서 사용할 수 있을까요? 우리는 readMay의 결과값 성공(Just) 또는 실패(Nothing)를 결정할 필요가 있습니다. 그 중 한 방법은 패턴 매칭을 사용하는 것입니다.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
 
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -192,7 +191,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">case</span> readMay yearString <span class="kw">of</span>
         <span class="dt">Nothing</span> <span class="ot">-&gt;</span> putStrLn <span class="st">&quot;You provided an invalid year&quot;</span>
         <span class="dt">Just</span> year <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="fu">++</span> show (<span class="dv">2020</span> <span class="fu">-</span> year)</code></pre></div>
-<p>Decoupling code This code is a bit coupled; let’s split it up to have a separate function for displaying the output to the user, and another separate function for calculating the age.</p>
+<p>디커필링 코드 이 코드는 약간 커플된 코드입니다. 이 코드를 사용자에게 출력을 출력하는 함수와 나이를 계산하는 또다른 함수로 나누어 보겠습니다.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
 
 displayAge maybeAge <span class="fu">=</span>
@@ -210,8 +209,8 @@ main <span class="fu">=</span> <span class="kw">do</span>
                 <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Nothing</span>
                 <span class="dt">Just</span> year <span class="ot">-&gt;</span> <span class="dt">Just</span> (yearToAge year)
     displayAge maybeAge</code></pre></div>
-<p>This code does exactly the same thing as our previous version. But the definition of maybeAge in the main function looks pretty repetitive to me. We check if the parse year is Nothing. If it’s Nothing, we return Nothing. If it’s Just, we return Just, after applying the function yearToAge. That seems like a lot of line noise to do something simple. All we want is to conditionally apply yearToAge.</p>
-<p>Functors Fortunately, we have a helper function to do just that. fmap, or functor mapping, will apply some function over the value contained by a functor. Maybe is one example of a functor, another common one is a list. In the case of Maybe, fmap does precisely what we described above. So we can replace our code with:</p>
+<p>This code does exactly the same thing as our previous version. But the definition of maybeAge in the main function looks pretty repetitive to me. We check if the parse year is Nothing. If it’s Nothing, we return Nothing. If it’s Just, we return Just, after applying the function yearToAge. That seems like a lot of line noise to do something simple. All we want is to conditionally apply yearToAge. 이 코드는 이전 버전과 정확히 같은것을 합니다. 그러나, 저에게 메인 함수에 있는 maybeAge 정의는 반복되고 있는것 같습니다. 우리는 파싱된 년도가 Nothing인지 확인합니다. 만약 Nothing이면, Nothing을 반환할것입니다. 만약 Just면, Just를 반환합니다.</p>
+<p>펑터 당행히도, 우리는 그것을 하는 헬퍼 함수를 가지고 있습니다. fmap 또는 펑터 맵핑은 어떤 함수를 펑터가 가지고 있는 값에 적용할것입니다. Maybe는 펑터의 한 예입니다. 또다른 흔한 예는 리스트입니다. Maybe의 경우에도 fmap이 정확히 위에서 기술된대로 작동할것입니다. 그래서 다음과 같이 바꿀 수 있습니다.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Safe</span> (readMay)
 
 displayAge maybeAge <span class="fu">=</span>
