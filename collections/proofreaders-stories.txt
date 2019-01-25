@@ -1,9 +1,0 @@
-Колонка корректора
-istanbul|Стамбул
-paris-2015|Париж
-georgia-2014-1|Грузия: часть 1
-georgia-2014-2|Грузия: часть 2
-eurotrip-2014-verona|Верона
-vilnius|Вильнюс
-eurotrip-barcelona|Барселона
-eurotrip-wroclaw|Вроцлав
