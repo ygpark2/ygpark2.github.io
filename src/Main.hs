@@ -177,8 +177,6 @@ myWriterOptions :: WriterOptions
 myWriterOptions = defaultHakyllWriterOptions {
       writerReferenceLinks = True
     , writerHTMLMathMethod = MathJax ""
-    , writerHtml5 = True
-    , writerHighlight = True
     }
 
 myWriterOptionsToc :: WriterOptions

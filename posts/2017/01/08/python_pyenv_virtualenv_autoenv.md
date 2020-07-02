@@ -18,6 +18,8 @@ or:
 
   $ sudo pip install virtualenvwrapper
 
+<!--more-->
+
 ## 쉘 시작 파일
 
 Add three lines to your shell startup file (.bashrc, .profile, etc.) to set the location where the virtual environments should live, the location of your development project directories, and the location of the script installed with this package:

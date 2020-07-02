@@ -160,33 +160,33 @@
         </div>
             
         <div class="post-view-content">
-            <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">@ <span class="fu">Transactional</span>(rollbackFor = {<span class="bu">RuntimeException</span>.<span class="fu">class</span>})
-<span class="kw">public</span> SomeService {
-  @ Autowired SomeRepository repository1;
-  @ Autowired AnotherRepository repository2;
-  @ Autowired ThirdRepository repository3;
-  ...
-  @ <span class="fu">Transactional</span>(rollbackFor = {<span class="bu">RuntimeException</span>.<span class="fu">class</span>})
-  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">SomeMethod</span>(SomeEntity obj, <span class="bu">String</span> someNewValue) {
-    <span class="kw">try</span> {
-      repository1.<span class="fu">updateMethod</span>();
-      repository2.<span class="fu">updateMethod</span>();
-      obj.<span class="fu">setValue</span>(someNewValue);
-      repository3.<span class="fu">save</span>(obj);
-    } <span class="kw">catch</span> (<span class="bu">Exception</span> ex) {
-      <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">RuntimeException</span>();
-    }
-  }
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> MyService2 {
-  <span class="at">@Transactional</span>(noRollbackFor = <span class="bu">IllegalArgumentException</span>.<span class="fu">class</span>)
-  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">validateAddress</span>(Address address) {
-    <span class="co">// Some validations using dao</span>
-    <span class="kw">if</span> (!isValid) {
-      <span class="kw">throws</span> <span class="kw">new</span> <span class="bu">IllegalArgumentException</span>();
-    }
-  }
-}</code></pre></div>
+            <div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>@ <span class="fu">Transactional</span>(rollbackFor = {<span class="bu">RuntimeException</span>.<span class="fu">class</span>})</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">public</span> SomeService {</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  @ Autowired SomeRepository repository1;</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  @ Autowired AnotherRepository repository2;</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  @ Autowired ThirdRepository repository3;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  ...</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  @ <span class="fu">Transactional</span>(rollbackFor = {<span class="bu">RuntimeException</span>.<span class="fu">class</span>})</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">SomeMethod</span>(SomeEntity obj, <span class="bu">String</span> someNewValue) {</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="kw">try</span> {</span>
+<span id="cb1-10"><a href="#cb1-10"></a>      repository1.<span class="fu">updateMethod</span>();</span>
+<span id="cb1-11"><a href="#cb1-11"></a>      repository2.<span class="fu">updateMethod</span>();</span>
+<span id="cb1-12"><a href="#cb1-12"></a>      obj.<span class="fu">setValue</span>(someNewValue);</span>
+<span id="cb1-13"><a href="#cb1-13"></a>      repository3.<span class="fu">save</span>(obj);</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    } <span class="kw">catch</span> (<span class="bu">Exception</span> ex) {</span>
+<span id="cb1-15"><a href="#cb1-15"></a>      <span class="kw">throw</span> <span class="kw">new</span> <span class="bu">RuntimeException</span>();</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    }</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  }</span>
+<span id="cb1-18"><a href="#cb1-18"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> MyService2 {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">@Transactional</span>(noRollbackFor = <span class="bu">IllegalArgumentException</span>.<span class="fu">class</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">validateAddress</span>(Address address) {</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co">// Some validations using dao</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">if</span> (!isValid) {</span>
+<span id="cb2-6"><a href="#cb2-6"></a>      <span class="kw">throws</span> <span class="kw">new</span> <span class="bu">IllegalArgumentException</span>();</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    }</span>
+<span id="cb2-8"><a href="#cb2-8"></a>  }</span>
+<span id="cb2-9"><a href="#cb2-9"></a>}</span></code></pre></div>
         </div>
         
         <div class="post-view-footer"> 
