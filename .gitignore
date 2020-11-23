@@ -3,6 +3,10 @@
 .stack-work/
 .sass-cache/
 .vscode/
+.idea/
+
+stack.yaml.lock
+ais.cabal
 
 _cache/
 
