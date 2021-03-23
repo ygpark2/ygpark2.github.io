@@ -84,7 +84,6 @@ postCtxWithTags tags categories = tagsField "tags" tags
                       `mappend` categoryField "categories" categories
                       `mappend` postContext
 
-{-
 paginateNumPages :: Paginate -> Int
 paginateNumPages = M.size . paginateMap
 
@@ -130,7 +129,7 @@ paginateContext pag currentPage = mconcat
 
 simplifiedUrl :: String -> String
 simplifiedUrl url = subRegex (mkRegex "/index\\.html$") url "/"
--}
+
 
 feedContext :: Context String
 feedContext =

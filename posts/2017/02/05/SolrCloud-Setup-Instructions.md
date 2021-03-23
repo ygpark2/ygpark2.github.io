@@ -2,6 +2,7 @@
 title: Solr 클라우드 설치
 date: 2017-02-05T03:20:21+09:00
 published: true
+toc: true
 tags: Solr, Cloud, Installation
 ---
 

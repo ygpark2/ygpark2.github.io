@@ -2,6 +2,7 @@
 title: Javascript 함수형 프로그래밍
 date: 2017-02-08T07:42:11+09:00
 published: true
+toc: true
 tags: Functional, Programming, JavaScript
 ---
 
