@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>My Hakyll Blog - Blog</title>
-  <meta name="description" content="This is a really greate blog">
+  <meta name="description" content="This is a really great blog">
 
   <link rel="canonical" href="http://ygpark2.github.io">
   <link rel="alternate" type="application/rss+xml" title="Young Gyu Blog" href="rss.xml" />
@@ -309,10 +309,10 @@
         
             <p>https://www.schoolofhaskell.com/school/advanced-haskell/functors-applicative-functors-and-monads</p>
 <p>아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">putStrLn</span> <span class="st">&quot;Please enter your birth year&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>    year <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="fu">putStrLn</span> <span class="op">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (<span class="dv">2020</span> <span class="op">-</span> <span class="fu">read</span> year)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="fu">putStrLn</span> <span class="st">&quot;Please enter your birth year&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    year <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="fu">putStrLn</span> <span class="op">$</span> <span class="st">&quot;In 2020, you will be: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (<span class="dv">2020</span> <span class="op">-</span> <span class="fu">read</span> year)</span></code></pre></div>
 
             <a href="./posts/2016/12/12/haskell_functor_applicative_monad.html">Read More&hellip;</a>
         
