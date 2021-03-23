@@ -4,12 +4,21 @@
 module Main (main) where
 
 import Control.Monad ((>=>))
-import Data.Monoid ((<>), mappend)
--- import qualified Data.Map as M
+import Control.Applicative ((<|>), Alternative(..))
+-- import Control.Monad (msum, filterM, (<=<), (>=>), liftM, filterM)
+-- import Control.Monad.Fail (MonadFail)
+-- import Data.Maybe (fromMaybe, listToMaybe)
+-- import Data.Monoid ((<>), mappend)
+-- import Data.Functor ((<$>), fmap)
+-- import Data.Char (isSpace, toLower, toUpper)
+-- import Data.List (intercalate, intersperse, foldl', isPrefixOf)
+import Data.Functor.Identity
 import Hakyll
-import Text.Pandoc
 import Hakyll.Web.Sass (sassCompiler)
 import Text.Pandoc.Options
+import qualified Data.Map as M
+import qualified Data.Text as T
+import qualified Text.DocTemplates as DT
 
 import Site.Configuration
 import Site.Context
@@ -182,10 +191,20 @@ myWriterOptions = defaultHakyllWriterOptions {
 myWriterOptionsToc :: WriterOptions
 myWriterOptionsToc = myWriterOptions {
       writerTableOfContents = True
-    , writerTOCDepth = 2
-    , writerTemplate = Just "$if(toc)$<div id=\"toc\"><h2>Table of Contents</h2>$toc$</div>$endif$\n$body$"
+    , writerNumberSections  = True
+    , writerTOCDepth        = 2
+    , writerTemplate        = Just tocTemplate
+    -- , writerTemplate = Just "$if(toc)$<div id=\"toc\"><h2>Table of Contents</h2>$toc$</div>$endif$\n$body$"
     -- , writerStandalone = True
     }
+
+tocTemplate :: DT.Template T.Text
+tocTemplate = either error id . runIdentity . DT.compileTemplate "" $ T.unlines
+  [ "<div class=\"toc\"><div class=\"header\">Table of Contents</div>"
+  , "$toc$"
+  , "</div>"
+  , "$body$"
+  ]
 
 assetsRoute :: Routes
 assetsRoute = customRoute $ (\x -> x :: String) . drop 7 . toFilePath

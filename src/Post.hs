@@ -1,6 +1,7 @@
 -- Post.hs
 -- License: MIT3
 -- Author: Young Gyu Park
+
 {-# LANGUAGE DeriveDataTypeable, RecordWildCards #-}
 
 import System.Console.CmdArgs
@@ -10,6 +11,7 @@ import System.Directory
 import System.FilePath.Posix
 import Control.Monad (when)
 import Data.Time
+
 
 data PostOptions = PostOptions
     { title :: String
@@ -79,22 +81,22 @@ optionHandler opts@PostOptions{..}  = do
 
 exec :: PostOptions -> IO ()
 exec opts@PostOptions{..} = do
-  now <- getCurrentTime
-  currentPath <- getCurrentDirectory -- getExecutablePath
+    now <- getCurrentTime
+    currentPath <- getCurrentDirectory -- getExecutablePath
 
-  -- hakyll date format
-  let today = formatTime defaultTimeLocale "%FT%X+09:00" now
+    -- hakyll date format
+    let today = formatTime defaultTimeLocale "%FT%X+09:00" now
 
-  let datePath = formatTime defaultTimeLocale "/posts/%Y/%m/%d/" now
+    let datePath = formatTime defaultTimeLocale "/posts/%Y/%m/%d/" now
 
-  let newPostDir = currentPath ++ datePath
+    let newPostDir = currentPath ++ datePath
 
-  createDirectoryIfMissing True (newPostDir)
+    createDirectoryIfMissing True (newPostDir)
 
-  let newPostFile = newPostDir ++ file ++ ".md"
+    let newPostFile = newPostDir ++ file ++ ".md"
 
-  writeFile newPostFile $ postTemplate title today
+    writeFile newPostFile $ postTemplate title today
 
-  -- putStrLn $ postTemplate "this is title" today
-  putStrLn $ "Title => " ++ title
-  putStrLn $ "File Path => " ++ newPostFile
+    -- putStrLn $ postTemplate "this is title" today
+    putStrLn $ "Title => " ++ title
+    putStrLn $ "File Path => " ++ newPostFile
