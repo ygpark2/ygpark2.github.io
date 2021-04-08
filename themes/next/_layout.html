@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+<head>
+    $partial("templates/_partials/head/head.html")$
+
+    $partial("templates/_partials/head/head-unique.html")$
+    <title>$title$</title>
+
+    $partial("templates/_scripts/noscript.html")$
+</head>
+
+<body class="use-motion" itemscope itemtype="http://schema.org/WebPage">
+<div class="headband"></div>
+
+<main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner">
+            $partial("templates/_partials/header/index.html")$
+        </div>
+        $partial("templates/_partials/sidebar/site-overview.html")$
+    </header>
+
+    $partial("templates/_partials/widgets.html")$
+
+    <div class="main-inner $mainClassName(page.path)$">
+        $partial("templates/_partials/header/sub-menu.html")$
+
+        title : $page.title$
+        </br>
+        description : $page.description$
+        </br>
+        root : $page.root$
+        </br>
+        path : $page.path$
+        </br>
+        url : $page.url$
+        </br>
+        polish : $polish$
+        </br>
+
+        $if(toc)$
+        $toc$
+        $endif$
+        </br>
+        <hr/>
+
+        $body$
+
+        <!--
+        {%- include '_partials/comments.njk' -%}
+        -->
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        $partial("templates/_partials/footer.html")$
+    </div>
+</footer>
+
+$partial("templates/_scripts/index.html")$
+
+<!--
+{{ partial('_scripts/index.njk', {}, {cache: theme.cache.enable}) }}
+{{ partial('_third-party/index.njk', {}, {cache: theme.cache.enable}) }}
+{{ partial('_third-party/statistics/index.njk', {}, {cache: theme.cache.enable}) }}
+-->
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.2.2/source/js/local-search.min.js"></script>
+
+<!--
+{%- if theme.pjax %}
+<div class="pjax">
+    {%- endif %}
+    {%- include '_third-party/math/index.njk' -%}
+    {%- include '_third-party/quicklink.njk' -%}
+
+    {{- next_inject('bodyEnd') }}
+    {%- if theme.pjax %}
+</div>
+{%- endif %}
+-->
+</body>
+</html>

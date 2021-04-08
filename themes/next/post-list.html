@@ -1,0 +1,30 @@
+
+<div class="collection-title">
+    <span class="collection-header animated fadeInLeft">OK! 46 posts in total. Keep on posting.</span>
+</div>
+
+$for(years)$
+<div class="collection-year">
+    <span class="collection-header animated fadeInLeft">$year$</span>
+</div>
+
+$for(posts)$
+<article itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header animated fadeInDown">
+        <div class="post-meta-container">
+            <time itemprop="dateCreated" datetime="$date$" content="$post.date$">
+                $post.date$
+            </time>
+        </div>
+
+        <div class="post-title">
+            <a class="post-title-link" href="$post.url$" itemprop="url" data-pjax-state="">
+                <span itemprop="name">$post.title$</span>
+            </a>
+        </div>
+
+    </header>
+</article>
+$endfor$
+
+$endfor$

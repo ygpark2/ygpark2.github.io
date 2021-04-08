@@ -1,0 +1,41 @@
+<nav class="pagination animated fadeIn">
+
+    $if(pages.previous.url)$
+    <a class="extend prev" rel="prev" href="$pages.previous.url$" data-pjax-state=""><i class="fa fa-angle-left" aria-label="Previous page"></i></a>
+    $endif$
+    $if(pages.first.url)$
+    <a class="page-number" href="$pages.first.url$" data-pjax-state="">$pages.first.number$</a>
+    $endif$
+    <span class="space">…</span>
+    <span class="page-number current">$pages.current.number$</span>
+    <span class="space">…</span>
+    $if(pages.last.url)$
+    <a class="page-number" href="$pages.last.url$" data-pjax-state="">$pages.last.number$</a>
+    $endif$
+    $if(pages.next.url)$
+    <a class="extend next" rel="next" href="$pages.next.url$" data-pjax-state=""><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    $endif$
+
+</nav>
+
+<!--
+<nav class="pagination animated fadeIn">
+
+    $if(previousPageUrl)$
+    <a class="extend prev" rel="prev" href="$previousPageUrl$" data-pjax-state=""><i class="fa fa-angle-left" aria-label="Previous page"></i></a>
+    $endif$
+    $if(firstPageUrl)$
+    <a class="page-number" href="$firstPageUrl$" data-pjax-state="">1</a>
+    $endif$
+    <span class="space">…</span>
+    <span class="page-number current">$currentPageNum$</span>
+    <span class="space">…</span>
+    $if(lastPageUrl)$
+    <a class="page-number" href="$lastPageUrl$" data-pjax-state="">$numPages$</a>
+    $endif$
+    $if(nextPageUrl)$
+    <a class="extend next" rel="next" href="$nextPageUrl$" data-pjax-state=""><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    $endif$
+
+</nav>
+-->

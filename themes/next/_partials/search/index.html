@@ -1,0 +1,10 @@
+
+<div class="search-pop-overlay">
+    <div class="popup search-popup">
+        $if(site.search.algolia)$
+            $partial("templates/_partials/search/algolia-search.html")$
+        $else$
+            $partial("templates/_partials/search/local-search.html")$
+        $endif$
+    </div>
+</div>

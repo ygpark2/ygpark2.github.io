@@ -9,4 +9,5 @@ stack.yaml.lock
 ais.cabal
 
 _cache/
+_site
 

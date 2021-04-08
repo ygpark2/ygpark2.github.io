@@ -2,10 +2,30 @@
 title: Functor, Applicative, and Monad
 date: 2016-12-12T12:55:56+09:00
 published: true
+withtoc: true
 tags: Haskell, Functor, Applicative, Monad
 ---
 
 https://www.schoolofhaskell.com/school/advanced-haskell/functors-applicative-functors-and-monads
+
+# sdklfji
+sdlkfjlksdf
+
+## sdklfjwioef
+sdfjiowejifowef
+
+### kjowie
+sdfkjwioefj
+
+## jiwoefjiowef
+
+### wjoifjwioef
+wioefjiowefjiowef
+
+# iow8938
+
+## wioefjoi
+sdklfjsoidfjowef
 
 아주 간단한 문제로 시작해봅시다. 우리는 사용자로부터 생일을 입력받기를 원합니다. 그리고, 2020년에 사용자의 나이를 알려주는 프로그램을 작성할 것입니다. read 함수를 사용한 아주 간단한 프로그램입니다.
 
