@@ -18,7 +18,7 @@ config = defaultConfiguration {
     deploySite           = system . deployCommand,
     inMemoryCache        = True,
     previewHost          = "127.0.0.1",
-    previewPort          = 8000
+    previewPort          = 8088
 } where
     ignoreFile' path
         | "."    `isPrefixOf` fileName = True
