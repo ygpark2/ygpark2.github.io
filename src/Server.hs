@@ -36,6 +36,9 @@ notFoundHandler = do
 httpsRedirect :: Snap ()
 httpsRedirect = do
     req <- getRequest
-    if rqIsSecure req
-        then pass
-        else redirect ("https://" `B.append` rqServerName req `B.append` rqURI req)
+    case getHeader "Host" req of
+        Nothing -> pass
+        Just host ->
+            if rqIsSecure req
+                then pass
+                else redirect ("https://" `B.append` host `B.append` rqURI req)

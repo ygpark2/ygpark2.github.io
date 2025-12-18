@@ -8,10 +8,12 @@ module XmlHtmlWriter
 
 import Blaze.ByteString.Builder (toByteString)
 import Control.Monad.State
+import Control.Monad (foldM)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import Text.XmlHtml hiding (render)
 import Text.Pandoc
+import Text.Pandoc (runPure)
 
 data XmlHtmlWriterOptions = XmlHtmlWriterOptions 
   { idPrefix :: T.Text
@@ -42,7 +44,7 @@ writeXmlHtml :: XmlHtmlWriterOptions -> Pandoc -> [Node]
 writeXmlHtml options pandoc 
   | debugOutput options = 
     [ Element "pre" [] 
-      [ TextNode $ T.pack $ writeNative def pandoc]
+      [ either (TextNode . T.pack . show) TextNode (runPure $ writeNative def pandoc) ]
     ]
   | otherwise = evalState (writeXmlHtml' pandoc) emptyState { writerOptions = updateOptions }
   where
@@ -106,13 +108,13 @@ writeBlock (Para inline) = do
 writeBlock (CodeBlock (identifier, classes, others) code) = return 
   [ Element "pre" mapAttrs 
     [ Element "code" mapAttrs 
-      [ TextNode $ T.pack code ]
+      [ TextNode code ]
     ]
   ]
   where 
     mapAttrs = writeAttr (identifier, "sourceCode" : classes, others) 
 writeBlock (RawBlock "html" str) = do  
-  modify (\s -> s { rawData = rawData s `T.append` T.pack str })
+  modify (\s -> s { rawData = rawData s `T.append` str })
   return []
 writeBlock (RawBlock _ _) = return []
 writeBlock (BlockQuote blocks) = do
@@ -170,7 +172,7 @@ writeBlock (Table {}) = return [TextNode "Table not implemented"]
 writeBlock (Div attr blocks) = do
   items <- concatBlocks blocks
   return [Element "div" (writeAttr attr) items]
-writeBlock Null = return []
+writeBlock _ = return []
 
 processListItems :: [Node] -> [Block] -> WriterState [Node]
 processListItems nodes blocks = do
@@ -179,11 +181,18 @@ processListItems nodes blocks = do
 
 writeAttr :: Attr -> [(T.Text, T.Text)]
 writeAttr (identifier, classes, others) = 
-  [("id", T.pack identifier) | identifier /= ""] ++
+  [("id", identifier) | identifier /= ""] ++
   [("class", classesString) | classesString /= ""] ++
-  map (\(k, v) -> (T.pack k, T.pack v)) others
+  map (\(k, v) -> (k, v)) others
   where 
-    classesString = T.intercalate " " $ map T.pack classes
+    classesString = T.intercalate " " classes
+
+mergeAttr :: Attr -> Attr -> Attr
+mergeAttr (id1, cls1, others1) (id2, cls2, others2) =
+  ( if id1 /= "" then id1 else id2
+  , cls1 ++ cls2
+  , others1 ++ others2
+  )
 
 concatInlines :: [Inline] -> WriterState [Node]
 concatInlines inlines = do
@@ -207,7 +216,7 @@ concatInlines' nodes inline = do
       return nodes
 
 writeInline :: Inline -> WriterState [Node]
-writeInline (Str string) = return [TextNode $ T.pack string]
+writeInline (Str string) = return [TextNode string]
 writeInline (Emph inline) = do
   inlines <- concatInlines inline
   return [Element "em" [] inlines]
@@ -235,40 +244,41 @@ writeInline (Quoted DoubleQuote inline) = do
 writeInline (Cite _ _) = return [TextNode "Cite not implemented"]
 writeInline (Code attr code) = return 
   [ Element "code" (writeAttr attr) 
-    [ TextNode $ T.pack code ]
+    [ TextNode code ]
   ]
 writeInline Space = return [TextNode " "]
 writeInline LineBreak = return [Element "br" [] []]
 writeInline (Math InlineMath str) = return
   [ Element "span" [("class", "math")]
-    [ TextNode $ "\\(" `T.append` T.pack str `T.append` "\\)" ]
+    [ TextNode $ "\\(" `T.append` str `T.append` "\\)" ]
   ]
 writeInline (Math DisplayMath str) = return
   [ Element "span" [("class", "math")]
-    [ TextNode $ "\\[" `T.append` T.pack str `T.append` "\\]" ]
+    [ TextNode $ "\\[" `T.append` str `T.append` "\\]" ]
   ]
 writeInline (RawInline "html" str) = do
-  modify (\s -> s {rawInline = rawInline s `T.append` T.pack str})
+  modify (\s -> s {rawInline = rawInline s `T.append` str})
   return []
 writeInline (RawInline _ _) = return []
-writeInline (Link inline target) = do
+writeInline (Link attr inline target) = do
   inlines <- concatInlines inline
   writerState <- get
-  return [
-    Element "a" 
-      [("href", linkToAbsolute (renderForRSS (writerOptions writerState)) (T.pack $ fst target) (siteDomain (writerOptions writerState))),
-        ("title", T.pack $ snd target)] inlines]
-writeInline (Image inline target) = do
+  let href = linkToAbsolute (renderForRSS (writerOptions writerState)) (fst target) (siteDomain (writerOptions writerState))
+      title = snd target
+      linkAttr = writeAttr attr ++ [("href", href)] ++ [("title", title) | title /= "" ] ++ [("rel", "noopener noreferrer")]
+  return [Element "a" linkAttr inlines]
+writeInline (Image attr inline target) = do
   inlines <- concatInlines inline
   writerState <- get
-  return $ if "http://www.youtube.com/watch?v=" `T.isPrefixOf` T.pack (fst target) ||
-        "https://www.youtube.com/watch?v=" `T.isPrefixOf` T.pack (fst target)
+  let href = fst target
+  return $ if "http://www.youtube.com/watch?v=" `T.isPrefixOf` href ||
+        "https://www.youtube.com/watch?v=" `T.isPrefixOf` href
     then
       [ Element "div" [("class", "figure")]
         ( Element "div" [("class", "embed-responsive embed-responsive-16by9")]
           [ Element "iframe"
             [ ("src", "https://www.youtube.com/embed/" `T.append`
-                videoId (T.pack $ fst target) `T.append` "?wmode=transparent")
+                videoId href `T.append` "?wmode=transparent")
             , ("allowfullscreen", "allowfullscreen")
             , ("class", "img-polaroid embed-responsive-item")
             ] []
@@ -277,14 +287,16 @@ writeInline (Image inline target) = do
         )
       ]
     else
-      [ Element "div" [("id", extractId $ T.pack $ fst target), ("class", "figure")]
+      [ Element "div" [("id", extractId href), ("class", "figure")]
         [ Element "div" [("class", "figure-inner")]
           ( Element "img"
-            [ ("src", linkToAbsolute (renderForRSS (writerOptions writerState)) (T.pack $ fst target) (siteDomain (writerOptions writerState)))
-            , ("title", T.pack $ fixImageTitle $ snd target)
-            , ("alt", T.pack $ fixImageTitle $ snd target)
-            , ("class", "img-polaroid")
-            ] []
+            ( writeAttr attr ++
+              [ ("src", linkToAbsolute (renderForRSS (writerOptions writerState)) href (siteDomain (writerOptions writerState)))
+              , ("title", T.pack $ fixImageTitle $ T.unpack (snd target))
+              , ("alt", T.pack $ fixImageTitle $ T.unpack (snd target))
+              , ("class", "img-polaroid")
+              ])
+            []
           : [ Element "p" [("class", "figure-description")] inlines | inline /= []])
         ]
       ]
@@ -311,6 +323,7 @@ writeInline (Note block) = do
 writeInline (Span attr inline) = do
   inlines <- concatInlines inline
   return [ Element "span" (writeAttr attr) inlines ]
+writeInline _ = return []
 
 
 concatRawInlines :: [Inline] -> WriterState T.Text
@@ -332,7 +345,7 @@ writeRawAttr attr =
   T.intercalate " " $ map (\(k, v) -> k `T.append` "=\"" `T.append` v `T.append` "\"") $ writeAttr attr
 
 writeRawInline :: Inline -> WriterState T.Text
-writeRawInline (Str string) = return $ T.pack string
+writeRawInline (Str string) = return string
 writeRawInline (Emph inline) = do
   inlines <- concatRawInlines inline
   return ("<em>" `T.append` inlines `T.append` "</em>")
@@ -359,28 +372,30 @@ writeRawInline (Quoted DoubleQuote inline) = do
   return ("«" `T.append` inlines `T.append` "»")
 writeRawInline (Cite _ _) = return "Cite not implemented"
 writeRawInline (Code attr code) = 
-  return ("<code " `T.append` writeRawAttr attr `T.append` ">" `T.append` T.pack code `T.append` "</code>" )
+  return ("<code " `T.append` writeRawAttr attr `T.append` ">" `T.append` code `T.append` "</code>" )
 writeRawInline Space = return " "
 writeRawInline LineBreak = return "<br />"
 writeRawInline (Math _ _) = return "Math not implemented"
-writeRawInline (RawInline "html" str) = return $ T.pack str
+writeRawInline (RawInline "html" str) = return str
 writeRawInline (RawInline _ _) = return ""
-writeRawInline (Link inline target) = do
+writeRawInline (Link attr inline target) = do
   inlines <- concatRawInlines inline
-  return ("<a " `T.append` writeRawAttr ("", [], [("href", fst target), ("title", snd target)]) `T.append` ">"
+  let merged = mergeAttr attr ("", [], [("href", fst target), ("title", snd target), ("rel", "noopener noreferrer")])
+  return ("<a " `T.append` writeRawAttr merged `T.append` ">"
     `T.append` inlines `T.append` "</a>" )
   --writeInline (Image _ _) = [TextNode "Image not implemented"]
-writeRawInline (Image inline target) = do
+writeRawInline (Image attr inline target) = do
   inlines <- concatRawInlines inline
   return ("<div class=\"\">" `T.append`
     (if inline /= [] then "<p class=\"figure-description\">" `T.append` inlines `T.append` "</p>" else "")
     `T.append` "<img " `T.append`
-    writeRawAttr ("", [], [ ("src", fst target)
-        , ("title", fixImageTitle $ snd target)
-        , ("alt", fixImageTitle $ snd target)
+    writeRawAttr (mergeAttr attr ("", [], [ ("src", fst target)
+        , ("title", snd target)
+        , ("alt", snd target)
         , ("class", "img-polaroid")
-        ]) `T.append` " />"
+        ])) `T.append` " />"
     )
+writeRawInline _ = return ""
 writeRawInline (Note block) = do
   blocks <- concatBlocks block
   writerState <- get

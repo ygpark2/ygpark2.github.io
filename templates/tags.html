@@ -5,15 +5,6 @@ $partial("templates/parts/_head.html")$
 $partial("templates/parts/_topbar.html")$
 
 <div class="container text-center">
-    <div class="pagination pagination-inverse">
-        <ul>
-            $for(years)$
-            <li><a href="$href$">$year$</a></li>
-            $endfor$
-            <li class="active"><a href="/tags/">태그</a></li>
-        </ul>
-    </div>
-
     <div class="panel-group">
         <div class="panel panel-default post-container">
             <div class="panel-body post-body">

@@ -4,8 +4,17 @@ $partial("templates/parts/_head.html")$
 <body>
 $partial("templates/parts/_topbar.html")$
 
+<style>
+  /* Archive-only sticky navs */
+  nav.light-blue { position: sticky; top: 0; z-index: 50; }
+  .years-nav { position: sticky; top: 56px; z-index: 40; background: #fff; margin: 0; padding: 6px 0; }
+  .years-nav ul { margin: 0; }
+  .months-nav { position: sticky; top: 100px; z-index: 30; background: #fff; padding: 6px 0 10px; margin: 0; display:flex;flex-wrap:wrap;gap:8px; }
+  /* prevent month headings from being hidden under sticky bars */
+  h1[id^="month-"] { scroll-margin-top: 140px; }
+</style>
 <div class="container">
-    <div class="pagination pagination-inverse text-center">
+    <div class="pagination pagination-inverse text-center years-nav">
         <ul>
             $for(years)$
                 $if(active)$
@@ -14,7 +23,6 @@ $partial("templates/parts/_topbar.html")$
                     <li><a href="$href$">$year$</a></li>
                 $endif$
             $endfor$
-            <li><a href="/tags/">태그</a></li>
         </ul>
     </div>
 
@@ -22,8 +30,14 @@ $partial("templates/parts/_topbar.html")$
 
         <div class="panel panel-default post-container">
             <div class="panel-body post-body">
+                <ul class="nav nav-pills months-nav">
                 $for(months)$
-                <h1>$month$</h1>
+                    <li><a href="#month-$month$" style="padding:6px 10px;">$month$</a></li>
+                $endfor$
+                </ul>
+
+                $for(months)$
+                <h1 id="month-$month$">$month$</h1>
 
                 $posts$
                 $endfor$

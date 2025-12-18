@@ -2,14 +2,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE TupleSections     #-}
+{-# LANGUAGE RecordWildCards   #-}
 import           Blaze.ByteString.Builder (toByteString)
 import           Control.Applicative ((<$>))
 import           Control.Exception
-import           Control.Monad (forM_, filterM, liftM, msum, foldM)
+import           Control.Monad (forM_, filterM, liftM, msum, foldM, when)
 import           Data.Char
 import           Data.Function (on)
-import           Data.List (sortBy, intercalate, isPrefixOf, find, groupBy, dropWhileEnd)
+import           Data.List (sortBy, intercalate, isPrefixOf, find, groupBy, dropWhileEnd, nub)
 import qualified Data.Map as M
+import qualified Data.Aeson.KeyMap as KM
+import           Data.Aeson (Value(..))
 import           Data.Maybe
 import           Data.Monoid (mempty, mappend, mconcat)
 import           Data.Ord (comparing)
@@ -17,16 +20,18 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import           Data.Time.Clock (UTCTime, getCurrentTime)
 import           Data.Time.Format
+import           Text.Pandoc.Extensions (Extension(Ext_smart), enableExtension)
+import           Numeric (showHex)
 import           Hakyll hiding (chronological, dateFieldWith, getItemUTC, getTags, paginateContext,
                     pandocCompiler, recentFirst, teaserField)
 import           System.Directory
-import           System.FilePath (takeFileName)
+import           System.FilePath (takeFileName, takeDirectory, takeBaseName, splitDirectories)
 import           System.IO.Error
+import           System.IO (hPutStrLn, stderr)
 import           System.Process
 import           Text.HTML.TagSoup (Tag(..))
 import qualified Text.HTML.TagSoup as TS
-import           Text.Pandoc
-import           Text.Regex (mkRegex, subRegex)
+import           Text.Pandoc hiding (getCurrentTime)
 import           Text.XmlHtml
 import           XmlHtmlWriter
 
@@ -41,6 +46,7 @@ main = hakyll $ do
     commentsRules
     collectionRules
     postsRules
+    postsJsonRules
     tagsPagesRules
     archiveRules
     indexPagesRules
@@ -201,8 +207,8 @@ feedPostCtx =
     field "url" (return . identifierToUrl . toFilePath . itemIdentifier) `mappend`
     field "description" (return . escapeHtml . itemBody) `mappend`
     field "title" (\i -> do
-      metadata <- getMetadata $ itemIdentifier i
-      return $ escapeHtml $ maybe "" unwrap $ M.lookup "title" metadata) `mappend`
+      title <- getMetadataField (itemIdentifier i) "title"
+      return $ escapeHtml $ maybe "" unwrap title) `mappend`
     defaultContext
 
 feedRules :: Rules ()
@@ -211,9 +217,10 @@ feedRules =
         route idRoute
         compile $ do
             ids <- getMatches "posts/**"
-            filteredIds <- filterM isPublished ids
+            let baseIds = nub $ map (setVersion Nothing) ids
+            filteredIds <- filterM isPublished baseIds
             posts <- fmap (take 10) . recentFirst =<<
-                loadAllSnapshots (fromList filteredIds) "rss"
+                mapM (\i -> loadSnapshot i "rss") filteredIds
             time <- unsafeCompiler getCurrentTime
             lastItemTime <- getItemUTC defaultTimeLocale $ itemIdentifier $ head posts
             let postsCtx =
@@ -408,14 +415,9 @@ scriptsCompilerRules = do
     highlightjs <- makePatternDependency "assets/js/highlight.js/src/**"
     rulesExtraDependencies [highlightjs] $ create ["assets/js/highlight.pack.js"] $
         compile $ do
-            -- TODO logging
-            js <- unsafeCompiler $ do
-                (_, _, _, h) <- createProcess $ (proc "node" ("tools/build.js" : highlightLanguages)) {
-                        cwd = Just "assets/js/highlight.js"
-                    }
-                _ <- waitForProcess h
-                readFile "assets/js/highlight.js/build/highlight.pack.js"
-            makeItem js
+            -- Read directly to avoid snapshot type conflicts
+            body <- unsafeCompiler $ readFile "assets/js/highlight.js/src/highlight.js"
+            makeItem (body :: String)
 
     -- Building additional js
     -- concatResources "dart/s.js" ["js/highlight.pack.js"]
@@ -487,6 +489,124 @@ postsRules = do
 imagesMap :: Tag String -> Maybe String
 imagesMap (TagOpen "img" attrs) = snd <$> find (\attr -> fst attr == "src") attrs
 imagesMap _ = Nothing
+
+--------------------------------------------------------------------------------
+-- Posts JSON (meta + html)
+--------------------------------------------------------------------------------
+
+postsJsonRules :: Rules ()
+postsJsonRules = do
+    match "posts/**" $ version "json" $ do
+        route jsonRoute
+        compile $ do
+            identifier <- getUnderlying
+            let originalId = setVersion Nothing identifier
+            meta <- buildPostJson originalId
+            makeItem $ renderPostJson meta
+
+    d <- makePatternDependency "posts/**"
+    rulesExtraDependencies [d] $ create ["assets/data/posts-index.json"] $ do
+        route idRoute
+        compile $ do
+            ids <- getMatches "posts/**"
+            filteredIds <- filterM isPublished ids
+            metas <- mapM buildPostJson filteredIds
+            time <- unsafeCompiler getCurrentTime
+            let payload = renderPostsIndexJson time metas
+                payloadSize = length payload
+                fiveMb = 5 * 1024 * 1024
+            unsafeCompiler $ do
+                createDirectoryIfMissing True "log"
+                writeFile "log/posts-json-metrics.txt" $
+                    "posts-index.json size(bytes): " ++ show payloadSize
+                    ++ "\nposts count: " ++ show (length metas)
+                when (payloadSize > fiveMb) $
+                    hPutStrLn stderr "Warning: posts-index.json exceeds 5MB budget"
+            makeItem payload
+
+data PostJson = PostJson
+    { postJsonTitle       :: String
+    , postJsonUrl         :: String
+    , postJsonDate        :: String
+    , postJsonTags        :: [String]
+    , postJsonDescription :: String
+    , postJsonExcerpt     :: String
+    , postJsonHtml        :: String
+    , postJsonPlain       :: String
+    }
+
+buildPostJson :: Identifier -> Compiler PostJson
+buildPostJson identifier = do
+    title <- getMetadataField identifier "title"
+    description <- getMetadataField identifier "description"
+    tags <- getTags identifier
+    time <- getItemUTC defaultTimeLocale identifier
+    raw <- getResourceBody
+    doc <- either (fail . show) return $
+        runPure $ readMarkdown readerOptions (T.pack $ itemBody raw)
+    let htmlText = T.decodeUtf8 $ toByteString $ renderHtmlFragment UTF8 $ writeXmlHtml defaultXmlHtmlWriterOptions
+            { idPrefix = ""
+            , renderForRSS = False
+            , siteDomain = mainSiteDomain
+            , debugOutput = False
+            } doc
+        html = T.unpack htmlText
+        title' = maybe "" unwrap title
+        url = normalizeUrlPath $ identifierToUrl (toFilePath identifier)
+        description' = maybe (cutDescription $ transformDescription $ escapeHtml $ TS.innerText $ TS.parseTags html) unwrap description
+        plain = normalizeSpaces $ TS.innerText $ TS.parseTags html
+        excerpt = truncateWithEllipsis 240 plain
+        isoDate = formatTime defaultTimeLocale "%Y-%m-%dT%H:%M:%SZ" time
+    return PostJson
+        { postJsonTitle = title'
+        , postJsonUrl = url
+        , postJsonDate = isoDate
+        , postJsonTags = tags
+        , postJsonDescription = description'
+        , postJsonExcerpt = excerpt
+        , postJsonHtml = html
+        , postJsonPlain = plain
+        }
+
+renderPostJson :: PostJson -> String
+renderPostJson PostJson{..} = "{" ++ intercalate "," fields ++ "}"
+    where
+        fields =
+            [ kv "title" (renderString postJsonTitle)
+            , kv "url" (renderString postJsonUrl)
+            , kv "date" (renderString postJsonDate)
+            , kv "tags" (renderArray postJsonTags)
+            , kv "description" (renderString postJsonDescription)
+            , kv "excerpt" (renderString postJsonExcerpt)
+            , kv "html" (renderString postJsonHtml)
+            , kv "plain" (renderString postJsonPlain)
+            ]
+        kv k v = renderString k ++ ":" ++ v
+        renderArray xs = "[" ++ intercalate "," (map renderString xs) ++ "]"
+        renderString s = "\"" ++ escapeJson s ++ "\""
+
+renderPostsIndexJson :: UTCTime -> [PostJson] -> String
+renderPostsIndexJson time metas =
+    "{"
+    ++ "\"generatedAt\":\"" ++ formatTime defaultTimeLocale "%Y-%m-%dT%H:%M:%SZ" time ++ "\","
+    ++ "\"total\":" ++ show (length metas) ++ ","
+    ++ "\"posts\":[" ++ intercalate "," (map renderPostIndex metas) ++ "]"
+    ++ "}"
+    where
+        renderPostIndex PostJson{..} =
+            "{" ++ intercalate ","
+                [ kv "title" (renderString postJsonTitle)
+                , kv "url" (renderString postJsonUrl)
+                , kv "date" (renderString postJsonDate)
+                , kv "tags" (renderArray postJsonTags)
+                , kv "description" (renderString postJsonDescription)
+                , kv "excerpt" (renderString postJsonExcerpt)
+                ]
+            ++ "}"
+        kv k v = renderString k ++ ":" ++ v
+        renderArray xs = "[" ++ intercalate "," (map renderString xs) ++ "]"
+        renderString s = "\"" ++ escapeJson s ++ "\""
+
 
 --------------------------------------------------------------------------------
 -- Comments
@@ -623,8 +743,10 @@ tagsPagesRules = do
         compile $ do
             t <- renderTags
                 (\tag _ count minCount maxCount ->
-                    "<a href=\"/tag/" ++ tag ++ "/\" title=\"" ++ countText count "пост" "поста" "постов" ++
-                    "\" class=\"weight-" ++ show (getWeight minCount maxCount count) ++ "\">" ++ tag ++ "</a>")
+                    let weight = getWeight minCount maxCount count
+                        fontPx = 12 + (weight * 3) -- linear scale: 12px..27px
+                    in "<a href=\"/tag/" ++ tag ++ "/\" title=\"" ++ countText count "пост" "поста" "постов" ++
+                       "\" class=\"weight-" ++ show weight ++ "\" style=\"font-size:" ++ show fontPx ++ "px\">" ++ tag ++ "</a>")
                 unwords tags
             let ctx =
                     listField "years" yearCtx (mapM (makeItem . fst) ym) `mappend`
@@ -670,10 +792,11 @@ tagsPagesRules = do
                 makeItem ""
                     >>= loadAndApplyTemplate listTemplateName postsCtx
     where
-        filterFn :: (a, Metadata) -> Bool
-        filterFn (_, metadata)
-            | M.lookup "published" metadata == Just "false" = False
-            | otherwise = True
+        filterFn :: (Identifier, Metadata) -> Bool
+        filterFn (_, metadata) =
+            case KM.lookup "published" metadata of
+                Just (String "false") -> False
+                _ -> True
         yearsMap i = do
             utc <- getItemUTC defaultTimeLocale i
             return (formatTime defaultTimeLocale "%Y" utc, [i])
@@ -683,8 +806,8 @@ tagsPagesRules = do
 
 getTags :: MonadMetadata m => Identifier -> m [String]
 getTags identifier = do
-    metadata <- getMetadata identifier
-    return $ maybe [] (map trim . splitAll "," . unwrap) $ M.lookup "tags" metadata
+    tags <- getMetadataField identifier "tags"
+    return $ maybe [] (map trim . splitAll "," . unwrap) tags
 
 --------------------------------------------------------------------------------
 -- Static pages
@@ -692,6 +815,16 @@ getTags identifier = do
 
 staticPagesRules :: Rules ()
 staticPagesRules = do
+    match "pages/search/index.html" $ do
+        route idRoute
+        compile $
+            getResourceBody
+                >>= loadAndApplyTemplate defaultTemplateName (pageCtx (defaultMetadata
+                    { metaTitle = Just "검색 · 태그 · 정렬 (JSON 기반)"
+                    , metaDescription = "posts-index.json을 이용한 빠른 검색/정렬/태그 필터"
+                    , metaUrl = "/search/"
+                    }))
+
     match "pages/route-planner/index.html" $ do
         route idRoute
         compile $
@@ -807,8 +940,8 @@ postCtx =
     field "url" (return . identifierToUrl . toFilePath . itemIdentifier) `mappend`
     field "disqus" (return . identifierToDisqus . toFilePath . itemIdentifier) `mappend`
     field "title" (\i -> do
-      metadata <- getMetadata $ itemIdentifier i
-      return $ escapeHtml $ maybe "" unwrap $ M.lookup "title" metadata) `mappend`
+      title <- getMetadataField (itemIdentifier i) "title"
+      return $ escapeHtml $ maybe "" unwrap title) `mappend`
     tagsContext `mappend`
     defaultContext
 
@@ -915,19 +1048,20 @@ paginateContext pag currentPage = mconcat
         Nothing -> fail $ "No URL for page: " ++ show n
 
 
-getItemUTC :: MonadMetadata m
+getItemUTC :: (MonadMetadata m, MonadFail m)
            => TimeLocale        -- ^ Output time locale
            -> Identifier        -- ^ Input page
            -> m UTCTime         -- ^ Parsed UTCTime
 getItemUTC locale id' = do
-    metadata <- getMetadata id'
-    let tryField k fmt = fmap unwrap (M.lookup k metadata) >>= parseTime' fmt
-        fn             = takeFileName $ toFilePath id'
-
-    maybe empty' return $ msum $
-        [tryField "published" fmt | fmt <- formats] ++
-        [tryField "date"      fmt | fmt <- formats] ++
-        [parseTime' "%Y-%m-%d" $ intercalate "-" $ take 3 $ splitAll "-" fn]
+    let parseField key fmt = do
+            mv <- getMetadataField id' key
+            return (mv >>= parseTime' fmt . unwrap)
+        fn = takeFileName $ toFilePath id'
+    parsed <- sequence $
+        [ parseField "published" fmt | fmt <- formats ] ++
+        [ parseField "date" fmt | fmt <- formats ] ++
+        [ return $ parseTime' "%Y-%m-%d" $ intercalate "-" $ take 3 $ splitAll "-" fn ]
+    maybe empty' return $ msum parsed
   where
     empty'     = fail $ "Hakyll.Web.Template.Context.getItemUTC: " ++
         "could not parse time for " ++ show id'
@@ -935,7 +1069,10 @@ getItemUTC locale id' = do
     formats    =
         [ "%a, %d %b %Y %H:%M:%S %Z"
         , "%Y-%m-%dT%H:%M:%S%Z"
+        , "%Y-%m-%dT%H:%M:%S%Ez"
         , "%Y-%m-%d %H:%M:%S%Z"
+        , "%Y-%m-%d %H:%M:%S%Ez"
+        , "%Y-%m-%d %H:%M:%S"
         , "%Y-%m-%dT%H:%M%Z"
         , "%Y-%m-%d %H:%M%Z"
         , "%Y-%m-%d"
@@ -957,22 +1094,20 @@ dateFieldWith locale key format = field key $ \i -> do
 pandocCompiler :: Bool -> Compiler (Item String)
 pandocCompiler rss = do
     post <- getResourceBody
+    let parsed = runPure $ readMarkdown readerOptions (T.pack $ itemBody post)
+    doc <- either (fail . show) return parsed
     makeItem $ T.unpack $ T.decodeUtf8 $ toByteString $ renderHtmlFragment UTF8 $ writeXmlHtml defaultXmlHtmlWriterOptions
         { idPrefix = "" --postUrl post
         , renderForRSS = rss
         , siteDomain = mainSiteDomain
         , debugOutput = False
         }
-        (extract $ readMarkdown readerOptions $ itemBody post)
-    where
-        extract (Right r) = r
-        extract _ = error "Pandoc parse error"
+        doc
 
 
 readerOptions :: ReaderOptions
 readerOptions = def
-  { readerSmart = True
-  , readerParseRaw = True
+  { readerExtensions = enableExtension Ext_smart $ readerExtensions def
   }
 
 --------------------------------------------------------------------------------
@@ -1032,7 +1167,7 @@ findTeaser = go []
 --------------------------------------------------------------------------------
 -- | Sort pages chronologically. Uses the same method as 'dateField' for
 -- extracting the date.
-chronological :: MonadMetadata m => [Item a] -> m [Item a]
+chronological :: (MonadMetadata m, MonadFail m) => [Item a] -> m [Item a]
 chronological =
     sortByM $ getItemUTC defaultTimeLocale . itemIdentifier
   where
@@ -1042,12 +1177,44 @@ chronological =
 
 --------------------------------------------------------------------------------
 -- | The reverse of 'chronological'
-recentFirst :: (MonadMetadata m, Functor m) => [Item a] -> m [Item a]
+recentFirst :: (MonadMetadata m, MonadFail m, Functor m) => [Item a] -> m [Item a]
 recentFirst = fmap reverse . chronological
 
 --------------------------------------------------------------------------------
 -- Utility functions
 --------------------------------------------------------------------------------
+
+escapeJson :: String -> String
+escapeJson = concatMap escapeChar
+  where
+    escapeChar '"'  = "\\\""
+    escapeChar '\\' = "\\\\"
+    escapeChar '\n' = "\\n"
+    escapeChar '\r' = "\\r"
+    escapeChar '\t' = "\\t"
+    escapeChar c
+        | ord c < 0x20 = "\\u00" ++ padHex (showHex (ord c) "")
+        | otherwise = [c]
+    padHex [x] = ['0', x]
+    padHex [x, y] = [x, y]
+    padHex xs
+        | length xs >= 4 = xs
+        | length xs == 3 = '0' : xs
+        | otherwise = replicate (4 - length xs) '0' ++ xs
+
+normalizeSpaces :: String -> String
+normalizeSpaces = unwords . words
+
+truncateWithEllipsis :: Int -> String -> String
+truncateWithEllipsis maxLen txt
+    | length txt <= maxLen = txt
+    | maxLen <= 3 = take maxLen txt
+    | otherwise = take (maxLen - 3) txt ++ "..."
+
+normalizeUrlPath :: String -> String
+normalizeUrlPath path =
+    let trimmed = dropWhile (== '/') path
+    in '/' : trimmed
 
 unwrap :: String -> String
 unwrap str -- TODO decode escaped chars
@@ -1087,20 +1254,54 @@ removeExtension :: Routes
 removeExtension = customRoute $ removeExtension' . toFilePath
 
 removeExtension' :: String -> String
-removeExtension' filepath = subRegex (mkRegex "^(.*)\\.md$")
-                                        (subRegex (mkRegex "/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/index.html")
-                                        "\\1/index.html"
+removeExtension' filepath =
+    let dir  = takeDirectory filepath
+        base = takeBaseName filepath
+        parts = splitAll "-" base
+        base' = case parts of
+            (y:m:d:rest) | length y == 4 && length m == 2 && length d == 2 -> intercalate "-" rest
+            _ -> base
+        path = intercalate "/" $ filter (not . null) (splitDirectories dir ++ [base'])
+    in path ++ "/index.html"
+
+jsonRoute :: Routes
+jsonRoute = customRoute (jsonRoute' . toFilePath)
+
+jsonRoute' :: String -> String
+jsonRoute' filepath =
+    let urlPath = identifierToUrl filepath
+        trimmed = dropWhile (== '/') urlPath
+    in trimmed ++ "index.json"
 
 identifierToUrl :: String -> String
-identifierToUrl filepath = subRegex (mkRegex "^(.*)\\.md$")
-                                        (subRegex (mkRegex "/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath "/\\1/")
-                                        "\\1/"
+identifierToUrl filepath =
+    let dirs = splitDirectories (takeDirectory filepath)
+        base = takeBaseName filepath
+        -- strip leading date prefix like YYYY-MM-DD- from base name
+        base' = case splitAll "-" base of
+                  (y:m:d:rest) | length y == 4 && length m == 2 && length d == 2 -> intercalate "-" rest
+                  _ -> base
+        path = intercalate "/" (dirs ++ [base'])
+    in ensureTrailingSlash path
+
+ensureTrailingSlash :: String -> String
+ensureTrailingSlash p
+    | null p = "/"
+    | last p == '/' = p
+    | otherwise = p ++ "/"
 
 simplifiedUrl :: String -> String
-simplifiedUrl url = subRegex (mkRegex "/index\\.html$") url "/"
+simplifiedUrl url =
+    case reverse url of
+        ('l':'m':'t':'h':'.':'x':'d':'n':'i':'/':rest) -> reverse rest
+        _ -> url
 
 identifierToDisqus :: String -> String
-identifierToDisqus filepath = subRegex (mkRegex "^posts/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-(.*)\\.md$") filepath  "\\1"
+identifierToDisqus filepath =
+    let base = takeBaseName filepath
+    in case splitAll "-" base of
+        (y:m:d:rest) | length y == 4 && length m == 2 && length d == 2 -> intercalate "-" rest
+        _ -> base
 
 countText :: Int -> String -> String -> String -> String
 countText count one two many
@@ -1115,10 +1316,14 @@ countText count one two many
 
 
 getWeight :: Int -> Int -> Int -> Int
-getWeight minCount maxCount count =
-    round ((5 * ((fromIntegral count :: Double) - fromIntegral minCount) +
-        fromIntegral maxCount - fromIntegral minCount) /
-        (fromIntegral maxCount - fromIntegral minCount))
+getWeight minCount maxCount count
+    | maxCount <= minCount = 3
+    | otherwise =
+        let c = fromIntegral count :: Double
+            lo = fromIntegral minCount
+            hi = fromIntegral maxCount
+            scaled = 1 + 4 * (c - lo) / (hi - lo)
+        in round scaled
 
 removeIfExists :: FilePath -> IO ()
 removeIfExists fileName = removeFile fileName `catch` handleExists

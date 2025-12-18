@@ -1,5 +1,5 @@
 ---
-title: "Prevention is better than cure". Researching and treating diseses is too costly so it would be better to invest in preventative measures
+title: "Prevention is better than cure. Researching and treating diseases is too costly so it would be better to invest in preventative measures"
 date: 2016-02-27T10:58:09+09:00
 published: true
 tags: ielts, writing, prevention, cure
@@ -20,4 +20,3 @@ Secondly, there are many scientific evidences to prove that preventative measure
 
 
 In conclusion, it is quite evident that we need to find a solution to combine harmoniously those two methods above because it will yield the best outcome in the medical sector and the solution will benefit a myriad of patients regardless of their types of diseases.
-

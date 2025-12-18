@@ -1,14 +1,14 @@
+cabal-version:       3.6
 Name:                ainsyl
 Version:             0.1
 Synopsis:            Project Synopsis Here
 Description:         Project Description Here
-License:             AllRightsReserved
+License:             NONE
 Author:              Young Gyu Park
 Maintainer:          ygpark2@gmail.com
 Stability:           Experimental
 Category:            Web
 Build-type:          Simple
-Cabal-version:       >=1.2
 
 Flag development
   Description: Development mode
@@ -19,9 +19,11 @@ Executable post
   main-is: Post.hs
 
   Build-depends:
-    base >= 4.8.2.0 && < 5,
+    base >= 4.8 && < 5,
     cmdargs >= 0.10.14 && < 0.11,
-    template >= 0.2.0.10 && < 0.3
+    directory,
+    filepath,
+    time
 
   if flag(development)
       cpp-options: -DDEVELOPMENT
@@ -39,18 +41,21 @@ Executable ainsyl
     XmlHtmlWriter
 
   Build-depends:
-    base >= 4.8.2.0 && < 5,
+    base >= 4.8 && < 5,
     blaze-builder >= 0.4 && < 0.5,
-    containers >= 0.5 && < 0.6,
-    filepath >= 1.4 && < 1.5,
-    hakyll >= 4.12.4.0 && < 5.0,
+    containers >= 0.5 && < 0.9,
+    filepath >= 1.4 && < 1.7,
+    hakyll >= 4.14 && < 5.0,
     mtl >= 2.2.1 && < 3,
-    pandoc >= 1.16 && < 1.18,
+    pandoc >= 2.11 && < 3.8,
     regex-compat >= 0.95.1,
-    tagsoup >= 0.13.1 && < 0.14,
-    text >= 1.2.2.1 && < 1.3,
-    time >= 1.6 && < 1.7,
-    xmlhtml >= 0.2.3 && < 0.3
+    tagsoup >= 0.14 && < 0.15,
+    text >= 1.2 && < 2.4,
+    time >= 1.6 && < 1.14,
+    xmlhtml >= 0.2.3 && < 0.3,
+    directory,
+    process,
+    aeson
 
   if flag(development)
       cpp-options: -DDEVELOPMENT
@@ -60,23 +65,28 @@ Executable ainsyl
       ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields -O2
                    -fno-warn-unused-do-bind
 
+flag server
+  description: Build snap-based server executable
+  default: False
+
 Executable server
   hs-source-dirs: src
   main-is: Server.hs
-
+  if !flag(server)
+    buildable: False
   Build-depends:
-    attoparsec                >= 0.13.1.0 && < 0.14,
-    base                      >= 4.8.2.0 && < 5,
-    bytestring                >= 0.9 && < 0.11,
-    directory                 >= 1.1 && < 1.3,
-    MonadCatchIO-transformers >= 0.3.1.3 && < 0.4,
+    attoparsec                >= 0.13 && < 0.15,
+    base                      >= 4.8 && < 5,
+    bytestring                >= 0.10 && < 0.13,
+    directory                 >= 1.2 && < 1.4,
+    filepath                  >= 1.4 && < 1.7,
     mtl                       >= 2.2.1 && < 3,
-    process                   >= 1.1 && < 1.5,
-    snap-core                 >= 1.0.0.0 && < 2.0,
-    snap-server               >= 1.0.1.0 && < 2.0,
+    process                   >= 1.4 && < 1.8,
+    snap-core                 >= 1.0.0.0 && < 2.1,
+    snap-server               >= 1.1.0.0 && < 2.1,
     system-filepath           == 0.4.*,
-    transformers              >= 0.4 && < 0.6,
-    unix-compat               >= 0.4.2.0 && < 0.5,
+    transformers              >= 0.4 && < 0.7,
+    unix-compat               >= 0.4.2.0 && < 0.8,
     unordered-containers      >= 0.2.7.1 && < 0.3,
     utf8-string               >= 1.0.1.1 && < 1.5
 

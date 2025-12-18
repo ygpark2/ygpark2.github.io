@@ -1,5 +1,5 @@
 ---
-title: " "some reasons why this is occurring and give tips on how to motivate people to exercise""
+title: "some reasons why this is occurring and give tips on how to motivate people to exercise"
 date: 2015-06-21T21:47:43+09:00
 tags: "IELTS, writing, english, exercise"
 ---
