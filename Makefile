@@ -1,4 +1,4 @@
-.PHONY: watch post post-map post-jungto vendor-js build rewatch
+.PHONY: watch post post-map post-jungto vendor-js build rewatch deploy-local
 
 watch:
 	stack run ainsyl -- watch
@@ -35,3 +35,19 @@ rewatch:
 	stack build
 	stack run ainsyl -- clean
 	stack run ainsyl -- watch
+
+deploy-local: BRANCH ?= src
+deploy-local:
+	@if [ -z "$(MSG)" ]; then \
+		echo "Usage: make deploy-local MSG=\"Deploy message\""; \
+		exit 1; \
+	fi
+	stack run ainsyl -- clean
+	stack run ainsyl -- build
+	git checkout gh-pages
+	git rm -r .
+	cp -R _site/* .
+	git add .
+	git commit -m "$(MSG)"
+	git push origin gh-pages
+	git checkout $(BRANCH)
