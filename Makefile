@@ -44,10 +44,12 @@ deploy-local:
 	fi
 	stack run ainsyl -- clean
 	stack run ainsyl -- build
-	git checkout gh-pages
-	git rm -r .
-	cp -R _site/* .
-	git add .
-	git commit -m "$(MSG)"
-	git push origin gh-pages
-	git checkout $(BRANCH)
+	DEPLOY_DIR=$$(mktemp -d); \
+	git worktree add -B gh-pages $$DEPLOY_DIR origin/gh-pages; \
+	rsync -a --delete _site/ $$DEPLOY_DIR/; \
+	git -C $$DEPLOY_DIR add -A; \
+	if [ -n "$$(git -C $$DEPLOY_DIR status --porcelain)" ]; then \
+		git -C $$DEPLOY_DIR commit -m "$(MSG)"; \
+	fi; \
+	git -C $$DEPLOY_DIR push origin gh-pages; \
+	git worktree remove $$DEPLOY_DIR
