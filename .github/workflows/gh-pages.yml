@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: gh-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   STACK_ROOT: ${{ github.workspace }}/.stack
@@ -19,6 +19,7 @@ env:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -33,15 +34,17 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~/.stack
+            .stack
             .stack-work
+            _cache
           key: ${{ runner.os }}-stack-${{ hashFiles('stack.yaml.lock', 'package.yaml', '*.cabal') }}
           restore-keys: |
             ${{ runner.os }}-stack-
 
       - name: Build site
         run: |
-          stack build
+          stack build --only-dependencies
+          stack build --fast
           stack run ainsyl -- build
 
       - name: Deploy
