@@ -1,0 +1,10 @@
+<nav class="pagination">
+  <ul>
+    $if(nextPageUrl)$
+      <li><a class="pagination--pager" href="$nextPageUrl$">Older</a></li>
+    $endif$
+    $if(previousPageUrl)$
+      <li><a class="pagination--pager" href="$previousPageUrl$">Newer</a></li>
+    $endif$
+  </ul>
+</nav>

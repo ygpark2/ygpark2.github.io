@@ -1,0 +1,19 @@
+generated: "2025-12-12T23:59:09+09:00"
+project: "ygpark2.github.io"
+project_type: "블로그"
+selected_track: "bmad-method"
+field_type: "brownfield"
+workflow_path: ".bmad/bmm/workflows/workflow-status/paths/method-brownfield.yaml"
+workflow_status:
+  document-project: docs/index.md
+  brainstorm-project: skipped
+  research: optional
+  product-brief: optional
+  prd: docs/prd.md
+  create-ux-design: conditional
+  create-architecture: recommended
+  create-epics-and-stories: required
+  test-design: recommended
+  validate-architecture: optional
+  implementation-readiness: required
+  sprint-planning: required

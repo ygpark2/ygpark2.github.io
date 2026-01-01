@@ -1,0 +1,120 @@
+{
+  "workflow_version": "1.2.0",
+  "timestamps": {
+    "started": "2025-12-13T00:04:10+09:00",
+    "last_updated": "2025-12-13T00:20:44+09:00"
+  },
+  "mode": "initial_scan",
+  "scan_level": "exhaustive",
+  "project_root": "/Users/ygpark2/pjt/ygpark2.github.io",
+  "output_folder": "/Users/ygpark2/pjt/ygpark2.github.io/docs",
+  "completed_steps": [
+    {
+      "step": "step_1",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:04:10+09:00",
+      "summary": "Classified as monolith with 1 part; project type web (Haskell static site/blog)"
+    },
+    {
+      "step": "step_2",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:05:51+09:00",
+      "summary": "Found 1 existing doc(s) (README.md); user provided no additional focus areas"
+    },
+    {
+      "step": "step_3",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:06:35+09:00",
+      "summary": "Tech stack: Haskell (stack/cabal), Hakyll static site generator, Snap static server, cmdargs-based post CLI; no DB or API layers detected"
+    },
+    {
+      "step": "step_4",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:09:03+09:00",
+      "summary": "Exhaustive scan (excluding third-party highlight.js sources/tests). Findings: no API routes, no DB/schema/migrations, no UI component library beyond templates; content-heavy static site with Hakyll templates and posts."
+    },
+    {
+      "step": "step_5",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:14:03+09:00",
+      "summary": "Annotated source tree written"
+    },
+    {
+      "step": "step_6",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:15:56+09:00",
+      "summary": "Dev/deploy/test patterns assessed: Hakyll static build; Snap server optional; no tests/CI configs detected"
+    },
+    {
+      "step": "step_7",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:16:04+09:00",
+      "summary": "Project overview generated"
+    },
+    {
+      "step": "step_8",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:18:30+09:00",
+      "summary": "Architecture overview generated (static site, Snap server optional)"
+    },
+    {
+      "step": "step_9",
+      "status": "completed",
+      "timestamp": "2025-12-13T00:20:44+09:00",
+      "summary": "Supporting docs generated (development guide, component inventory, API contracts, data models, index)"
+    }
+  ],
+  "current_step": "step_10",
+  "findings": {
+    "project_classification": "monolith; primary part: root; project_type web (Haskell static site/blog); tech markers: stack.yaml, ainsyl.cabal, templates/, posts/",
+    "project_types": [
+      {
+        "part_id": "root",
+        "project_type_id": "web",
+        "display_name": "web"
+      }
+    ],
+    "technology_stack": {
+      "language": "Haskell",
+      "frameworks": [
+        "Hakyll (static site generator)",
+        "Snap (static file server)",
+        "cmdargs (CLI tooling)"
+      ],
+      "notes": "Static site/blog generator; no DB/migrations; no API routes"
+    },
+    "analysis": {
+      "api_scan": "none found",
+      "data_models": "none found",
+      "state_management": "n/a (static site)",
+      "ui_components": "templates-based (Hakyll templates, no JS component lib)",
+      "deployment_config": "none detected (no CI/CD configs; static build via Hakyll)"
+    },
+    "existing_documentation_inventory": [
+      {
+        "path": "README.md",
+        "type": "readme",
+        "part": "root"
+      }
+    ],
+    "source_tree": "docs/source-tree-analysis.md",
+    "architecture": "docs/architecture.md",
+    "development_guide": "docs/development-guide.md",
+    "component_inventory": "docs/component-inventory.md",
+    "api_contracts": "docs/api-contracts.md",
+    "data_models": "docs/data-models.md",
+    "index": "docs/index.md"
+  },
+  "outputs_generated": [
+    "project-scan-report.json",
+    "source-tree-analysis.md",
+    "project-overview.md",
+    "architecture.md",
+    "development-guide.md",
+    "component-inventory.md",
+    "api-contracts.md",
+    "data-models.md",
+    "index.md"
+  ],
+  "resume_instructions": "Continue from step 2"
+}
