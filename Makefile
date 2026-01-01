@@ -45,6 +45,11 @@ deploy-local:
 	stack run ainsyl -- clean
 	stack run ainsyl -- build
 	DEPLOY_DIR=$$(mktemp -d); \
+	EXISTING_WT=$$(git -C $(CURDIR) worktree list --porcelain | awk '/worktree /{wt=$$2} /branch refs\\/heads\\/gh-pages/{print wt}'); \
+	if [ -n "$$EXISTING_WT" ]; then \
+		git -C $(CURDIR) worktree remove "$$EXISTING_WT" || true; \
+		git -C $(CURDIR) worktree prune; \
+	fi; \
 	git -C $(CURDIR) worktree add -B gh-pages "$$DEPLOY_DIR" origin/gh-pages; \
 	rsync -a --delete --exclude ".git" _site/ "$$DEPLOY_DIR/"; \
 	git -C "$$DEPLOY_DIR" add -A; \
