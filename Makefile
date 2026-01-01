@@ -32,11 +32,11 @@ build:
 	bash scripts/incremental-build.sh
 
 rewatch:
-	stack build
+	$(MAKE) build
 	stack run ainsyl -- clean
 	stack run ainsyl -- watch
 
-deploy-local: BRANCH ?= src
+deploy-local: BRANCH ?= hakyll
 deploy-local:
 	@if [ -z "$(MSG)" ]; then \
 		echo "Usage: make deploy-local MSG=\"Deploy message\""; \
