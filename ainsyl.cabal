@@ -38,6 +38,10 @@ Executable ainsyl
   main-is: Site.hs
 
   other-modules:
+    Site.Compat
+    Site.Context
+    Site.Theme
+    Site.Utils
     XmlHtmlWriter
 
   Build-depends:

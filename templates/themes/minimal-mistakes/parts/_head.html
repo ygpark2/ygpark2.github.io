@@ -1,0 +1,159 @@
+<head>
+    <title>$meta.title$</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="title" content="$meta.title$" />
+    <meta name="description" content="$meta.description$" />
+    <meta name="keywords" content="$meta.keywords$" />
+    <meta name="author" content="Young Gyu Park"/>
+
+    <meta itemprop="name" content="$meta.title$"/>
+    <meta itemprop="description" content="$meta.description$"/>
+
+    <meta property="og:site_name" content="[young gyu's blog]" />
+    <meta property="og:title" content="$meta.title$" />
+    <meta property="og:url" content="$meta.url$" />
+    <meta property="og:description" content="$meta.description$" />
+    <meta property="og:locale" content="ko_KR" />
+
+    $if(meta.facebook.nothing)$
+    <meta property="og:type" content="website" />
+    $endif$
+    $if(meta.facebook.article)$
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="$meta.facebook.published$" />
+    $for(meta.facebook.tags)$<meta property="article:tag" content="$body$" />
+    $endfor$
+    $for(meta.facebook.images)$<meta property="og:image" itemprop="image" content="$body$" />
+    <link rel="image_src" href="$body$"/>
+    $endfor$
+    $endif$
+
+    <link rel="alternate" type="application/rss+xml" title="rss" href="/feed.rss" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/minimal-mistakes.css">
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <style>
+      .masthead__inner-wrap,
+      .page__inner-wrap {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      .masthead__menu {
+        width: 100%;
+      }
+      .layout--archive .archive {
+        float: none;
+        width: 100%;
+        padding-right: 0;
+      }
+      .layout--archive .archive .archive__item {
+        width: 100%;
+      }
+      .layout--archive .archive__subtitle {
+        scroll-margin-top: 7.5rem;
+      }
+      .post-layout {
+        display: grid;
+        gap: 2rem;
+      }
+      .post-layout__toc {
+        display: none;
+      }
+      .post-layout__toc .post-toc__card {
+        position: sticky;
+        top: 7rem;
+        padding: 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      }
+      .post-layout__toc .post-toc__title {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+      }
+      .post-layout__toc .post-toc {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+      }
+      .post-layout__toc .post-toc ul {
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+      }
+      .post-layout__toc .post-toc li + li {
+        margin-top: 0.35rem;
+      }
+      .post-layout__toc .post-toc a {
+        text-decoration: none;
+        color: #334155;
+      }
+      .post-layout__toc .post-toc a:hover {
+        text-decoration: underline;
+      }
+      .post-layout__toc .post-toc .toc-level-3 {
+        margin-left: 0.85rem;
+        font-size: 0.85rem;
+        color: #64748b;
+      }
+      .post-layout__toc .post-toc .toc-level-4 {
+        margin-left: 1.6rem;
+        font-size: 0.82rem;
+        color: #94a3b8;
+      }
+      .taxonomy__menu a.is-active {
+        background: #0f172a;
+        color: #ffffff;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+      }
+      .taxonomy__menu a:hover {
+        background: #ffffff;
+        color: #0f172a;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+      }
+      .tags-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 1rem;
+        background: #ffffff;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      }
+      .page__content.post-body,
+      .page__content.post-body p {
+        font-size: 1.12rem;
+        line-height: 1.8;
+      }
+      .page__content.post-body h2 {
+        font-size: 1.6rem;
+      }
+      .page__content.post-body h3 {
+        font-size: 1.35rem;
+      }
+      .page__content.post-body h4 {
+        font-size: 1.15rem;
+      }
+      @media (min-width: 1024px) {
+        .post-layout {
+          grid-template-columns: minmax(0, 1fr) 240px;
+          align-items: start;
+        }
+        .post-layout__toc {
+          display: block;
+        }
+      }
+    </style>
+
+    $partial("templates/themes/minimal-mistakes/parts/_google-analytics.html")$
+</head>

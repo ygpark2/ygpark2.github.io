@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
+$partial("templates/themes/default/parts/_head.html")$
+<body class="bg-slate-50 text-slate-900 font-sans" data-json-url="/$url$index.json" data-post-title="$title$">
+$partial("templates/themes/default/parts/_topbar.html")$
+
+<main class="mx-auto max-w-6xl px-4 py-10">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_240px]">
+        <div class="space-y-8">
+            $body$
+        </div>
+        <aside class="hidden lg:block">
+            <div class="sticky top-28 rounded-2xl border border-slate-200 bg-white p-4 text-slate-700 shadow-sm">
+                <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">On this page</div>
+                <nav id="post-toc" class="post-toc mt-3"></nav>
+            </div>
+        </aside>
+    </div>
+</main>
+
+$partial("templates/themes/default/parts/_footer.html")$
+$partial("templates/themes/default/parts/_yandex-metrika.html")$
+$partial("templates/themes/default/parts/_scripts.html")$
+<script type="text/javascript" src="/assets/js/post-toc.js"></script>
+
+</body>
+</html>

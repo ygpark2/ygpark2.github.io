@@ -1,0 +1,112 @@
+.search-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  flex-wrap: nowrap;
+}
+.search-controls .input-field {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.search-controls .input-field label {
+  white-space: nowrap;
+  margin: 0;
+}
+.search-controls .input-field input,
+.search-controls .input-field select {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0 24px;
+}
+.tag-filter .tag-heading {
+  margin: 0 8px 0 0;
+  font-weight: 600;
+}
+.tag-filter .tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #cbd5f5;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.tag-filter .tag-chip.btn {
+  background: #ffffff;
+  border: 1px solid #cbd5f5;
+  color: #334155;
+  box-shadow: none;
+}
+.tag-filter .tag-chip.is-selected {
+  border-color: #f59e0b;
+  background: #fffbeb;
+  color: #92400e;
+}
+.tag-filter .tag-chip.is-selected.btn {
+  border-color: #f59e0b;
+  background: #fffbeb;
+  color: #92400e;
+  box-shadow: none;
+}
+.search-posts {
+  display: grid;
+  gap: 20px;
+}
+.search-post-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 16px 20px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.search-post-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+.search-post-title a {
+  color: inherit;
+}
+.search-post-title a:hover {
+  color: #d97706;
+}
+.search-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+  justify-content: flex-end;
+}
+.search-post-tag {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}

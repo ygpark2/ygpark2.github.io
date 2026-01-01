@@ -3,6 +3,7 @@
     posts: [],
     filtered: [],
     tags: [],
+    tagCounts: new Map(),
     selectedTags: new Set(),
     query: "",
     sort: "latest",
@@ -35,6 +36,7 @@
       .then((data) => {
         state.posts = Array.isArray(data.posts) ? data.posts : [];
         state.tags = dedupeTags(state.posts);
+        state.tagCounts = getTagCounts(state.posts);
         initTags();
         applyFilters();
         setStatus(`총 ${state.posts.length}건 로드됨`);
@@ -49,6 +51,45 @@
     const set = new Set();
     posts.forEach((p) => (p.tags || []).forEach((t) => set.add(t)));
     return Array.from(set).sort();
+  }
+
+  function getTagCounts(posts) {
+    const counts = new Map();
+    posts.forEach((p) => {
+      (p.tags || []).forEach((tag) => {
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      });
+    });
+    return counts;
+  }
+
+  function getTagFontSize(tag) {
+    if (!state.tagCounts.size) return "0.95rem";
+    const values = Array.from(state.tagCounts.values());
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    if (min === max) return "0.95rem";
+    const count = state.tagCounts.get(tag) || min;
+    const ratio = (count - min) / (max - min);
+    const size = 0.85 + ratio * 0.6;
+    return `${size.toFixed(2)}rem`;
+  }
+
+  function getTagTone(tag) {
+    if (!state.tagCounts.size) {
+      return { weight: "600", color: "text-slate-600" };
+    }
+    const values = Array.from(state.tagCounts.values());
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    if (min === max) {
+      return { weight: "600", color: "text-slate-600" };
+    }
+    const count = state.tagCounts.get(tag) || min;
+    const ratio = (count - min) / (max - min);
+    const weight = ratio > 0.66 ? "800" : ratio > 0.33 ? "700" : "600";
+    const color = ratio > 0.66 ? "text-sky-700" : ratio > 0.33 ? "text-sky-600" : "text-slate-600";
+    return { weight, color };
   }
 
   function initControls() {
@@ -70,10 +111,6 @@
         state.sort = e.target.value;
         applyFilters();
       });
-      // Initialize Materialize select if available
-      if (window.M && M.FormSelect) {
-        M.FormSelect.init(els.sort);
-      }
     }
   }
 
@@ -84,26 +121,33 @@
       els.tagSection.textContent = "태그가 없습니다.";
       return;
     }
-    const heading = createEl("p", "grey-text", "태그 필터");
+    const heading = createEl("p", "tag-heading", "태그 필터");
     els.tagSection.appendChild(heading);
     state.tags.forEach((tag) => {
-      const id = `tag-${tag.replace(/[^a-z0-9]/gi, "-")}`;
-      const wrapper = createEl("div", "chip tag-chip");
-      const checkbox = createEl("input");
-      checkbox.type = "checkbox";
-      checkbox.id = id;
-      checkbox.value = tag;
-      checkbox.setAttribute("aria-label", `${tag} 태그 필터`);
-      checkbox.addEventListener("change", (e) => {
-        if (e.target.checked) state.selectedTags.add(tag);
-        else state.selectedTags.delete(tag);
+      const tone = getTagTone(tag);
+      const button = createEl(
+        "button",
+        `btn btn-sm rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold shadow-sm transition hover:border-sky-300 hover:text-sky-700 ${tone.color}`,
+        tag
+      );
+      button.style.fontWeight = tone.weight;
+      button.style.fontSize = getTagFontSize(tag);
+      button.type = "button";
+      button.setAttribute("aria-pressed", "false");
+      button.setAttribute("aria-label", `${tag} 태그 필터`);
+      button.addEventListener("click", () => {
+        if (state.selectedTags.has(tag)) {
+          state.selectedTags.delete(tag);
+          button.classList.remove("is-selected", "border-sky-500", "bg-sky-100", "text-sky-800", "shadow-sm");
+          button.setAttribute("aria-pressed", "false");
+        } else {
+          state.selectedTags.add(tag);
+          button.classList.add("is-selected", "border-sky-500", "bg-sky-100", "text-sky-800", "shadow-sm");
+          button.setAttribute("aria-pressed", "true");
+        }
         applyFilters();
       });
-      const label = createEl("label", "", tag);
-      label.htmlFor = id;
-      wrapper.appendChild(checkbox);
-      wrapper.appendChild(label);
-      els.tagSection.appendChild(wrapper);
+      els.tagSection.appendChild(button);
     });
   }
 
@@ -158,33 +202,33 @@
     setStatus(`총 ${state.filtered.length}건`);
     const frag = document.createDocumentFragment();
     state.filtered.forEach((p) => {
-      const col = createEl("div", "col s12 m6");
-      const card = createEl("div", "card hoverable");
-      const content = createEl("div", "card-content");
-      const title = createEl("span", "card-title");
+      const article = createEl(
+        "article",
+        "rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm"
+      );
+      const title = createEl("h2", "text-lg font-semibold text-slate-900");
       const link = createEl("a", "", p.title || "제목 없음");
       link.href = p.url || "#";
       link.setAttribute("aria-label", `${p.title || "제목 없음"} 열기`);
+      link.className = "hover:text-amber-600";
       title.appendChild(link);
-      const meta = createEl("p", "grey-text text-darken-1", formatDate(p.date));
-      const desc = createEl("p", "", p.excerpt || p.description || "");
-      content.appendChild(title);
-      content.appendChild(meta);
-      content.appendChild(desc);
 
+      article.appendChild(title);
+
+      const tagsRow = createEl("div", "mt-2 flex flex-wrap justify-end gap-2");
       if (Array.isArray(p.tags) && p.tags.length) {
-        const tagsRow = createEl("div", "section");
         p.tags.forEach((tag) => {
-          const chip = createEl("div", "chip", tag);
-          chip.setAttribute("role", "text");
+          const chip = createEl(
+            "span",
+            "rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-semibold text-slate-600",
+            tag
+          );
           tagsRow.appendChild(chip);
         });
-        content.appendChild(tagsRow);
       }
+      article.appendChild(tagsRow);
 
-      card.appendChild(content);
-      col.appendChild(card);
-      frag.appendChild(col);
+      frag.appendChild(article);
     });
     els.postsContainer.appendChild(frag);
   }

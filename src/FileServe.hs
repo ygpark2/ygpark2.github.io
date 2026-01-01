@@ -153,6 +153,7 @@ defaultDirectoryConfig = DirectoryConfig {
     preServeHook = const $ return ()
     }
     where
+        -- Disable caching for HTML during development serving.
         serveHtml file = do
             modifyResponse $ setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
                            . setHeader "Pragma" "no-cache"
@@ -227,4 +228,3 @@ serveDirectoryWith cfg base = do
         let qss = queryStringSuffix rq
         let u = S.concat [uri, "/", qss]
         redirect u
-

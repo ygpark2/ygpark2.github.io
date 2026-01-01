@@ -21,14 +21,16 @@ force=${FULL:-0}
 
 if [[ $force -ne 0 ]]; then
   echo "[info] FULL=1, 전체 빌드를 실행합니다." | tee -a "$LOG"
-  (cd "$ROOT" && stack run ainsyl)
+  (cd "$ROOT" && stack build)
+  (cd "$ROOT" && stack run ainsyl -- build)
   date -u +"%Y-%m-%dT%H:%M:%SZ" > "$STAMP"
   exit 0
 fi
 
 if [[ ! -f "$STAMP" ]]; then
   echo "[info] 첫 빌드: 기준 타임스탬프가 없어 전체 빌드를 실행합니다." | tee -a "$LOG"
-  (cd "$ROOT" && stack run ainsyl)
+  (cd "$ROOT" && stack build)
+  (cd "$ROOT" && stack run ainsyl -- build)
   date -u +"%Y-%m-%dT%H:%M:%SZ" > "$STAMP"
   exit 0
 fi
@@ -50,6 +52,7 @@ for f in "${changed[@]}"; do
   echo " - $f" >> "$LOG"
 done
 
-(cd "$ROOT" && stack run ainsyl)
+(cd "$ROOT" && stack build)
+(cd "$ROOT" && stack run ainsyl -- build)
 date -u +"%Y-%m-%dT%H:%M:%SZ" > "$STAMP"
 echo "[info] 빌드 완료" | tee -a "$LOG"

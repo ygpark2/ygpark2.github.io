@@ -9,6 +9,7 @@ module XmlHtmlWriter
 import Blaze.ByteString.Builder (toByteString)
 import Control.Monad.State
 import Control.Monad (foldM)
+import Data.List (find)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import Text.XmlHtml hiding (render)
@@ -41,6 +42,7 @@ data WriterStateData = WriterStateData
 type WriterState = State WriterStateData
 
 writeXmlHtml :: XmlHtmlWriterOptions -> Pandoc -> [Node]
+-- Render Pandoc to XmlHtml with project-specific tweaks (RSS, ids, domain).
 writeXmlHtml options pandoc 
   | debugOutput options = 
     [ Element "pre" [] 
@@ -112,7 +114,15 @@ writeBlock (CodeBlock (identifier, classes, others) code) = return
     ]
   ]
   where 
-    mapAttrs = writeAttr (identifier, "sourceCode" : classes, others) 
+    mapAttrs = writeAttr (identifier, addLanguageClass ("sourceCode" : classes), others)
+    addLanguageClass cls =
+      case find (T.isPrefixOf "language-") cls of
+        Just _ -> cls
+        Nothing ->
+          case cls of
+            (_:lang:rest) | lang /= "" -> ("language-" <> lang) : cls
+            (_:[]) -> cls
+            _ -> cls
 writeBlock (RawBlock "html" str) = do  
   modify (\s -> s { rawData = rawData s `T.append` str })
   return []

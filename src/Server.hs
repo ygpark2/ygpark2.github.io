@@ -9,6 +9,7 @@ import           Snap.Http.Server
 import           Data.ByteString as B
 
 main :: IO ()
+-- Snap server for serving the generated _site directory.
 main = quickHttpServe site
 
 site :: Snap ()

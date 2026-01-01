@@ -7,17 +7,25 @@
   function setStatus(msg) {
     let status = document.getElementById("post-fallback-status");
     if (!status) {
-      status = document.createElement("p");
+      status = document.createElement("div");
       status.id = "post-fallback-status";
-      status.className = "grey-text";
-      const container = document.querySelector(".post-body");
-      if (container) {
-        container.prepend(status);
-      } else {
-        document.body.prepend(status);
-      }
+      status.setAttribute("role", "alert");
+      status.className =
+        "fixed right-5 top-5 z-[9999] max-w-xs border-l-4 border-orange-500 bg-orange-100 p-4 text-orange-700 shadow-lg transition-opacity duration-200";
+      status.style.opacity = "0";
+      document.body.appendChild(status);
     }
-    status.textContent = msg;
+    if (!msg) {
+      status.style.opacity = "0";
+      status.textContent = "";
+      return;
+    }
+    status.innerHTML = "<p class=\"font-bold\">Be Warned</p><p></p>";
+    const body = status.querySelector("p:last-child");
+    if (body) {
+      body.textContent = msg;
+    }
+    status.style.opacity = "1";
   }
 
   function renderFromJson(data) {

@@ -2,23 +2,23 @@
   <h1>빠른 검색 · 정렬 · 태그 필터</h1>
   <p>메타 JSON(posts-index.json)을 이용해 새로고침 없이 즉시 결과를 갱신합니다.</p>
 
-  <div class="row" aria-label="검색과 정렬">
-    <div class="input-field col s12 m6">
-      <input id="search-input" type="search" aria-label="제목·태그·본문 검색" placeholder="제목, 태그, 본문 검색" />
-      <label for="search-input">검색</label>
+  <div class="search-controls" aria-label="검색과 정렬">
+    <div class="input-field search-input-field">
+      <label for="search-input" class="text-base">검색</label>
+      <input id="search-input" class="h-12 w-full text-base" type="search" aria-label="제목·태그·본문 검색" placeholder="제목, 태그, 본문 검색" />
     </div>
-    <div class="input-field col s12 m6">
-      <select id="sort-select" aria-label="정렬 옵션">
+    <div class="input-field sort-field">
+      <label for="sort-select" class="text-base">정렬</label>
+      <select id="sort-select" class="h-12 w-full text-base" aria-label="정렬 옵션">
         <option value="latest" selected>최신순</option>
         <option value="title">제목순</option>
         <option value="tag">태그순</option>
         <option value="popular">인기순(임시: 최신순과 동일)</option>
       </select>
-      <label for="sort-select">정렬</label>
     </div>
   </div>
 
-  <div class="row" id="tag-filter-section" aria-label="태그 필터"></div>
+  <div class="tag-filter" id="tag-filter-section" aria-label="태그 필터"></div>
 
   <div class="row">
     <div class="col s12">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="row" id="posts-container" aria-live="polite"></div>
+  <div class="search-posts" id="posts-container" aria-live="polite"></div>
 </div>
 
 <script src="/assets/js/posts-search.js"></script>

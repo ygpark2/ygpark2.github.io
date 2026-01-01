@@ -1,0 +1,23 @@
+<article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+  <header class="page__header">
+    <h1 class="page__title" itemprop="headline">$title$</h1>
+    $partial("templates/themes/minimal-mistakes/parts/_post-footer.html")$
+  </header>
+
+  <section class="page__content post-body" itemprop="text">
+    $body$
+  </section>
+
+  $if(collection)$
+    <section class="page__related">
+      $collection$
+    </section>
+  $endif$
+
+  <section class="page__comments">
+    <div id="disqus_thread">
+      $comments$
+    </div>
+    $partial("templates/themes/minimal-mistakes/parts/_disqus-post.html")$
+  </section>
+</article>
